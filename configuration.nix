@@ -4,26 +4,23 @@
 
 { config, pkgs, ... }:
 
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./msi-pro-z690-a.nix
-    ./gpu.nix
-    ./fan.nix
-    ./led.nix
+    # ./msi-pro-z690-a.nix
+    ./zenbook.nix
     ./desktop-environment.nix
     ./programs.nix
-    ./gaming.nix
-    ./developing.nix
+    (import "${home-manager}/nixos")
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "Antoine"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -70,10 +67,21 @@
     ];
   };
 
+  # home-manager.users.antoine =
+  #   { pkgs, ... }:
+  #   {
+  #     # The state version is required and should stay at the version you
+  #     # originally installed.
+  #     home.stateVersion = "25.11";
+  #   };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  programs.dconf.enable = true;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   time.hardwareClockInLocalTime = true;
 

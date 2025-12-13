@@ -1,54 +1,16 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  services.displayManager.gdm = {
+  services.displayManager.sddm = {
     enable = true;
-    wayland = true;
+    wayland.enable = true;
+    autoNumlock = true;
   };
 
-  services.desktopManager.gnome = {
-    enable = true;
-    extraGSettingsOverridePackages = with pkgs; [ mutter ];
-    extraGSettingsOverrides = ''
-      [org.gnome.mutter]
-      experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
-    '';
-  };
-
-  environment.gnome.excludePackages = with pkgs; [
-    epiphany
-    totem
-    gnome-music
-    yelp
-  ];
-
-  environment.systemPackages = with pkgs.gnomeExtensions; [
-    pkgs.ddcutil
-    pkgs.gnome-tweaks
-    dash-to-panel
-    arcmenu
-    appindicator
-    gsconnect
-    alphabetical-app-grid
-    brightness-control-using-ddcutil
-    burn-my-windows
-    tiling-assistant
-    clipboard-indicator
-    arcmenu
-    quick-settings-tweaker
-    rounded-window-corners-reborn
-  ];
-
-  programs.dconf.profiles.user.databases = [
-    {
-      settings = {
-        "org/gnome/shell" = {
-          disable-extension-version-validation = true;
-
-          # enabled-extensions = [
-          # ];
-        };
-      };
-    }
-  ];
+  services.desktopManager.plasma6.enable = true;
 }

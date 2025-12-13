@@ -13,4 +13,6 @@
   ];
 
   hardware.logitech.wireless.enable = true;
+
+  services.flatpak.enable = true;
 }

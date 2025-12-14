@@ -9,5 +9,8 @@
     mangohud
     goverlay
     vulkan-tools
+    protonup-qt
+    lutris
+    heroic
   ];
 }

@@ -42,5 +42,6 @@
     arcmenu
     quick-settings-tweaker
     rounded-window-corners-reborn
+    caffeine
   ];
 }

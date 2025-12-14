@@ -7,6 +7,7 @@
     ./led.nix
     ./gaming.nix
     ./developing.nix
+    ./vm.nix
   ];
 
   networking.hostName = "Antoine";

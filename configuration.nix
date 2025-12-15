@@ -13,7 +13,7 @@ in
     ./hardware-configuration.nix
     ./msi-pro-z690-a.nix
     # ./zenbook.nix
-    ./gnome.nix
+    ./kde.nix
     ./programs.nix
     (import "${home-manager}/nixos")
   ];

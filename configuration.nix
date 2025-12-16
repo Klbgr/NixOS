@@ -11,9 +11,9 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./msi-pro-z690-a.nix
-    # ./zenbook.nix
-    ./kde.nix
+    # ./msi-pro-z690-a.nix
+    ./zenbook.nix
+    ./gnome.nix
     ./programs.nix
     (import "${home-manager}/nixos")
   ];

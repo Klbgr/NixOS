@@ -44,5 +44,7 @@
     rounded-window-corners-reborn
     caffeine
     compiz-windows-effect
+    emoji-copy
+    search-light
   ];
 }

@@ -10,6 +10,8 @@
     rquickshare
     discord
     spotify
+    ookla-speedtest
+    libva
   ];
 
   hardware.logitech.wireless.enable = true;

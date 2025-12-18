@@ -24,8 +24,18 @@
   environment.gnome.excludePackages = with pkgs; [
     epiphany
     totem
-    gnome-music
     yelp
+    showtime
+    decibels
+    seahorse
+    geary
+    gnome-music
+    gnome-weather
+    gnome-maps
+    gnome-font-viewer
+    gnome-characters
+    gnome-logs
+    gnome-tour
   ];
 
   environment.systemPackages = with pkgs.gnomeExtensions; [

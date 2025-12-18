@@ -46,5 +46,6 @@
     compiz-windows-effect
     emoji-copy
     search-light
+    simpleweather
   ];
 }

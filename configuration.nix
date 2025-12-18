@@ -64,6 +64,8 @@ in
       "networkmanager"
       "wheel"
       "docker"
+      "input"
+      "ydotool"
     ];
     packages = with pkgs; [
     ];

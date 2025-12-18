@@ -1,0 +1,23 @@
+swipe:
+  4:
+    up:
+      command: "ydotool key 115:1 115:0"
+      threshold: 0.0
+      interval: 0.25
+    down:
+      command: "ydotool key 114:1 114:0"
+      threshold: 0.0
+      interval: 0.25
+    left:
+      command: "ydotool key 165:1 165:0"
+      threshold: 1.0
+      interval: 1.0
+    right:
+      command: "ydotool key 163:1 163:0"
+      threshold: 1.0
+      interval: 1.0
+
+hold:
+  4:
+    command: "ydotool key 164:1 164:0"
+    threshold: 0.0

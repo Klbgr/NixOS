@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ./gpu.nix
+    ./intel-igpu.nix
+    ./nvidia-gpu.nix
     ./fan.nix
     ./led.nix
     ./gaming.nix

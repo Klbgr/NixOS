@@ -7,7 +7,6 @@
     (google-chrome.override {
       commandLineArgs = [
         "--enable-features=TouchpadOverscrollHistoryNavigation"
-        "--ozone-platform-hint=auto"
       ];
     })
     vlc

@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./intel-igpu.nix
     ./developing.nix
   ];
 

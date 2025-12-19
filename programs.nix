@@ -19,4 +19,6 @@
   ];
 
   hardware.logitech.wireless.enable = true;
+
+  programs.thunderbird.enable = true;
 }

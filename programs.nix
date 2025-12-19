@@ -16,6 +16,7 @@
     discord
     spotify
     ookla-speedtest
+    moonlight-qt
   ];
 
   hardware.logitech.wireless.enable = true;

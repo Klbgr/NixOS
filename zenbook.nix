@@ -2,8 +2,10 @@
 
 {
   imports = [
-    ./intel-igpu.nix
-    ./developing.nix
+    ./hardware/intel-igpu.nix
+    ./software/gnome.nix
+    ./software/programs.nix
+    ./software/developing.nix
   ];
 
   networking.hostName = "ZenBook";

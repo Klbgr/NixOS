@@ -1,6 +1,14 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./modules/nix-flatpak.nix
+  ];
+
+  services.flatpak.packages = [
+    "eu.betterbird.Betterbird"
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -19,6 +27,4 @@
   ];
 
   hardware.logitech.wireless.enable = true;
-
-  programs.thunderbird.enable = true;
 }

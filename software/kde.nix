@@ -1,7 +1,13 @@
 { config, ... }:
 
 {
-  services.flatpak.enable = true;
+  imports = [
+    ./modules/nix-flatpak.nix
+  ];
+
+  services.flatpak.packages = [
+    "io.github.vikdevelop.SaveDesktop"
+  ];
 
   services.displayManager.sddm = {
     enable = true;

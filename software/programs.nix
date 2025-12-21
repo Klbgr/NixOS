@@ -25,6 +25,7 @@
     spotify
     ookla-speedtest
     moonlight-qt
+    peazip
   ];
 
   hardware.logitech.wireless.enable = true;

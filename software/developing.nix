@@ -8,6 +8,6 @@
     vscode
     gcc
     nixfmt
-    conda
+    mamba-cpp
   ];
 }

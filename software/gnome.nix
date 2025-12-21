@@ -10,16 +10,7 @@
     wayland = true;
   };
 
-  services.desktopManager.gnome = {
-    enable = true;
-    extraGSettingsOverridePackages = with pkgs; [ mutter ];
-    extraGSettingsOverrides = ''
-      [org.gnome.mutter]
-      experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
-      [org.gnome.shell]
-      disable-extension-version-validation=true
-    '';
-  };
+  services.desktopManager.gnome.enable = true;
 
   environment.gnome.excludePackages = with pkgs; [
     epiphany

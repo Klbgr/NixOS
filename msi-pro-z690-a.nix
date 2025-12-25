@@ -6,7 +6,7 @@
     ./hardware/nvidia-gpu.nix
     ./hardware/fan.nix
     ./hardware/led.nix
-    ./software/gnome.nix
+    ./software/kde.nix
     ./software/programs.nix
     ./software/developing.nix
     ./software/gaming.nix

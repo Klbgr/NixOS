@@ -166,6 +166,7 @@ _k_friendly_name=Gestion de sessions
 
 [kwin]
 Activate Window Demanding Attention=Meta+Ctrl+A,Meta+Ctrl+A,Activer une fenêtre réclamant de l'attention
+Cube=Meta+C,Meta+C,Basculer ou non vers le cube
 Cycle Overview=none,none,Faire défiler les vues en aperçu et en grille
 Cycle Overview Opposite=none,none,Faire défiler les vues en aperçu et en grille
 Decrease Opacity=none,,Diminuer l'opacité de la fenêtre active de 5 %

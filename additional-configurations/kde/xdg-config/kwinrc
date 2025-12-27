@@ -12,6 +12,7 @@ BorderActivate=9
 [Plugins]
 blurEnabled=true
 kwin6_effect_aura_glowEnabled=true
+overviewEnabled=false
 scaleEnabled=false
 sheetEnabled=true
 translucencyEnabled=true

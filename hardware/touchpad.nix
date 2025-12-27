@@ -32,11 +32,11 @@
         up:
           command: "ydotool key 115:1 115:0"
           threshold: 0.0
-          interval: 0.25
+          interval: 0.1
         down:
           command: "ydotool key 114:1 114:0"
           threshold: 0.0
-          interval: 0.25
+          interval: 0.1
         left:
           command: "ydotool key 165:1 165:0"
           threshold: 1.0

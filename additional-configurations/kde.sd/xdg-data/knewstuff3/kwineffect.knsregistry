@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE khotnewstuff3>
+<hotnewstuffregistry>
+ <stuff category="719">
+  <name>Aura Glow [Burn-My-Windows]</name>
+  <providerid>api.kde-look.org</providerid>
+  <author>schneegans</author>
+  <homepage>https://store.kde.org/p/2263065</homepage>
+  <licence></licence>
+  <version>45</version>
+  <rating>50</rating>
+  <downloads>3668</downloads>
+  <installedfile>/home/antoine/.local/share/kwin/effects/kwin6_effect_aura_glow/</installedfile>
+  <id>2263065</id>
+  <releasedate>2025-02-22</releasedate>
+  <summary>&lt;p>This is the KWin port of the Aura Glow effect of the Burn-My-Windows GNOME Shell extension. &lt;a href="https://github.com/Schneegans/Burn-My-Windows#%EF%B8%8F-installation-kwin">You can find a list of all Burn-My-Windows effects which are currently available for KWin on GitHub.&lt;/a>&lt;br />&lt;br />&lt;b>This effect requires at least KWin 6.0.0. Also, if the color picker widgets in the settings of any of the Burn-My-Windows effects do not work, you may have to install the package "libkf6widgetsaddons-dev" (Kubuntu, KDE Neon, etc) or "kf6-kwidgetaddons-devel" (Fedora, OpenSuse, etc).&lt;/b> If you encounter a bug or have a feature request, please open an issue on &lt;a href="https://github.com/Schneegans/Burn-My-Windows/issues">GitHub&lt;/a>!&lt;br />&lt;br />&lt;i>IMHO, there are many things which could be done to improve the KWin port of the extension. However, since I am not using KDE as a daily driver, I would appreciate it very much if someone volunteers to work on this port! I am happily receiving pull requests...&lt;/i>&lt;/p></summary>
+  <changelog></changelog>
+  <preview>https://images.pling.com/img/00/00/67/07/53/2263065/aura-glow.gif</preview>
+  <previewBig>https://images.pling.com/img/00/00/67/07/53/2263065/aura-glow.gif</previewBig>
+  <payload>https://files06.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTc0MDE5OTI3NywibyI6IjEiLCJzIjoiYTkzMzVhNjM0Mjg2NDQ0YWZjOTQwYWUyZTE0NTk3OGQ2MDhmY2RjMjhmZDMxMzc2YjBjZDE5MjMxY2EwYWI5ODQ3YThlODQxNTI5MmVmMmQ2MzhiMzAwNWYwOWY4ZThmNDgxZjZmYTY3ODgyM2I3MmY0ZmRmYWRjMjBlNjZjOTQiLCJ0IjoxNzY2NzA1NDk0LCJzdGZwIjpudWxsLCJzdGlwIjoiODIuNjcuOTYuMTYzIn0.Ydr7FsnkKaUIRDgejEXyNAV5wTxOadKCMRaDZcB6WXk/kwin6-effect-aura-glow.tar.gz</payload>
+  <tags>linux,gplv3,original-product,unix,animation</tags>
+  <status>installed</status>
+ </stuff>
+</hotnewstuffregistry>

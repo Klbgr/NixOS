@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE khotnewstuff3>
+<hotnewstuffregistry>
+ <stuff category="112">
+  <name>ChromeOS color</name>
+  <providerid>api.kde-look.org</providerid>
+  <author>vinceliuice</author>
+  <homepage>https://store.kde.org/p/1354044</homepage>
+  <licence></licence>
+  <version></version>
+  <rating>58</rating>
+  <downloads>99657</downloads>
+  <installedfile>/home/antoine/.local/share/color-schemes/ChromeOSLight.colors</installedfile>
+  <installedfile>/home/antoine/.local/share/color-schemes/ChromeOSDark.colors</installedfile>
+  <installedfile>/home/antoine/.local/share/color-schemes/ChromeOS.colors</installedfile>
+  <id>1354044</id>
+  <releasedate>2021-12-22</releasedate>
+  <summary>&lt;p>ChromeOS kde is a materia Design theme for KDE Plasma desktop.&lt;br />&lt;br />In this repository you'll find:&lt;br />&lt;br />- Aurorae Themes&lt;br />- Kvantum Themes&lt;br />- Plasma Color Schemes&lt;br />- Plasma Desktop Themes&lt;br />- Plasma Look-and-Feel Themes&lt;/p></summary>
+  <changelog></changelog>
+  <preview>https://images.pling.com/cache/770x540-4/img/00/00/32/24/44/1354044/d382aba9f6644e93dbeeb9ddcce0b5272237.png</preview>
+  <previewBig>https://images.pling.com/cache/770x540-4/img/00/00/32/24/44/1354044/d382aba9f6644e93dbeeb9ddcce0b5272237.png</previewBig>
+  <payload>https://files06.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTY0MDE2NzEwOCwibyI6IjEiLCJzIjoiNWI0NDFiMDZiYmJkYjZiZmI5ZjAwMDI5MDg5ZWU2MTkyYjRmOGUzZjY5Y2FlNDlmMGNkMDA2YjA2NmNiNDQyYmI4MTZlMmQ4NTNjYzQ1MTZmOTExM2M1MjliZDEzYjAxODRhZjIzODFiZWQ2MzQwZjQ2ZDlkMmI5YWQ3M2I0NjYiLCJ0IjoxNzY1ODQwNDQxLCJzdGZwIjpudWxsLCJzdGlwIjoiODIuNjcuOTYuMTYzIn0.8uyJuZtnaGldKm7ZbZM0fxn70ktxASYlqusEJPFAyF8/ChromeOS-color-schemes.tar.xz</payload>
+  <tags>theme,unix,plasma,linux,gplv3,kde,colorscheme</tags>
+  <status>installed</status>
+ </stuff>
+</hotnewstuffregistry>

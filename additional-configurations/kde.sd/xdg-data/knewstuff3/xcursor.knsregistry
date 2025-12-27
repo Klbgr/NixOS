@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE khotnewstuff3>
+<hotnewstuffregistry>
+ <stuff category="107">
+  <name>Vimix cursors theme</name>
+  <providerid>api.kde-look.org</providerid>
+  <author>vinceliuice</author>
+  <homepage>https://store.kde.org/p/1358330</homepage>
+  <licence></licence>
+  <version></version>
+  <rating>89</rating>
+  <downloads>397379</downloads>
+  <installedfile>/home/antoine/.icons/Vimix-cursors/*</installedfile>
+  <id>1358330</id>
+  <releasedate>2020-02-23</releasedate>
+  <summary>&lt;p>Vimix cursors theme for linux desktop&lt;/p></summary>
+  <changelog></changelog>
+  <preview>https://images.pling.com/cache/770x540-4/img/00/00/32/24/44/1358330/f149edb5f0995baf6998b5294bb15e4b33e0.png</preview>
+  <previewBig>https://images.pling.com/cache/770x540-4/img/00/00/32/24/44/1358330/f149edb5f0995baf6998b5294bb15e4b33e0.png</previewBig>
+  <payload>https://files06.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTU4MjQ0MjI3NiwibyI6IjEiLCJzIjoiNmFjYmFiMzI4ZjFhMzkxMGYzOTQzYjJjMDQ4MzZhZmU2ZWFhMGZiZTMxZGExMDVjYmQwNDRlM2VjZTBkZGY4ZThlYzYxZjQ0MTQwNDRmZjBmMTY2ZWRhYzA3NzBkNjhiMTBhZWZlMzU1ZGViMzY4YmRiNGJkYjVlZDlhMjRjM2QiLCJ0IjoxNzY1ODQwNDUyLCJzdGZwIjpudWxsLCJzdGlwIjoiODIuNjcuOTYuMTYzIn0.b9H22kIeA1SeRAJ5SEb7XP2uehNh685noJGRiIXWEj4/01-Vimix-cursors.tar.xz</payload>
+  <tags>unix,gplv3,cursor,linux</tags>
+  <status>installed</status>
+ </stuff>
+</hotnewstuffregistry>

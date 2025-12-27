@@ -1,0 +1,5 @@
+[antoine@ZenBook:/etc/nixos]$ ls /run/current-system/sw/share/sddm/themes/where_is_my_sddm_theme
+example_configs  Main.qml  metadata.desktop  screenshot.png  SessionsChoose.qml  theme.conf  UsersChoose.qml
+
+[antoine@ZenBook:/etc/nixos]$ ls /run/current-system/sw/share/sddm/themes/where_is_my_sddm_theme/example_configs/
+blue.conf  classic_nocursor.conf  grey.conf  lightgrey.conf  tree.conf  tree.png

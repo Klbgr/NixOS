@@ -1,0 +1,14 @@
+<span class="hljs-keyword">let</span>
+  <span class="hljs-comment"># Create a custom version of the theme with your preferred config</span>
+  <span class="hljs-attr">custom-sddm-theme</span> = pkgs.where-is-my-sddm-theme.overrideAttrs (oldAttrs: {
+    <span class="hljs-attr">postInstall</span> = <span class="hljs-string">''
+      # Copy the example config over the default theme.conf
+      cp $out/share/sddm/themes/where_is_my_sddm_theme/example_configs/tree.conf \
+         $out/share/sddm/themes/where_is_my_sddm_theme/theme.conf
+      
+      # If you need the background image as well (like for tree.conf)
+      cp $out/share/sddm/themes/where_is_my_sddm_theme/example_configs/tree.png \
+         $out/share/sddm/themes/where_is_my_sddm_theme/tree.png
+    ''</span>;
+  });
+<span class="hljs-keyword">in</span>

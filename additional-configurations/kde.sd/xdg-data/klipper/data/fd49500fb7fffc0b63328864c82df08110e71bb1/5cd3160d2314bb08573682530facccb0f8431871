@@ -1,0 +1,14 @@
+<pre style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(242, 242, 242); margin-bottom: 1rem; font-family: &quot;Noto Mono&quot;, Menlo, Monaco, Consolas, monospace; border-color: rgb(228, 228, 228); border-style: solid; border-width: 0.8px; border-image: none 100% / 1 / 0 stretch; border-radius: 4px; padding: 1rem 1.4rem; font-size: 0.9em; max-width: 100%; overflow: auto; color: rgb(51, 61, 66); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">  environment.systemPackages = with pkgs; [
+    (where-is-my-sddm-theme.override {
+      themeConfig.General = {
+        background = “${../../homes/common/wallpapers/monokai.jpg}”;
+        blurRadius = 40;
+        showUsersByDefault = true;
+        showSessionsByDefault = true;
+        font = “IosevkaTermSlab”;
+        helpFont = “IosevkaTermSlab”;
+        backgroundMode = “fill”;
+      };
+      variants = [“qt5”];
+    })
+  ];</pre>

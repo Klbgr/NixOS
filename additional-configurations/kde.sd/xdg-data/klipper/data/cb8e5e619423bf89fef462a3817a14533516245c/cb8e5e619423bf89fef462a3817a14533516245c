@@ -1,0 +1,7 @@
+       error: undefined variable 'where_is_my_sddm_theme'
+       at /etc/nixos/software/kde.nix:27:16:
+           26|     autoNumlock = true;
+           27|     theme = "${where_is_my_sddm_theme}/share/sddm/themes/where_is_my_sddm_theme";
+             |                ^
+           28|   };
+Command 'nix-build '<nixpkgs/nixos>' --attr config.system.build.nixos-rebuild --no-out-link' returned non-zero exit status 1.

@@ -1,0 +1,14 @@
+  environment.systemPackages = with pkgs; [
+    (where-is-my-sddm-theme.override {
+      themeConfig.General = {
+        background = “${../../homes/common/wallpapers/monokai.jpg}”;
+        blurRadius = 40;
+        showUsersByDefault = true;
+        showSessionsByDefault = true;
+        font = “IosevkaTermSlab”;
+        helpFont = “IosevkaTermSlab”;
+        backgroundMode = “fill”;
+      };
+      variants = [“qt5”];
+    })
+  ];

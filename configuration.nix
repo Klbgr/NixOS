@@ -8,6 +8,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./software/modules/home-manager.nix
     # ./msi-pro-z690-a.nix
     ./zenbook.nix
   ];
@@ -65,13 +66,18 @@
     ];
   };
 
-  # home-manager.users.antoine =
-  #   { pkgs, ... }:
-  #   {
-  #     # The state version is required and should stay at the version you
-  #     # originally installed.
-  #     home.stateVersion = "25.11";
-  #   };
+  home-manager.users.antoine =
+    { pkgs, ... }:
+    {
+      imports = [
+        ./software/modules/plasma-manager.nix
+        ./additional-configurations/kde-configuration.nix
+      ];
+
+      # The state version is required and should stay at the version you
+      # originally installed.
+      home.stateVersion = "25.11";
+    };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -95,6 +101,8 @@
   services.xserver.excludePackages = with pkgs; [ xterm ];
 
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  hardware.bluetooth.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -10,6 +10,8 @@
     wayland = true;
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   services.desktopManager.gnome.enable = true;
 
   environment.gnome.excludePackages = with pkgs; [

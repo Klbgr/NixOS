@@ -98,10 +98,6 @@
     };
   };
 
-  services.xserver.excludePackages = with pkgs; [ xterm ];
-
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   hardware.bluetooth.enable = true;
 
   # This value determines the NixOS release from which the default

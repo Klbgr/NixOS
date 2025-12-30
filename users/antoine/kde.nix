@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ../../software/modules/plasma-manager.nix
+  ];
+
   programs.plasma = {
     enable = true;
 

@@ -1,14 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./modules/nix-flatpak.nix
-  ];
-
-  services.flatpak.packages = [
-    "io.github.vikdevelop.SaveDesktop"
-  ];
-
   environment.systemPackages = with pkgs; [
     (where-is-my-sddm-theme.override {
       themeConfig.General = {

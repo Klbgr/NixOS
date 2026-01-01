@@ -17,7 +17,6 @@
         UseTimeLimit = true;
       };
       plasmaparc.General.AudioFeedback = false;
-      kwalletrc.Wallet.Enabled = false;
       kwinrc.Plugins.overviewEnabled = false;
     };
 

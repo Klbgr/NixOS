@@ -43,6 +43,7 @@
         };
         plasmaparc.General.AudioFeedback = false;
         kwinrc.Plugins.overviewEnabled = false;
+        kded5rc.Module-browserintegrationreminder.autoload = false;
       };
 
       immutableByDefault = true;

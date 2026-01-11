@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
     kdePackages.qtstyleplugin-kvantum
     nordic
+    tela-icon-theme
   ];
 
   qt = {
@@ -353,7 +354,7 @@
         clickItemTo = "select";
         colorScheme = "NordicDarker";
         cursor.theme = "Nordic-cursors";
-        iconTheme = "Nordic-darker";
+        iconTheme = "Tela nord";
         theme = "Nordic-darker";
         wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Mountain/";
         wallpaperBackground.color = "0,0,0";

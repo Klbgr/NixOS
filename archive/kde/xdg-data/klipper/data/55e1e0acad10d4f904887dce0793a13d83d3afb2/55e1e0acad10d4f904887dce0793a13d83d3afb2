@@ -1,3 +1,0 @@
-with pkgs; [
-      where-is-my-sddm-theme
-    ];

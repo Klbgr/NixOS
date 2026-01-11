@@ -1,8 +1,0 @@
-Examples of customization
-To install one of these configs, run inside theme directory:
-
-cp <path to config> theme.conf
-If config based on image background, also copy image. For example:
-
-cp example_configurations/tree.conf theme.conf
-cp example_configurations/tree.png tree.png

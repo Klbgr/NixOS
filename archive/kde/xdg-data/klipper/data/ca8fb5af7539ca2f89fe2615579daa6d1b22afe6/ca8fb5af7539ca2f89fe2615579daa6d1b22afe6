@@ -1,8 +1,0 @@
-let
-  where-is-my-sddm-theme = pkgs.where-is-my-sddm-theme.overrideAttrs (oldAttrs: {
-    postInstall = ''
-      cp $out/share/sddm/themes/where_is_my_sddm_theme/example_configs/gray.conf \
-         $out/share/sddm/themes/where_is_my_sddm_theme/theme.conf
-    '';
-  });
-in

@@ -97,4 +97,6 @@
   ];
 
   services.xserver.excludePackages = with pkgs; [ xterm ];
+
+  programs.kdeconnect.enable = true;
 }

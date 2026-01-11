@@ -7,6 +7,7 @@
 
   home.packages = with pkgs; [
     kdePackages.qtstyleplugin-kvantum
+    kdePackages.dynamic-workspaces
     nordic
     tela-icon-theme
   ];
@@ -43,7 +44,10 @@
           UseTimeLimit = true;
         };
         plasmaparc.General.AudioFeedback = false;
-        kwinrc.Plugins.overviewEnabled = false;
+        kwinrc.Plugins = {
+          overviewEnabled = false;
+          dynamic_workspacesEnabled = true;
+        };
         kded5rc.Module-browserintegrationreminder.autoload = false;
       };
 
@@ -166,16 +170,14 @@
           opacity = "adaptive";
           widgets = [
             {
-              name = "org.kde.plasma.weather";
-              config = {
-                Appearance = {
-                  showPressureInTooltip = true;
-                  showTemperatureInCompactMode = true;
-                };
-                WeatherStation = {
-                  placeDisplayName = "Paris, France, FR";
-                  placeInfo = "Paris, France, FR|2988507";
-                  provider = "bbcukmet";
+              pager = {
+                general = {
+                  showWindowOutlines = true;
+                  showApplicationIconsOnWindowOutlines = true;
+                  showOnlyCurrentScreen = false;
+                  navigationWrapsAround = false;
+                  displayedText = "none";
+                  selectingCurrentVirtualDesktop = "doNothing";
                 };
               };
             }
@@ -191,7 +193,6 @@
                 showActionButtonCaptions = true;
               };
             }
-            "org.kde.plasma.pager"
             {
               iconTasks = {
                 launchers = [

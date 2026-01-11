@@ -267,7 +267,7 @@
                 };
               };
             }
-            "org.kde.plasma.showdesktop"
+            "org.kde.plasma.minimizeall"
           ];
         }
       ];

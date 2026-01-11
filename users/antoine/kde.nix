@@ -1,5 +1,19 @@
 { pkgs, ... }:
-
+let
+  burn-my-windows-kwin = pkgs.stdenv.mkDerivation rec {
+    pname = "burn-my-windows-kwin";
+    version = "latest";
+    src = pkgs.fetchurl {
+      url = "https://github.com/Schneegans/Burn-My-Windows/releases/latest/download/burn_my_windows_kwin6.tar.gz";
+      hash = "sha256-kEvBB1ST1J0OxjEXLl5UIPNxjclzAshEYSA/TQwZ3Qo=";
+    };
+    sourceRoot = ".";
+    installPhase = ''
+      mkdir -p $out/share/kwin/effects
+      cp -r * $out/share/kwin/effects/
+    '';
+  };
+in
 {
   imports = [
     ../../software/modules/plasma-manager.nix
@@ -8,6 +22,7 @@
   home.packages = with pkgs; [
     kdePackages.qtstyleplugin-kvantum
     kdePackages.dynamic-workspaces
+    burn-my-windows-kwin
     nordic
     tela-icon-theme
   ];
@@ -47,6 +62,7 @@
         kwinrc.Plugins = {
           overviewEnabled = false;
           dynamic_workspacesEnabled = true;
+          kwin6_effect_aura_glowEnabled = true;
         };
         kded5rc.Module-browserintegrationreminder.autoload = false;
       };
@@ -139,7 +155,7 @@
           slideBack.enable = false;
           snapHelper.enable = false;
           translucency.enable = true;
-          windowOpenClose.animation = "scale";
+          windowOpenClose.animation = "off";
           wobblyWindows.enable = true;
           zoom.enable = false;
         };

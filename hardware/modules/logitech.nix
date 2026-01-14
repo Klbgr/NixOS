@@ -1,13 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  hardware.logitech.wireless.enable = true;
+
   environment.systemPackages = with pkgs; [
-    wget
-    git
-    htop
-    vscode
-    gcc
-    nixfmt
-    mamba-cpp
+    logiops
   ];
 }

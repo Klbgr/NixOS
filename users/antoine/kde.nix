@@ -17,23 +17,18 @@ in
 {
   imports = [
     ../../software/modules/plasma-manager.nix
+    ./themes/nordic.nix
   ];
 
   home.packages = with pkgs; [
     kdePackages.qtstyleplugin-kvantum
     kdePackages.dynamic-workspaces
     burn-my-windows-kwin
-    nordic
-    tela-icon-theme
   ];
 
   qt = {
     enable = true;
     platformTheme.name = "kde";
-    style.name = "kvantum";
-    kde.settings."Kvantum/kvantum.kvconfig" = {
-      General.theme = "Nordic-Darker";
-    };
   };
 
   programs = {
@@ -41,8 +36,8 @@ in
       enable = true;
       defaultProfile = "Custom";
       profiles = {
-        Custom = {
-          colorScheme = "Nordic";
+        custom = {
+          name = "Custom";
         };
       };
     };
@@ -62,12 +57,12 @@ in
         kwinrc.Plugins = {
           overviewEnabled = false;
           dynamic_workspacesEnabled = true;
-          kwin6_effect_aura_glowEnabled = true;
+          kwin6_effect_aura_glowEnabled = false;
         };
         kded5rc.Module-browserintegrationreminder.autoload = false;
       };
 
-      immutableByDefault = true;
+      immutableByDefault = false;
 
       input = {
         keyboard = {
@@ -116,10 +111,10 @@ in
         appearance = {
           alwaysShowClock = true;
           showMediaControls = true;
-          wallpaperPictureOfTheDay = {
-            provider = "bing";
-            updateOverMeteredConnection = false;
-          };
+          # wallpaperPictureOfTheDay = {
+          #   provider = "bing";
+          #   updateOverMeteredConnection = false;
+          # };
         };
         autoLock = true;
         lockOnResume = true;
@@ -155,7 +150,7 @@ in
           slideBack.enable = false;
           snapHelper.enable = false;
           translucency.enable = true;
-          windowOpenClose.animation = "off";
+          windowOpenClose.animation = "scale";
           wobblyWindows.enable = true;
           zoom.enable = false;
         };
@@ -369,17 +364,8 @@ in
       workspace = {
         enableMiddleClickPaste = true;
         clickItemTo = "select";
-        colorScheme = "NordicDarker";
-        cursor.theme = "Nordic-cursors";
-        iconTheme = "Tela nord";
-        theme = "Nordic-darker";
-        wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Mountain/";
         wallpaperBackground.color = "0,0,0";
         wallpaperFillMode = "preserveAspectCrop";
-        windowDecorations = {
-          library = "org.kde.kwin.aurorae";
-          theme = "__aurorae__svg__Nordic";
-        };
       };
     };
   };

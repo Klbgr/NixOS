@@ -2,11 +2,9 @@
 
 {
   imports = [
-    ./hardware/intel-igpu.nix
-    ./hardware/touchpad.nix
-    ./software/kde.nix
-    ./software/programs.nix
-    ./software/developing.nix
+    ./modules/intel-igpu.nix
+    ./modules/touchpad.nix
+    ./modules/logitech.nix
   ];
 
   networking.hostName = "ZenBook";

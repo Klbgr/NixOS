@@ -12,8 +12,6 @@
       "input"
       "ydotool"
     ];
-    packages = with pkgs; [
-    ];
   };
 
   home-manager.users.antoine =
@@ -21,6 +19,8 @@
     {
       imports = [
         ./kde.nix
+        ./programs.nix
+        ./developing.nix
       ];
 
       # The state version is required and should stay at the version you

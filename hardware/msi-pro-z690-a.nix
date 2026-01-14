@@ -2,15 +2,11 @@
 
 {
   imports = [
-    ./hardware/intel-igpu.nix
-    ./hardware/nvidia-gpu.nix
-    ./hardware/fan.nix
-    ./hardware/led.nix
-    ./software/kde.nix
-    ./software/programs.nix
-    ./software/developing.nix
-    ./software/gaming.nix
-    ./software/vm.nix
+    ./modules/intel-igpu.nix
+    ./modules/nvidia-gpu.nix
+    ./modules/fan.nix
+    ./modules/led.nix
+    ./modules/logitech.nix
   ];
 
   networking.hostName = "Antoine";

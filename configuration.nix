@@ -8,10 +8,11 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    # ./hardware/msi-pro-z690-a.nix
+    ./hardware/asus-ux434fl.nix
+    ./software/kde.nix
     ./software/modules/home-manager.nix
     ./users/antoine/configuration.nix
-    # ./msi-pro-z690-a.nix
-    ./zenbook.nix
   ];
 
   # Bootloader.
@@ -72,6 +73,11 @@
   };
 
   hardware.bluetooth.enable = true;
+
+  home-manager = {
+    useGlobalPkgs = true;
+    backupFileExtension = "backup";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -23,6 +23,7 @@ in
   home.packages = with pkgs; [
     kdePackages.qtstyleplugin-kvantum
     kdePackages.dynamic-workspaces
+    # kdePackages.koi
     burn-my-windows-kwin
   ];
 
@@ -60,6 +61,7 @@ in
           kwin6_effect_aura_glowEnabled = false;
         };
         kded5rc.Module-browserintegrationreminder.autoload = false;
+        koirc.General.start-hidden=1;
       };
 
       immutableByDefault = false;

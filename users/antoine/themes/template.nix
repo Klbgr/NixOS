@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    kdePackages.qtstyleplugin-kvantum
-  ];
-
   qt = {
     style.name = "kvantum";
     kde.settings."Kvantum/kvantum.kvconfig".General.theme = "";

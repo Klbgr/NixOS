@@ -2,15 +2,32 @@
 
 {
   home.packages = with pkgs; [
-    catppuccin-kde
-    catppuccin-kvantum
-    catppuccin-cursors.frappeBlue
+    (catppuccin-kde.override {
+      flavour = [
+        "latte"
+        "mocha"
+      ];
+      accents = [ "lavender" ];
+      winDecStyles = [
+        "modern"
+      ];
+    })
+    (catppuccin-kvantum.override {
+      variant = "latte";
+      accent = "lavender";
+    })
+    (catppuccin-kvantum.override {
+      variant = "mocha";
+      accent = "lavender";
+    })
+    catppuccin-cursors.latteLavender
+    catppuccin-cursors.mochaLavender
     catppuccin-papirus-folders
   ];
 
   qt = {
     style.name = "kvantum";
-    kde.settings."Kvantum/kvantum.kvconfig".General.theme = "catppuccin-frappe-blue";
+    kde.settings."Kvantum/kvantum.kvconfig".General.theme = "catppuccin-latte-lavender";
   };
 
   programs = {
@@ -18,15 +35,15 @@
     plasma = {
       kscreenlocker.appearance.wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/ScarletTree/";
       workspace = {
-        colorScheme = "Catppuccin Frappe Blue";
-        cursor.theme = "catppuccin-frappe-blue-cursors";
+        colorScheme = "CatppuccinLatteLavender";
+        cursor.theme = "catppuccin-latte-lavender-cursors";
         iconTheme = "Papirus";
-        splashScreen.theme = "Catppuccin-Frappe-Blue";
+        splashScreen.theme = "Catppuccin-Latte-Lavender";
         # theme = "";
         wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/ScarletTree/";
         windowDecorations = {
           library = "org.kde.kwin.aurorae";
-          theme = "__aurorae__svg__CatppuccinFrappe-Modern";
+          theme = "__aurorae__svg__CatppuccinLatte-Modern";
         };
       };
     };

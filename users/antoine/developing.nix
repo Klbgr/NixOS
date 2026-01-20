@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    nvtopPackages.full
     wget
     nixfmt
     mamba-cpp

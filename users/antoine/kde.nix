@@ -61,7 +61,22 @@ in
           kwin6_effect_aura_glowEnabled = false;
         };
         kded5rc.Module-browserintegrationreminder.autoload = false;
-        koirc.General.start-hidden=1;
+        # koirc.General.start-hidden=1;
+        "autostart/Discord.desktop"."Desktop Entry" = {
+          Type = "Application";
+          Name = "Discord";
+          Exec = "discord --start-minimized";
+        };
+        "autostart/RQuickShare.desktop"."Desktop Entry" = {
+          Type = "Application";
+          Name = "RQuickShare";
+          Exec = "rquickshare";
+        };
+        "autostart/Spotify.desktop"."Desktop Entry" = {
+          Type = "Application";
+          Name = "Spotify";
+          Exec = "spotify --minimized";
+        };
       };
 
       immutableByDefault = false;

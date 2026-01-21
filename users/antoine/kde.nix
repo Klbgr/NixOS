@@ -376,6 +376,32 @@ in
         ];
       };
 
+      window-rules = [
+        {
+          apply = {
+            above = {
+              apply = "force";
+              value = true;
+            };
+          };
+          description = "PIP always on top";
+          match = {
+            machine = null;
+            title = {
+              type = "exact";
+              value = "Mode PIP (Picture-in-Picture)";
+            };
+            window-class = {
+              match-whole = false;
+              type = "exact";
+              value = "chrome";
+            };
+            window-role = null;
+            window-types = [ "normal" ];
+          };
+        }
+      ];
+
       windows.allowWindowsToRememberPositions = true;
 
       workspace = {

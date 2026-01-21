@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+  ];
+
   qt = {
     style.name = "kvantum";
     kde.settings."Kvantum/kvantum.kvconfig".General.theme = "";
@@ -19,7 +22,7 @@
         wallpaper = "";
         windowDecorations = {
           library = "org.kde.kwin.aurorae";
-          theme = "";
+          theme = "__aurorae__svg__";
         };
       };
     };

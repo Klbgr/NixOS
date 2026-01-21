@@ -17,7 +17,7 @@ in
 {
   imports = [
     ../../software/modules/plasma-manager.nix
-    ./themes/nordic.nix
+    ./themes/dream.nix
   ];
 
   home.packages = with pkgs; [

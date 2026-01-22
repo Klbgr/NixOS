@@ -13,6 +13,7 @@
     spotify
     ookla-speedtest
     moonlight-qt
+    easyeffects
   ];
 
   programs = {

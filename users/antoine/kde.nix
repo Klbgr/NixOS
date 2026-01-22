@@ -77,6 +77,12 @@ in
           Name = "Spotify";
           Exec = "spotify --minimized";
         };
+        "autostart/EasyEffects.desktop"."Desktop Entry" = {
+          Type = "Application";
+          Name = "Easy Effects";
+          Exec = "easyeffects --hide-window";
+        };
+        "easyeffects/db/easyeffectsrc".Window.showTrayIcon = false;
       };
 
       immutableByDefault = false;

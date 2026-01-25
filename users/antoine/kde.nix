@@ -83,6 +83,11 @@ in
           Exec = "easyeffects --hide-window";
         };
         "easyeffects/db/easyeffectsrc".Window.showTrayIcon = false;
+        "autostart/Thunderbird.desktop"."Desktop Entry" = {
+          Type = "Application";
+          Name = "Thunderbird";
+          Exec = "thunderbird --headless";
+        };
       };
 
       immutableByDefault = false;

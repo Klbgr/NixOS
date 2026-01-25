@@ -18,6 +18,7 @@
     { pkgs, ... }:
     {
       imports = [
+        ./accounts.nix
         ./kde.nix
         ./programs.nix
         ./developing.nix

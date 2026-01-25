@@ -20,8 +20,5 @@
     discord = {
       enable = true;
     };
-    # thunderbird = {
-    #   enable = true;
-    # };
   };
 }

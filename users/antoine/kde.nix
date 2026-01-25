@@ -195,13 +195,13 @@ in
 
       panels = [
         {
-          alignment = "center";
+          alignment = "left";
           floating = true;
           height = 44;
           hiding = "none";
-          lengthMode = "fill";
+          lengthMode = "fit";
           location = "bottom";
-          opacity = "adaptive";
+          opacity = "translucent";
           widgets = [
             {
               pager = {
@@ -215,7 +215,17 @@ in
                 };
               };
             }
-            { panelSpacer.expanding = true; }
+          ];
+        }
+        {
+          alignment = "center";
+          floating = true;
+          height = 44;
+          hiding = "none";
+          lengthMode = "fit";
+          location = "bottom";
+          opacity = "translucent";
+          widgets = [
             {
               kickoff = {
                 sortAlphabetically = true;
@@ -264,11 +274,21 @@ in
 
               };
             }
-            { panelSpacer.expanding = true; }
+          ];
+        }
+        {
+          alignment = "right";
+          floating = true;
+          height = 44;
+          hiding = "none";
+          lengthMode = "fit";
+          location = "bottom";
+          opacity = "translucent";
+          widgets = [
             {
               systemTray = {
                 icons = {
-                  spacing = "small";
+                  spacing = "medium";
                   scaleToFit = false;
                 };
                 items = {

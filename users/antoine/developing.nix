@@ -5,7 +5,7 @@
     nvtopPackages.full
     wget
     nixfmt
-    mamba-cpp
+    conda
   ];
 
   programs = {

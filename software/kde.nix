@@ -19,6 +19,7 @@
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     khelpcenter
     elisa
+    discover
   ];
 
   services.xserver.excludePackages = with pkgs; [ xterm ];

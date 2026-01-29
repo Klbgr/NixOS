@@ -101,6 +101,10 @@
           installation_mode = "force_installed";
           install_url = "https://addons.thunderbird.net/thunderbird/downloads/latest/minimize-on-close/addon-987716-latest.xpi";
         };
+        "mas@aandrzej.com" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.thunderbird.net/thunderbird/downloads/latest/minimize-on-startup/addon-988296-latest.xpi";
+        };
       };
     };
     profiles.Default = {

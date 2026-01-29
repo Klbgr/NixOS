@@ -62,10 +62,10 @@ in
         };
         kded5rc.Module-browserintegrationreminder.autoload = false;
         # koirc.General.start-hidden=1;
-        "autostart/Discord.desktop"."Desktop Entry" = {
+        "autostart/Vesktop.desktop"."Desktop Entry" = {
           Type = "Application";
-          Name = "Discord";
-          Exec = "discord --start-minimized";
+          Name = "Vesktop";
+          Exec = "vesktop -m";
         };
         "autostart/RQuickShare.desktop"."Desktop Entry" = {
           Type = "Application";
@@ -86,7 +86,7 @@ in
         "autostart/Thunderbird.desktop"."Desktop Entry" = {
           Type = "Application";
           Name = "Thunderbird";
-          Exec = "thunderbird --headless";
+          Exec = "thunderbird";
         };
       };
 

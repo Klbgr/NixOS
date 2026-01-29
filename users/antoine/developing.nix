@@ -9,8 +9,11 @@
   ];
 
   programs = {
-    htop = {
+    btop = {
       enable = true;
+      settings = {
+        theme_background = false;
+      };
     };
     gcc = {
       enable = true;

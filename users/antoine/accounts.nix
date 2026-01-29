@@ -1,54 +1,87 @@
 { pkgs, ... }:
 
 {
-  accounts.email.accounts = {
-    Gmail = {
-      enable = true;
-      address = "qiuantoine@gmail.com";
-      flavor = "gmail.com";
-      primary = true;
-      realName = "Antoine Qiu";
-      thunderbird = {
-        enable = true;
-        settings = id: {
-          "mail.server.server_${id}.autosync_max_age_days" = 30;
+  accounts = {
+    calendar.accounts = {
+      Google = {
+        primary = true;
+        primaryCollection = "qiuantoine@gmail.com";
+        remote = {
+          type = "caldav";
+          url = "https://apidata.googleusercontent.com/caldav/v2/qiuantoine@gmail.com/events/";
+          userName = "qiuantoine@gmail.com";
         };
+        thunderbird.enable = true;
       };
-      userName = "qiuantoine@gmail.com";
+      "Jours fériés en France" = {
+        primary = false;
+        remote = {
+          type = "caldav";
+          url = "https://apidata.googleusercontent.com/caldav/v2/cpp2spjicln66q13d1nmoqb4c5sk0pridtqn0bjm5phm2r35dpi62shectnmuprcckn66rrd%40virtual/events/";
+          userName = "qiuantoine@gmail.com";
+        };
+        thunderbird.enable = true;
+      };
     };
-    Free = {
-      enable = true;
-      address = "qiuantoine@free.fr";
-      flavor = "plain";
-      imap = {
-        authentication = "plain";
-        host = "imap.free.fr";
-        port = 993;
-        tls = {
-          enable = true;
-          certificatesFile = null;
-          useStartTls = false;
+    contact.accounts = {
+      Google = {
+        remote = {
+          type = "carddav";
+          url = "https://www.googleapis.com/carddav/v1/principals/qiuantoine@gmail.com/lists/default/";
+          userName = "qiuantoine@gmail.com";
         };
+        thunderbird.enable = true;
       };
-      primary = false;
-      realName = "Antoine Qiu";
-      smtp = {
-        authentication = "plain";
-        host = "smtp.free.fr";
-        port = 587;
-        tls = {
-          enable = true;
-          certificatesFile = null;
-          useStartTls = true;
-        };
-      };
-      thunderbird = {
+    };
+    email.accounts = {
+      Gmail = {
         enable = true;
-        settings = id: {
-          "mail.server.server_${id}.autosync_max_age_days" = 30;
+        address = "qiuantoine@gmail.com";
+        flavor = "gmail.com";
+        primary = true;
+        realName = "Antoine Qiu";
+        thunderbird = {
+          enable = true;
+          settings = id: {
+            "mail.server.server_${id}.autosync_max_age_days" = 30;
+          };
         };
+        userName = "qiuantoine@gmail.com";
       };
-      userName = "qiuantoine@free.fr";
+      Free = {
+        enable = true;
+        address = "qiuantoine@free.fr";
+        flavor = "plain";
+        imap = {
+          authentication = "plain";
+          host = "imap.free.fr";
+          port = 993;
+          tls = {
+            enable = true;
+            certificatesFile = null;
+            useStartTls = false;
+          };
+        };
+        primary = false;
+        realName = "Antoine Qiu";
+        smtp = {
+          authentication = "plain";
+          host = "smtp.free.fr";
+          port = 587;
+          tls = {
+            enable = true;
+            certificatesFile = null;
+            useStartTls = true;
+          };
+        };
+        thunderbird = {
+          enable = true;
+          settings = id: {
+            "mail.server.server_${id}.autosync_max_age_days" = 30;
+          };
+        };
+        userName = "qiuantoine@free.fr";
+      };
     };
   };
 

@@ -56,6 +56,10 @@
     enable = true;
     package = pkgs.thunderbird.override {
       extraPolicies.ExtensionSettings = {
+        "langpack-fr@thunderbird.mozilla.org" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.thunderbird.net/thunderbird/downloads/file/1043168/francais_fr_language_pack-146.0.20251203.205047-tb.xpi";
+        };
         "fr-dicollecte@dictionaries.addons.mozilla.org" = {
           installation_mode = "force_installed";
           install_url = "https://addons.thunderbird.net/thunderbird/downloads/latest/dictionnaire-fran%C3%A7ais1/addon-354872-latest.xpi";

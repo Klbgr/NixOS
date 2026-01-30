@@ -23,7 +23,7 @@ in
         "x-systemd.automount"
         "noauto"
         "x-systemd.idle-timeout=60"
-        "credentials=/etc/nixos/users/antoine/smb-secrets"
+        "credentials=/etc/nixos/users/antoine/smb-secrets.txt"
         "uid=${builtins.toString uid}"
         "gid=100"
         "dir_mode=0700"

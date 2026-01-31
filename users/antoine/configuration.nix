@@ -52,10 +52,10 @@ in
     { pkgs, ... }:
     {
       imports = [
-        ./accounts.nix
-        ./kde.nix
-        ./programs.nix
-        ./developing.nix
+        ./home-manager/accounts.nix
+        ./home-manager/kde.nix
+        ./home-manager/programs.nix
+        ./home-manager/developing.nix
       ];
 
       # The state version is required and should stay at the version you

@@ -1,5 +1,6 @@
 { pkgs, ... }:
 let
+  plasma-manager = builtins.fetchTarball "https://github.com/pjones/plasma-manager/archive/trunk.tar.gz";
   burn-my-windows-kwin = pkgs.stdenv.mkDerivation rec {
     pname = "burn-my-windows-kwin";
     version = "latest";
@@ -16,8 +17,8 @@ let
 in
 {
   imports = [
-    ../../software/modules/plasma-manager.nix
-    ./themes/dream.nix
+    "${plasma-manager}/modules"
+    ./kde-themes/dream.nix
   ];
 
   home.packages = with pkgs; [

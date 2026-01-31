@@ -1,6 +1,15 @@
 { pkgs, ... }:
-
+let
+  spicetify-nix = import (builtins.fetchTarball {
+    url = "https://github.com/Gerg-L/spicetify-nix/archive/master.tar.gz";
+  }) { };
+  spicePkgs = spicetify-nix.packages;
+in
 {
+  imports = [
+    spicetify-nix.homeManagerModules.spicetify
+  ];
+
   home.packages = with pkgs; [
     (google-chrome.override {
       commandLineArgs = [
@@ -10,7 +19,6 @@
     })
     vlc
     rquickshare
-    spotify
     ookla-speedtest
     moonlight-qt
     easyeffects
@@ -57,6 +65,14 @@
           winNativeTitleBar = false;
         };
       };
+    };
+    spicetify = {
+      enable = true;
+      theme = spicePkgs.themes.defaultDynamic;
+      colorScheme = "Dark-Base";
+      enabledCustomApps = [
+        spicePkgs.apps.ncsVisualizer
+      ];
     };
   };
 }

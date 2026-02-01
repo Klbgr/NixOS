@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
 
 {
   imports = [
@@ -18,4 +18,11 @@
     intelBusId = "PCI:0@0:2:0";
     nvidiaBusId = "PCI:2@0:0:0";
   };
+
+  swapDevices = lib.mkForce [
+    {
+      device = "/var/lib/swapfile";
+      size = 12 * 1024;
+    }
+  ];
 }

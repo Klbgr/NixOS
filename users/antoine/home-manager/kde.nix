@@ -329,6 +329,7 @@ in
             idleTimeoutWhenLocked = 60;
           };
           whenLaptopLidClosed = "sleep";
+          whenSleepingEnter = "standbyThenHibernate";
         };
         battery = {
           autoSuspend = {
@@ -345,6 +346,7 @@ in
             idleTimeoutWhenLocked = 60;
           };
           whenLaptopLidClosed = "sleep";
+          whenSleepingEnter = "standbyThenHibernate";
         };
         lowBattery = {
           autoSuspend = {
@@ -362,6 +364,7 @@ in
             idleTimeoutWhenLocked = 60;
           };
           whenLaptopLidClosed = "sleep";
+          whenSleepingEnter = "standbyThenHibernate";
         };
         batteryLevels = {
           criticalAction = "sleep";

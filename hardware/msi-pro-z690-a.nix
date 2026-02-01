@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   imports = [
@@ -13,6 +13,13 @@
   boot.kernelModules = [ "nct6687" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     nct6687d
+  ];
+
+  swapDevices = lib.mkForce [
+    {
+      device = "/var/lib/swapfile";
+      size = 48 * 1024;
+    }
   ];
 
   environment.etc."lact/config.yaml".text = ''

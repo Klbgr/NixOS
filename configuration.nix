@@ -110,12 +110,6 @@
 
   services.avahi.enable = true;
 
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 4 * 1024;
-    }
-  ];
   zramSwap.enable = true;
 
   # This value determines the NixOS release from which the default

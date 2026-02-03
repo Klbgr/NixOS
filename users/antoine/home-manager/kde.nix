@@ -236,6 +236,7 @@ in
             {
               iconTasks = {
                 launchers = [
+                  "applications:chrome-gemini.google.com__-Default.desktop"
                   "applications:org.kde.konsole.desktop"
                   "applications:org.kde.dolphin.desktop"
                   "applications:google-chrome.desktop"
@@ -382,6 +383,8 @@ in
       };
 
       shortcuts = {
+        "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = [ "Meta+Space" ];
+        plasmashell."activate task manager entry 1" = [ "Meta+C" ];
         "services/org.kde.plasma-systemmonitor.desktop"._launch = [
           "Ctrl+Shift+Esc"
         ];

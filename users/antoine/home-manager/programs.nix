@@ -74,5 +74,8 @@ in
         spicePkgs.apps.ncsVisualizer
       ];
     };
+    onlyoffice = {
+      enable = true;
+    };
   };
 }

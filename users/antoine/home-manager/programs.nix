@@ -23,7 +23,7 @@ let
     name = "chrome-gemini.google.com__-Default";
     desktopName = "Gemini";
     genericName = "Google Gemini";
-    exec = "google-chrome-stable --app=https://gemini.google.com --class=chrome-gemini.google.com__-Default";
+    exec = "google-chrome-stable --app=https://gemini.google.com --class=chrome-gemini.google.com__-Default --name=chrome-gemini.google.com__-Default";
     terminal = false;
     categories = [ "Network" ];
     type = "Application";

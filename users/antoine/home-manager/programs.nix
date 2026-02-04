@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   spicetify-nix = import (builtins.fetchTarball {
     url = "https://github.com/Gerg-L/spicetify-nix/archive/master.tar.gz";
@@ -65,6 +70,12 @@ let
           png:- | base64 -w 0 > $out
       ''
   );
+
+  profile = "${config.home.homeDirectory}/.thunderbird/Default";
+  msfFiles = builtins.filter (path: lib.hasSuffix ".msf" (toString path)) (
+    lib.filesystem.listFilesRecursive profile
+  );
+  accounts = builtins.toJSON msfFiles;
 in
 {
   imports = [
@@ -181,7 +192,7 @@ in
       };
       "birdtray-config.json".text = ''
         {
-          "accounts": [],
+          "accounts": ${accounts},
           "advanced/blinkingusealpha": false,
           "advanced/forcedRereadInterval": 0,
           "advanced/ignoreNetWMhints": false,

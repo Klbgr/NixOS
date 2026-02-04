@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   spicetify-nix = import (builtins.fetchTarball {
     url = "https://github.com/Gerg-L/spicetify-nix/archive/master.tar.gz";
@@ -30,6 +30,41 @@ let
     icon = "${geminiIcon}";
     startupWMClass = "chrome-gemini.google.com__-Default";
   };
+
+  mkDesktopFile = name: settings: {
+    "autostart/${name}.desktop".text = lib.generators.toINI { } {
+      "Desktop Entry" = settings;
+    };
+  };
+
+  thunderbirdIcon = builtins.readFile (
+    pkgs.runCommand "resized-image-b64"
+      {
+        nativeBuildInputs = [ pkgs.imagemagick ];
+        src = pkgs.fetchurl {
+          url = "https://upload.wikimedia.org/wikipedia/commons/5/53/Thunderbird_2023_icon.png";
+          hash = "sha256-02hTT2pxLbOBbTit+2Cv/xKDZXj+2mnOHoe2pKvDU8U=";
+        };
+      }
+      ''
+        magick $src -resize 256x256! png:- | base64 -w 0 > $out
+      ''
+  );
+  thunderbirdUnreadIcon = builtins.readFile (
+    pkgs.runCommand "resized-image-red-dot"
+      {
+        nativeBuildInputs = [ pkgs.imagemagick ];
+        src = pkgs.fetchurl {
+          url = "https://upload.wikimedia.org/wikipedia/commons/5/53/Thunderbird_2023_icon.png";
+          hash = "sha256-02hTT2pxLbOBbTit+2Cv/xKDZXj+2mnOHoe2pKvDU8U=";
+        };
+      }
+      ''
+        magick $src -resize 256x256! \
+          -fill red -draw "circle 192,64 224,64" \
+          png:- | base64 -w 0 > $out
+      ''
+  );
 in
 {
   imports = [
@@ -49,6 +84,11 @@ in
     moonlight-qt
     easyeffects
     gemini
+    (birdtray.overrideAttrs (oldAttrs: {
+      cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+        "-DOPT_THUNDERBIRD_CMDLINE=${pkgs.thunderbird}/bin/thunderbird"
+      ];
+    }))
   ];
 
   programs = {
@@ -105,4 +145,57 @@ in
       enable = true;
     };
   };
+
+  xdg.configFile = lib.mkMerge [
+    (mkDesktopFile "Vesktop" {
+      Type = "Application";
+      Name = "Vesktop";
+      Exec = "vesktop -m";
+    })
+    (mkDesktopFile "RQuickShare" {
+      Type = "Application";
+      Name = "RQuickShare";
+      Exec = "rquickshare";
+    })
+    (mkDesktopFile "Spotify" {
+      Type = "Application";
+      Name = "Spotify";
+      Exec = "spotify --minimized";
+    })
+    (mkDesktopFile "EasyEffects" {
+      Type = "Application";
+      Name = "Easy Effects";
+      Exec = "easyeffects --hide-window";
+    })
+    (mkDesktopFile "Birdtray" {
+      Type = "Application";
+      Name = "Birdtray";
+      Exec = "env GDK_BACKEND=x11 birdtray";
+    })
+
+    {
+      "easyeffects/db/easyeffectsrc".text = lib.generators.toINI { } {
+        Window = {
+          showTrayIcon = false;
+        };
+      };
+      "birdtray-config.json".text = ''
+        {
+          "common/exitthunderbirdonquit": true,
+          "common/hideWhenStartedManually": true,
+          "common/hidewhenminimized": true,
+          "common/hidewhenrestarted": true,
+          "common/hidewhenstarted": true,
+          "common/launchthunderbird": true,
+          "common/monitorthunderbirdwindow": true,
+          "common/notificationicon": "${thunderbirdIcon}",
+          "common/notificationiconunread": "${thunderbirdUnreadIcon}",
+          "common/restartthunderbird": true,
+          "common/showDialogIfNoAccountsConfigured": false,
+          "common/showhidethunderbird": true,
+          "common/startClosedThunderbird": true
+        }
+      '';
+    }
+  ];
 }

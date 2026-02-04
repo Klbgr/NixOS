@@ -63,32 +63,6 @@ in
         };
         kded5rc.Module-browserintegrationreminder.autoload = false;
         # koirc.General.start-hidden=1;
-        "autostart/Vesktop.desktop"."Desktop Entry" = {
-          Type = "Application";
-          Name = "Vesktop";
-          Exec = "vesktop -m";
-        };
-        "autostart/RQuickShare.desktop"."Desktop Entry" = {
-          Type = "Application";
-          Name = "RQuickShare";
-          Exec = "rquickshare";
-        };
-        "autostart/Spotify.desktop"."Desktop Entry" = {
-          Type = "Application";
-          Name = "Spotify";
-          Exec = "spotify --minimized";
-        };
-        "autostart/EasyEffects.desktop"."Desktop Entry" = {
-          Type = "Application";
-          Name = "Easy Effects";
-          Exec = "easyeffects --hide-window";
-        };
-        "easyeffects/db/easyeffectsrc".Window.showTrayIcon = false;
-        "autostart/Thunderbird.desktop"."Desktop Entry" = {
-          Type = "Application";
-          Name = "Thunderbird";
-          Exec = "thunderbird";
-        };
       };
 
       immutableByDefault = false;

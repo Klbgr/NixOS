@@ -258,6 +258,7 @@ in
                     "org.kde.plasma.clipboard"
                     "org.kde.plasma.weather"
                   ];
+                  shown = [ "org.kde.plasma.notifications" ];
                 };
               };
             }

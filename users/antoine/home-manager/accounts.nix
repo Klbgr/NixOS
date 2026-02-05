@@ -44,6 +44,8 @@
           enable = true;
           settings = id: {
             "mail.server.server_${id}.autosync_max_age_days" = 30;
+            "mail.identity.id_${id}.reply_on_top" = 1;
+            "mail.identity.id_${id}.sig_bottom" = false;
           };
         };
         userName = "qiuantoine@gmail.com";
@@ -78,6 +80,8 @@
           enable = true;
           settings = id: {
             "mail.server.server_${id}.autosync_max_age_days" = 30;
+            "mail.identity.id_${id}.reply_on_top" = 1;
+            "mail.identity.id_${id}.sig_bottom" = false;
           };
         };
         userName = "qiuantoine@free.fr";

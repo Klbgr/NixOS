@@ -100,6 +100,7 @@ in
         "-DOPT_THUNDERBIRD_CMDLINE=${pkgs.thunderbird}/bin/thunderbird"
       ];
     }))
+    telegram-desktop
   ];
 
   programs = {
@@ -182,6 +183,11 @@ in
       Type = "Application";
       Name = "Birdtray";
       Exec = "env GDK_BACKEND=x11 birdtray";
+    })
+    (mkDesktopFile "Telegram" {
+      Type = "Application";
+      Name = "Telegram";
+      Exec = "Telegram -startintray";
     })
 
     {

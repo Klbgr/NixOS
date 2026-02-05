@@ -90,7 +90,6 @@ in
       ];
     })
     vlc
-    rquickshare
     ookla-speedtest
     moonlight-qt
     easyeffects
@@ -101,6 +100,7 @@ in
       ];
     }))
     telegram-desktop
+    packet
   ];
 
   programs = {
@@ -164,11 +164,6 @@ in
       Name = "Vesktop";
       Exec = "vesktop -m";
     })
-    (mkDesktopFile "RQuickShare" {
-      Type = "Application";
-      Name = "RQuickShare";
-      Exec = "rquickshare";
-    })
     (mkDesktopFile "Spotify" {
       Type = "Application";
       Name = "Spotify";
@@ -188,6 +183,11 @@ in
       Type = "Application";
       Name = "Telegram";
       Exec = "Telegram -startintray";
+    })
+    (mkDesktopFile "Packet" {
+      Type = "Application";
+      Name = "Packet";
+      Exec = "packet -b";
     })
 
     {

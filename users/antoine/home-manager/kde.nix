@@ -249,16 +249,35 @@ in
             {
               systemTray = {
                 icons = {
-                  spacing = "medium";
+                  spacing = "small";
                   scaleToFit = false;
                 };
                 items = {
                   showAll = false;
                   hidden = [
-                    "org.kde.plasma.clipboard"
+                    "org.kde.plasma.bluetooth"
+                    "org.kde.kscreen"
+                    "org.kde.plasma.devicenotifier"
+                    "org.kde.plasma.printmanager"
+                    "org.kde.kdeconnect"
                     "org.kde.plasma.weather"
+                    "org.kde.plasma.trash"
+                    "org.kde.plasma.manage-inputmethod"
+                    "org.kde.plasma.clipboard"
+                    "org.kde.plasma.diskquota"
                   ];
-                  shown = [ "org.kde.plasma.notifications" ];
+                  # shown = [ ];
+                  # extra = [
+                  #   "org.kde.plasma.keyboardlayout"
+                  #   "org.kde.plasma.battery"
+                  #   "org.kde.plasma.keyboardindicator"
+                  #   "org.kde.plasma.cameraindicator"
+                  #   "org.kde.plasma.brightness"
+                  #   "org.kde.plasma.networkmanagement"
+                  #   "org.kde.plasma.volume"
+                  #   "org.kde.plasma.mediacontroller"
+                  #   "org.kde.plasma.notifications"
+                  # ];
                 };
               };
             }

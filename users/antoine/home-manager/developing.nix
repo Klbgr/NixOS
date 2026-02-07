@@ -6,6 +6,7 @@
     wget
     nixfmt
     conda
+    android-tools
   ];
 
   programs = {

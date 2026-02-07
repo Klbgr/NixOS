@@ -6,6 +6,7 @@
     ./modules/nvidia-gpu-prime.nix
     ./modules/touchpad.nix
     ./modules/logitech.nix
+    ./modules/face-recognition.nix
   ];
 
   networking.hostName = "ZenBook";
@@ -25,4 +26,6 @@
       size = 12 * 1024;
     }
   ];
+
+  services.howdy.settings.video.device_path = "/dev/video2";
 }

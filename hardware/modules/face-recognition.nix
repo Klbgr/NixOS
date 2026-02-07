@@ -1,0 +1,45 @@
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+
+let
+  unstableSrc = builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+  };
+
+  unstablePkgs = import unstableSrc {
+    inherit (pkgs) system;
+    config = config.nixpkgs.config;
+  };
+
+  howdy_pam_module = "${unstablePkgs.howdy}/lib/security/pam_howdy.so";
+in
+{
+  imports = [
+    "${unstableSrc}/nixos/modules/services/security/howdy/default.nix"
+  ];
+
+  services.howdy = {
+    enable = true;
+    package = unstablePkgs.howdy;
+    control = "sufficient";
+  };
+
+  security.pam.services =
+    let
+      howdyRule = {
+        order = 1;
+        control = "sufficient";
+        modulePath = howdy_pam_module;
+      };
+    in
+    {
+      sudo.rules.auth.howdy = howdyRule;
+      login.rules.auth.howdy = howdyRule;
+      system-auth.rules.auth.howdy = howdyRule;
+      system-local-login.rules.auth.howdy = howdyRule;
+    };
+}

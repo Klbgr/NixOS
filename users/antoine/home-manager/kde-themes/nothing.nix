@@ -41,7 +41,7 @@ in
       workspace = {
         colorScheme = "Nothing";
         # cursor.theme = "";
-        iconTheme = "Tela-red";
+        iconTheme = "Tela-grey";
         # splashScreen.theme = "";
         theme = "Nothing";
         wallpaper = wallpaper;

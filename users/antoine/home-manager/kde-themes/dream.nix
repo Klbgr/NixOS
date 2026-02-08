@@ -23,6 +23,8 @@ let
       mv -v "Dream Window Decorations"/*-Aurorae-6 $out/share/aurorae/themes/
     '';
   };
+
+  wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Path/";
 in
 {
   home.packages = with pkgs; [
@@ -38,14 +40,14 @@ in
   programs = {
     konsole.profiles.custom.colorScheme = "Dream-Blur-Lime-Dark-Konsole";
     plasma = {
-      kscreenlocker.appearance.wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Path/";
+      kscreenlocker.appearance.wallpaper = wallpaper;
       workspace = {
         colorScheme = "DreamLimeGreenDarkColor";
         # cursor.theme = "";
         iconTheme = "Tela-green";
         # splashScreen.theme = "";
         theme = "Dream-Color-Plasma";
-        wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Path/";
+        wallpaper = wallpaper;
         windowDecorations = {
           library = "org.kde.kwin.aurorae";
           theme = "__aurorae__svg__Dream-Blur-Color-Dark-Aurorae-6";

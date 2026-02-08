@@ -1,5 +1,7 @@
 { pkgs, ... }:
-
+let
+  wallpaper = "";
+in
 {
   home.packages = with pkgs; [
   ];
@@ -12,14 +14,14 @@
   programs = {
     konsole.profiles.custom.colorScheme = "";
     plasma = {
-      kscreenlocker.appearance.wallpaper = "";
+      kscreenlocker.appearance.wallpaper = wallpaper;
       workspace = {
         colorScheme = "";
         cursor.theme = "";
         iconTheme = "";
         splashScreen.theme = "";
         theme = "";
-        wallpaper = "";
+        wallpaper = wallpaper;
         windowDecorations = {
           library = "org.kde.kwin.aurorae";
           theme = "__aurorae__svg__";

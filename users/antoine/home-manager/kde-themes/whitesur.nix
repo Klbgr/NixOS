@@ -1,5 +1,7 @@
 { pkgs, ... }:
-
+let
+  wallpaper = "${pkgs.whitesur-kde}/share/wallpapers/WhiteSur/";
+in
 {
   home.packages = with pkgs; [
     whitesur-kde
@@ -15,14 +17,14 @@
   programs = {
     # konsole.profiles.custom.colorScheme = "";
     plasma = {
-      kscreenlocker.appearance.wallpaper = "${pkgs.whitesur-kde}/share/wallpapers/WhiteSur/";
+      kscreenlocker.appearance.wallpaper = wallpaper;
       workspace = {
         colorScheme = "WhiteSurAlt";
         cursor.theme = "WhiteSur Cursors";
         iconTheme = "WhiteSur";
         splashScreen.theme = "com.github.vinceliuice.WhiteSur-alt";
         theme = "WhiteSur-alt";
-        wallpaper = "${pkgs.whitesur-kde}/share/wallpapers/WhiteSur/";
+        wallpaper = wallpaper;
         windowDecorations = {
           library = "org.kde.kwin.aurorae";
           theme = "__aurorae__svg__WhiteSur";

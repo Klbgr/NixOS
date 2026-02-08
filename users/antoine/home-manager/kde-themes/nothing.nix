@@ -20,6 +20,8 @@ let
       mv -v aurorae/Nothing $out/share/aurorae/themes/
     '';
   };
+
+  wallpaper = "${nothing}/share/wallpapers/Nothing1/";
 in
 {
   home.packages = with pkgs; [
@@ -35,14 +37,14 @@ in
   programs = {
     konsole.profiles.custom.colorScheme = "Nothing";
     plasma = {
-      kscreenlocker.appearance.wallpaper = "${nothing}/share/wallpapers/Nothing1/";
+      kscreenlocker.appearance.wallpaper = wallpaper;
       workspace = {
         colorScheme = "Nothing";
         # cursor.theme = "";
         iconTheme = "Tela-red";
         # splashScreen.theme = "";
         theme = "Nothing";
-        wallpaper = "${nothing}/share/wallpapers/Nothing1/";
+        wallpaper = wallpaper;
         windowDecorations = {
           library = "org.kde.kwin.aurorae";
           theme = "__aurorae__svg__Nothing";

@@ -1,5 +1,7 @@
 { pkgs, ... }:
-
+let
+  wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/ScarletTree/";
+in
 {
   home.packages = with pkgs; [
     (catppuccin-kde.override {
@@ -33,14 +35,14 @@
   programs = {
     # konsole.profiles.custom.colorScheme = "";
     plasma = {
-      kscreenlocker.appearance.wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/ScarletTree/";
+      kscreenlocker.appearance.wallpaper = wallpaper;
       workspace = {
         colorScheme = "CatppuccinLatteLavender";
         cursor.theme = "catppuccin-latte-lavender-cursors";
         iconTheme = "Papirus";
         splashScreen.theme = "Catppuccin-Latte-Lavender";
         # theme = "";
-        wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/ScarletTree/";
+        wallpaper = wallpaper;
         windowDecorations = {
           library = "org.kde.kwin.aurorae";
           theme = "__aurorae__svg__CatppuccinLatte-Modern";

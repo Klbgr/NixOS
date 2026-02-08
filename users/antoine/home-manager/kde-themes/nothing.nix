@@ -21,7 +21,7 @@ let
     '';
   };
 
-  wallpaper = "${nothing}/share/wallpapers/Nothing1/";
+  wallpaper = "${nothing}/share/wallpapers/Nothing3/";
 in
 {
   home.packages = with pkgs; [

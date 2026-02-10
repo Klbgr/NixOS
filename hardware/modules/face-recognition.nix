@@ -26,6 +26,10 @@ in
     enable = true;
     package = unstablePkgs.howdy;
     control = "sufficient";
+    settings.core = {
+      no_confirmation = true;
+      detection_notice = true;
+    };
   };
 
   security.pam.services =
@@ -41,5 +45,7 @@ in
       login.rules.auth.howdy = howdyRule;
       system-auth.rules.auth.howdy = howdyRule;
       system-local-login.rules.auth.howdy = howdyRule;
+      kde.rules.auth.howdy = howdyRule;
+      screenlocker.rules.auth.howdy = howdyRule;
     };
 }

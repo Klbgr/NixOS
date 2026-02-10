@@ -119,6 +119,8 @@
         "mailnews.message_display.disable_remote_image" = false;
         "mailnews.start_page.enabled" = false;
         "privacy.globalprivacycontrol.enabled" = true;
+        "mail.compose.default_to_paragraph" = false;
+        "spellchecker.dictionary" = "en-US,fr";
       };
     };
   };

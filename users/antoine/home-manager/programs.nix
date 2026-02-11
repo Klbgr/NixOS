@@ -105,6 +105,17 @@ in
     orca-slicer
   ];
 
+  dconf.settings = {
+    "io/github/nozwock/Packet" = {
+      auto-start = false;
+      device-visibility = true;
+      enable-nautilus-plugin = false;
+      enable-static-port = true;
+      run-in-background = true;
+      static-port-number = 9300;
+    };
+  };
+
   programs = {
     vesktop = {
       enable = true;

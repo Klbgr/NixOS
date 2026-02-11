@@ -34,7 +34,13 @@
   };
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    firewall.allowedTCPPorts = [
+      # Packet
+      9300
+    ];
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";

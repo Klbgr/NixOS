@@ -101,6 +101,8 @@ in
     }))
     telegram-desktop
     packet
+    freecad
+    orca-slicer
   ];
 
   programs = {

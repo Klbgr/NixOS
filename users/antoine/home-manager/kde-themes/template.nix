@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  wallpaper = "";
+  wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Next/";
 in
 {
   home.packages = with pkgs; [
@@ -8,23 +8,24 @@ in
 
   qt = {
     style.name = "kvantum";
-    kde.settings."Kvantum/kvantum.kvconfig".General.theme = "";
+    kde.settings."Kvantum/kvantum.kvconfig".General.theme = "Kvantum";
   };
 
   programs = {
-    konsole.profiles.custom.colorScheme = "";
+    konsole.profiles.custom.colorScheme = "Breeze";
     plasma = {
       kscreenlocker.appearance.wallpaper = wallpaper;
       workspace = {
-        colorScheme = "";
-        cursor.theme = "";
-        iconTheme = "";
-        splashScreen.theme = "";
-        theme = "";
+        colorScheme = "BreezeLight";
+        cursor.theme = "breeze_cursors";
+        iconTheme = "breeze";
+        soundTheme = "ocean";
+        splashScreen.theme = "org.kde.breeze.desktop";
+        theme = "default";
         wallpaper = wallpaper;
         windowDecorations = {
-          library = "org.kde.kwin.aurorae";
-          theme = "__aurorae__svg__";
+          library = "org.kde.breeze";
+          theme = "Breeze";
         };
       };
     };

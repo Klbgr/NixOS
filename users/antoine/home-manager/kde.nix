@@ -18,7 +18,7 @@ in
 {
   imports = [
     "${plasma-manager}/modules"
-    ./kde-themes/nothing.nix
+    ./kde-themes/leaf.nix
   ];
 
   home.packages = with pkgs; [

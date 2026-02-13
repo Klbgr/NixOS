@@ -419,6 +419,26 @@ in
             window-types = [ "normal" ];
           };
         }
+        {
+          apply = {
+            above = {
+              apply = "force";
+              value = true;
+            };
+          };
+          description = "System Monitor always on top";
+          match = {
+            machine = null;
+            title = null;
+            window-class = {
+              match-whole = true;
+              type = "exact";
+              value = "plasma-systemmonitor org.kde.plasma-systemmonitor";
+            };
+            window-role = null;
+            window-types = [ "normal" ];
+          };
+        }
       ];
 
       windows.allowWindowsToRememberPositions = true;

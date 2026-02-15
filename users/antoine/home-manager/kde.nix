@@ -133,7 +133,7 @@ in
           blur = {
             enable = true;
             noiseStrength = 5;
-            strength = 15;
+            strength = 8;
           };
           cube.enable = false;
           desktopSwitching = {

@@ -149,7 +149,7 @@ in
           magnifier.enable = false;
           minimization.animation = "squash";
           shakeCursor.enable = true;
-          slideBack.enable = false;
+          slideBack.enable = true;
           snapHelper.enable = false;
           translucency.enable = true;
           windowOpenClose.animation = "scale";

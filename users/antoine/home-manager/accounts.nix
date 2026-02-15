@@ -1,5 +1,40 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
+let
+  thunderbirdIcon = builtins.readFile (
+    pkgs.runCommand "resized-image-b64"
+      {
+        nativeBuildInputs = [ pkgs.imagemagick ];
+        src = pkgs.fetchurl {
+          url = "https://upload.wikimedia.org/wikipedia/commons/5/53/Thunderbird_2023_icon.png";
+          hash = "sha256-02hTT2pxLbOBbTit+2Cv/xKDZXj+2mnOHoe2pKvDU8U=";
+        };
+      }
+      ''
+        magick $src -resize 256x256! png:- | base64 -w 0 > $out
+      ''
+  );
+  thunderbirdUnreadIcon = builtins.readFile (
+    pkgs.runCommand "resized-image-red-dot"
+      {
+        nativeBuildInputs = [ pkgs.imagemagick ];
+        src = pkgs.fetchurl {
+          url = "https://upload.wikimedia.org/wikipedia/commons/5/53/Thunderbird_2023_icon.png";
+          hash = "sha256-02hTT2pxLbOBbTit+2Cv/xKDZXj+2mnOHoe2pKvDU8U=";
+        };
+      }
+      ''
+        magick $src -resize 256x256! \
+          -fill red -draw "circle 192,64 224,64" \
+          png:- | base64 -w 0 > $out
+      ''
+  );
 
+  profile = "${config.home.homeDirectory}/.thunderbird/Default";
+  msfFiles = builtins.filter (path: lib.hasSuffix ".msf" (toString path)) (
+    lib.filesystem.listFilesRecursive profile
+  );
+  accounts = builtins.toJSON msfFiles;
+in
 {
   accounts = {
     calendar.accounts = {
@@ -124,4 +159,57 @@
       };
     };
   };
+
+  home.packages = with pkgs; [
+    (birdtray.overrideAttrs (oldAttrs: {
+      cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+        "-DOPT_THUNDERBIRD_CMDLINE=${pkgs.thunderbird}/bin/thunderbird"
+      ];
+    }))
+  ];
+
+  xdg.configFile."birdtray-config.json".text = ''
+    {
+      "accounts": ${accounts},
+      "advanced/blinkingusealpha": false,
+      "advanced/forcedRereadInterval": 0,
+      "advanced/ignoreNetWMhints": false,
+      "advanced/ignoreUpdateVersion": "",
+      "advanced/notificationfontmaxsize": 512,
+      "advanced/notificationfontminsize": 4,
+      "advanced/onlyShowIconOnUnreadMessages": false,
+      "advanced/runProcessOnChange": "",
+      "advanced/tbprocessname": "thunderbird",
+      "advanced/tbwindowmatch": " Thunderbird",
+      "advanced/unreadopacitylevel": 0.75,
+      "advanced/updateOnStartup": false,
+      "advanced/watchfiletimeout": 150,
+      "common/allowsuppressingunread": false,
+      "common/blinkspeed": 0,
+      "common/bordercolor": "#ffffff",
+      "common/borderwidth": 0,
+      "common/defaultcolor": "#0000ff",
+      "common/exitthunderbirdonquit": true,
+      "common/forceIgnoreUnreadEmailsOnMinimize": false,
+      "common/hideWhenStartedManually": true,
+      "common/hidewhenminimized": false,
+      "common/hidewhenrestarted": true,
+      "common/hidewhenstarted": true,
+      "common/ignoreShowUnreadCount": false,
+      "common/ignoreStartUnreadCount": false,
+      "common/launchthunderbird": true,
+      "common/launchthunderbirddelay": 0,
+      "common/monitorthunderbirdwindow": true,
+      "common/newemailEnabled": false,
+      "common/notificationfont": "Noto Sans,10,-1,0,50,0,0,0,0,0",
+      "common/notificationfontweight": 50,
+      "common/notificationicon": "${thunderbirdIcon}",
+      "common/notificationiconunread": "${thunderbirdUnreadIcon}",
+      "common/restartthunderbird": true,
+      "common/showDialogIfNoAccountsConfigured": false,
+      "common/showhidethunderbird": true,
+      "common/showunreademailcount": false,
+      "common/startClosedThunderbird": true
+    }
+  '';
 }

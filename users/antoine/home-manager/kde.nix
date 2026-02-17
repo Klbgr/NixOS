@@ -314,14 +314,14 @@ in
                 calendar = {
                   firstDayOfWeek = null;
                 };
-                font = {
-                  family = "Noto Sans";
-                  bold = true;
-                  italic = false;
-                  weight = 600;
-                  style = "SemiBold";
-                  size = 10;
-                };
+                # font = {
+                #   family = "Noto Sans";
+                #   bold = true;
+                #   italic = false;
+                #   weight = 600;
+                #   style = "SemiBold";
+                #   size = 10;
+                # };
               };
             }
             "org.kde.plasma.minimizeall"

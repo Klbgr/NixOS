@@ -14,6 +14,18 @@ let
       cp -r * $out/share/kwin/effects/
     '';
   };
+  geometry-change-kwin = pkgs.stdenv.mkDerivation rec {
+    pname = "geometry-change-kwin";
+    version = "latest";
+    src = pkgs.fetchurl {
+      url = "https://github.com/peterfajdiga/kwin4_effect_geometry_change/releases/download/v1.5/kwin4_effect_geometry_change_1_5.tar.gz";
+      hash = "sha256-dmUaJEZfg8gy65bcnTSzrBLHXRtxKYwqxGGopLLMCFA=";
+    };
+    installPhase = ''
+      mkdir -p $out/share/kwin/effects/kwin4_effect_geometry_change
+      cp -r * $out/share/kwin/effects/kwin4_effect_geometry_change/
+    '';
+  };
 in
 {
   imports = [
@@ -25,6 +37,7 @@ in
     kdePackages.qtstyleplugin-kvantum
     kdePackages.dynamic-workspaces
     burn-my-windows-kwin
+    geometry-change-kwin
   ];
 
   qt = {
@@ -59,6 +72,7 @@ in
           overviewEnabled = false;
           dynamic_workspacesEnabled = true;
           kwin6_effect_aura_glowEnabled = false;
+          kwin4_effect_geometry_changeEnabled = true;
         };
         kded5rc.Module-browserintegrationreminder.autoload = false;
         kwalletrc.Wallet.Enabled = false;

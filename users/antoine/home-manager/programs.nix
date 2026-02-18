@@ -164,6 +164,10 @@ in
 
     {
       "easyeffects/db/easyeffectsrc".text = lib.generators.toINI { } {
+        StreamOutputs = {
+          plugins = "bass_enhancer#0,crystalizer#0";
+          visiblePage = "pluginsPage";
+        };
         Window = {
           showTrayIcon = false;
         };

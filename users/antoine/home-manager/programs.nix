@@ -212,6 +212,17 @@ in
         "minimizeToTray": true,
         "openOnLeftClick": true,
         "startMinimized": true
+      },
+      "spellCheckState": {
+        "enabled": true
+      },
+      "editor-setting": {
+        "edgelessDefaultTheme": "\"auto\"",
+        "edgelessScrollZoom": "true",
+        "newDocDefaultMode": "\"page\"",
+        "fullWidthLayout": "false",
+        "displayDocInfo": "true",
+        "displayBiDirectionalLink": "true"
       }
     }'
 

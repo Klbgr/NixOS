@@ -1,11 +1,19 @@
-{ config, pkgs, ... }:
-let
-  uid = 1000;
-in
+{ ... }:
+
 {
+  imports = [
+    ./modules/kde.nix
+    ./modules/kde-themes/material-you.nix
+    ./modules/accounts.nix
+    ./modules/samba.nix
+    ./modules/programs.nix
+    ./modules/developing.nix
+    ./modules/gaming.nix
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.antoine = {
-    uid = uid;
+    uid = 1000;
     isNormalUser = true;
     description = "Antoine";
     extraGroups = [
@@ -17,63 +25,7 @@ in
     ];
   };
 
-  fileSystems =
-    let
-      commonOptions = [
-        "x-systemd.automount"
-        "noauto"
-        "x-systemd.idle-timeout=60"
-        "credentials=/etc/nixos/users/antoine/smb-secrets.txt"
-        "uid=${builtins.toString uid}"
-        "gid=100"
-        "dir_mode=0700"
-        "file_mode=0600"
-        "nofail"
-      ];
-    in
-    builtins.listToAttrs (
-      map
-        (name: {
-          name = "/mnt/antoine/${name}";
-          value = {
-            device = "//192.168.0.4/${name}";
-            fsType = "cifs";
-            options = commonOptions;
-          };
-        })
-        [
-          "data"
-          "docker"
-          "home_assistant"
-        ]
-    );
-
-  home-manager.users.antoine =
-    { pkgs, ... }:
-    {
-      imports = [
-        ./home-manager/accounts.nix
-        ./home-manager/kde.nix
-        ./home-manager/programs.nix
-        ./home-manager/developing.nix
-      ];
-
-      # The state version is required and should stay at the version you
-      # originally installed.
-      home.stateVersion = "25.11";
-    };
-
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    khelpcenter
-    elisa
-    discover
-    kate
-  ];
-
-  services.xserver.excludePackages = with pkgs; [ xterm ];
-
-  programs = {
-    kdeconnect.enable = true;
-    partition-manager.enable = true;
-  };
+  # The state version is required and should stay at the version you
+  # originally installed.
+  home-manager.users.antoine.home.stateVersion = "25.11";
 }

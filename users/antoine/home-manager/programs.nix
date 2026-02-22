@@ -63,6 +63,17 @@ in
     freecad
     orca-slicer
     affine
+    qdiskinfo
+    kdiskmark
+    gimp
+    kdePackages.kalk
+    kdePackages.kweather
+    kdePackages.filelight
+    kdePackages.kdenlive
+    kdePackages.kolourpaint
+    kdePackages.isoimagewriter
+    kdePackages.skanpage
+    kdePackages.kamoso
   ];
 
   dconf.settings = {

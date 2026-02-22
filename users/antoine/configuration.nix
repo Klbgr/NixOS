@@ -62,4 +62,15 @@ in
       # originally installed.
       home.stateVersion = "25.11";
     };
+
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    khelpcenter
+    elisa
+    discover
+    kate
+  ];
+
+  services.xserver.excludePackages = with pkgs; [ xterm ];
+
+  programs.kdeconnect.enable = true;
 }

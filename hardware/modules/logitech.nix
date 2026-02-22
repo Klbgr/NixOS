@@ -48,8 +48,7 @@
                 },
                 {
                   direction: "Left";
-                  mode: "OnInterval";
-                  interval: 1000;
+                  mode: "OnRelease";
                   action: {
                     type: "Keypress";
                     keys: ["KEY_PREVIOUSSONG"];
@@ -57,8 +56,7 @@
                 },
                 {
                   direction: "Right";
-                  mode: "OnInterval";
-                  interval: 1000;
+                  mode: "OnRelease";
                   action: {
                     type: "Keypress";
                     keys: ["KEY_NEXTSONG"];

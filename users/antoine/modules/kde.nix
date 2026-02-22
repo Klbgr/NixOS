@@ -89,6 +89,18 @@
             kwalletrc.Wallet.Enabled = false;
             krunnerrc.Plugins.krunner_appstreamEnabled = false;
             kuriikwsfilterrc.General.DefaultWebShortcut = "google";
+            "kweather/kweatherrc" = {
+              General = {
+                firstStartup = false;
+              };
+              "WeatherLocations/3031897" = {
+                index = 0;
+                latitude = 48.81666946411133;
+                locationName = "Boissy-sans-Avoir";
+                longitude = 1.7999999523162842;
+                timezone = "Europe/Paris";
+              };
+            };
           };
 
           immutableByDefault = false;

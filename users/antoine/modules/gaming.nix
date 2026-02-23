@@ -6,6 +6,10 @@
 
     {
       home.packages = with pkgs; [
+        vkbasalt
+        vkbasalt-cli
+        lsfg-vk
+        lsfg-vk-ui
         protonup-qt
         lutris
         heroic

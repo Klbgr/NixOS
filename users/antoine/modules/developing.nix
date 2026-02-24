@@ -8,6 +8,7 @@
         nvtopPackages.full
         wget
         nixfmt
+        nix-search-cli
         conda
         android-tools
       ];

@@ -9,6 +9,7 @@
     ./modules/programs.nix
     ./modules/developing.nix
     ./modules/gaming.nix
+    ./modules/virtualisation.nix
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

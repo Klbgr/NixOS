@@ -11,6 +11,7 @@
         nix-search-cli
         conda
         android-tools
+        antigravity
       ];
 
       programs = {

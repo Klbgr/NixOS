@@ -26,8 +26,10 @@
         };
         git = {
           enable = true;
-          userEmail = "qiuantoine@gmail.com";
-          userName = "Klbgr";
+          settings = {
+            user.email = "qiuantoine@gmail.com";
+            user.name = "Klbgr";
+          };
         };
         vscode = {
           enable = true;

@@ -14,8 +14,6 @@ let
     inherit (pkgs) system;
     config = config.nixpkgs.config;
   };
-
-  howdy_pam_module = "${unstablePkgs.howdy}/lib/security/pam_howdy.so";
 in
 {
   imports = [
@@ -34,6 +32,7 @@ in
 
   security.pam.services =
     let
+      howdy_pam_module = "${unstablePkgs.howdy}/lib/security/pam_howdy.so";
       howdyRule = {
         order = 1;
         control = "sufficient";
@@ -45,7 +44,12 @@ in
       login.rules.auth.howdy = howdyRule;
       system-auth.rules.auth.howdy = howdyRule;
       system-local-login.rules.auth.howdy = howdyRule;
+      polkit-1.rules.auth.howdy = howdyRule;
+      sddm.rules.auth.howdy = howdyRule;
+      gdm-password.rules.auth.howdy = howdyRule;
       kde.rules.auth.howdy = howdyRule;
       screenlocker.rules.auth.howdy = howdyRule;
+      swaylock.rules.auth.howdy = howdyRule;
+      hyprlock.rules.auth.howdy = howdyRule;
     };
 }

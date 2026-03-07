@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, ... }:
 
 {
   imports = [
@@ -11,9 +11,12 @@
 
   networking.hostName = "ZenBook";
 
-  boot.extraModprobeConfig = ''
-    options asus_wmi fnlock_default=0
-  '';
+  boot = {
+    extraModprobeConfig = ''
+      options asus_wmi fnlock_default=0
+    '';
+    kernelParams = [ "i915.enable_psr=0" ];
+  };
 
   hardware.nvidia.prime = {
     intelBusId = "PCI:0@0:2:0";

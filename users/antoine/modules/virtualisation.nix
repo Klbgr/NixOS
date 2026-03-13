@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home-manager.users.antoine =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
 
     {
       home.packages = with pkgs; [

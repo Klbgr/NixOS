@@ -5,7 +5,7 @@
     { pkgs, ... }:
     let
       plasma-manager = builtins.fetchTarball "https://github.com/pjones/plasma-manager/archive/trunk.tar.gz";
-      burn-my-windows-kwin = pkgs.stdenv.mkDerivation rec {
+      burn-my-windows-kwin = pkgs.stdenv.mkDerivation {
         pname = "burn-my-windows-kwin";
         version = "latest";
         src = pkgs.fetchurl {
@@ -18,7 +18,7 @@
           cp -r * $out/share/kwin/effects/
         '';
       };
-      geometry-change-kwin = pkgs.stdenv.mkDerivation rec {
+      geometry-change-kwin = pkgs.stdenv.mkDerivation {
         pname = "geometry-change-kwin";
         version = "latest";
         src = pkgs.fetchurl {

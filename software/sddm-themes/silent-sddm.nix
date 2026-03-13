@@ -7,7 +7,7 @@ let
       owner = "uiriansan";
       repo = "SilentSDDM";
       rev = version;
-      sha256 = "sha256-WeoJBj/PhqFCCJEIycTipqPbKm5BpQT2uzFTYcYZ30I=";
+      sha256 = "sha256-+EtzmEzGA2xqwIvKrP0euYaOzrmTQWEWAiWV+k2WBEM=";
     };
     localConfig = /etc/nixos/software/sddm-themes/silent-sddm;
     installPhase = ''

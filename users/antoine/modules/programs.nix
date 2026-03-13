@@ -2,7 +2,12 @@
 
 {
   home-manager.users.antoine =
-    { pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       spicetify-nix = import (builtins.fetchTarball {
         url = "https://github.com/Gerg-L/spicetify-nix/archive/master.tar.gz";
@@ -28,7 +33,7 @@
         name = "chrome-gemini.google.com__-Default";
         desktopName = "Gemini";
         genericName = "Google Gemini";
-        exec = "google-chrome-stable --app=https://gemini.google.com --class=chrome-gemini.google.com__-Default --name=chrome-gemini.google.com__-Default";
+        exec = "google-chrome-stable --user-data-dir=${config.home.homeDirectory}/.config/gemini --app=https://gemini.google.com --class=chrome-gemini.google.com__-Default --name=chrome-gemini.google.com__-Default";
         terminal = false;
         categories = [ "Network" ];
         type = "Application";

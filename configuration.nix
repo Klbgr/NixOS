@@ -109,10 +109,7 @@
     pulse.enable = true;
   };
 
-  services.dbus = {
-    enable = true;
-    implementation = "broker";
-  };
+  services.dbus.enable = true;
   security.polkit.enable = true;
 
   services.avahi = {

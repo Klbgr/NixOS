@@ -39,9 +39,13 @@
       );
 
       profile = "${config.home.homeDirectory}/.thunderbird/Default";
-      msfFiles = builtins.filter (path: lib.hasSuffix ".msf" (toString path)) (
-        lib.filesystem.listFilesRecursive profile
-      );
+      msfFiles =
+        if builtins.pathExists profile then
+          builtins.filter (path: lib.hasSuffix ".msf" (toString path)) (
+            lib.filesystem.listFilesRecursive profile
+          )
+        else
+          [ ];
       accounts = builtins.toJSON msfFiles;
     in
     {

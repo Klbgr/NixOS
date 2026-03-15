@@ -1,3 +1,4 @@
+{ ... }:
 let
   pkgs = import <nixpkgs> { };
   nix-flatpak = pkgs.fetchFromGitHub {

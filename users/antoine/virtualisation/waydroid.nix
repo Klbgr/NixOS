@@ -6,19 +6,11 @@
 
     {
       home.packages = with pkgs; [
-        (winboat.overrideAttrs {
-          makeCacheWritable = "true";
-          npmFlags = [ "--legacy-peer-deps" ];
-        })
-        (bottles.override { removeWarningPopup = true; })
         waydroid-helper
       ];
     };
 
-  virtualisation = {
-    docker.enable = true;
-    waydroid.enable = true;
-  };
+  virtualisation.waydroid.enable = true;
 
   systemd.services.waydroid-init = {
     description = "Declarative Waydroid GAPPS initialization and config";

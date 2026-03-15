@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -34,13 +34,7 @@
   };
 
   # Enable networking
-  networking = {
-    networkmanager.enable = true;
-    firewall.allowedTCPPorts = [
-      # Packet
-      9300
-    ];
-  };
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";

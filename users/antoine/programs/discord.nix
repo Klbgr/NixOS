@@ -1,0 +1,57 @@
+{ ... }:
+
+{
+  home-manager.users.antoine =
+    { ... }:
+
+    {
+      programs.vesktop = {
+        enable = true;
+        settings = {
+          discordBranch = "stable";
+          minimizeToTray = true;
+          arRPC = true;
+          hardwareAcceleration = true;
+          customTitleBar = true;
+          enableMenu = false;
+          clickTrayToShowHide = true;
+          enableTaskbarFlashing = false;
+          autoStartMinimized = false;
+          hardwareVideoAcceleration = false;
+          staticTitle = false;
+          enableSplashScreen = true;
+          splashTheming = false;
+          tray = true;
+          disableMinSize = false;
+          disableSmoothScroll = false;
+          appBadge = true;
+          openLinksWithElectron = false;
+        };
+        vencord = {
+          settings = {
+            autoUpdate = true;
+            autoUpdateNotification = true;
+            useQuickCss = false;
+            themeLinks = [
+              "https://capnkitten.github.io/BetterDiscord/Themes/Material-Discord/css/source.css"
+            ];
+            eagerPatches = false;
+            enabledThemes = [ ];
+            enableReactDevtools = false;
+            frameless = false;
+            transparent = true;
+            winCtrlQ = false;
+            disableMinSize = false;
+            winNativeTitleBar = false;
+          };
+        };
+      };
+
+      xdg.configFile."autostart/Discord.desktop".text = ''
+        [Desktop Entry]
+        Type = Application
+        Name = Discord
+        Exec = vesktop -m
+      '';
+    };
+}

@@ -2,25 +2,12 @@
 
 {
   home-manager.users.antoine =
-    { config, pkgs, ... }:
+    { config, ... }:
 
     {
-      home.packages = with pkgs; [
-        vkbasalt
-        vkbasalt-cli
-        lsfg-vk
-        lsfg-vk-ui
-        protonup-qt
-        lutris
-        heroic
-        atlauncher
-      ];
-
-      programs = {
-        mangohud = {
-          enable = true;
-          enableSessionWide = false;
-        };
+      programs.mangohud = {
+        enable = true;
+        enableSessionWide = false;
       };
 
       xdg.configFile."MangoHud/MangoHud.conf".text = ''
@@ -82,12 +69,4 @@
         blacklist=zenity,protonplus,lsfg-vk-ui,bazzar,gnome-calculator,pamac-manager,lact,ghb,bitwig-studio,ptyxis,yumex
       '';
     };
-
-  programs = {
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-    };
-    gamemode.enable = true;
-  };
 }

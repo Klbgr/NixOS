@@ -2,14 +2,12 @@
 
 {
   imports = [
-    ./modules/kde.nix
-    ./modules/kde-themes/material-you.nix
-    ./modules/accounts.nix
-    ./modules/samba.nix
-    ./modules/programs.nix
-    ./modules/developing.nix
-    ./modules/gaming.nix
-    ./modules/virtualisation.nix
+    ./kde
+    ./programs
+    ./developing
+    ./gaming
+    ./virtualisation
+    ./samba.nix
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

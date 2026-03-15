@@ -37,14 +37,6 @@
       ];
 
       home.packages = with pkgs; [
-        kdePackages.kalk
-        kdePackages.kweather
-        kdePackages.filelight
-        kdePackages.kdenlive
-        kdePackages.kolourpaint
-        kdePackages.isoimagewriter
-        kdePackages.skanpage
-        kdePackages.kamoso
         kdePackages.qtstyleplugin-kvantum
         kdePackages.dynamic-workspaces
         burn-my-windows-kwin
@@ -89,27 +81,6 @@
             kwalletrc.Wallet.Enabled = false;
             krunnerrc.Plugins.krunner_appstreamEnabled = false;
             kuriikwsfilterrc.General.DefaultWebShortcut = "google";
-            "kweather/kweatherrc" = {
-              General = {
-                firstStartup = false;
-              };
-              "WeatherLocations/3031897" = {
-                index = 0;
-                latitude = 48.81666946411133;
-                locationName = "Boissy-sans-Avoir";
-                longitude = 1.7999999523162842;
-                timezone = "Europe/Paris";
-              };
-            };
-            filelightrc.filelight_part = {
-              contrast = 75;
-              scanAcrossMounts = false;
-              scanRemoteMounts = false;
-              scheme = 1;
-              showFoldersSidebar = true;
-              showSmallFiles = false;
-              skipList = "/dev,/proc,/sys,/root,/mnt,/games";
-            };
           };
 
           immutableByDefault = false;
@@ -508,9 +479,4 @@
   ];
 
   services.xserver.excludePackages = with pkgs; [ xterm ];
-
-  programs = {
-    kdeconnect.enable = true;
-    partition-manager.enable = true;
-  };
 }

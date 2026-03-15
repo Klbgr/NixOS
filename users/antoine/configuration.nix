@@ -21,6 +21,7 @@
       "docker"
       "input"
       "ydotool"
+      "gamemode"
     ];
   };
 

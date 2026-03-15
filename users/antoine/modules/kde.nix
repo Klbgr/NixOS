@@ -108,7 +108,7 @@
               scheme = 1;
               showFoldersSidebar = true;
               showSmallFiles = false;
-              skipList = "/dev,/proc,/sys,/root,/mnt";
+              skipList = "/dev,/proc,/sys,/root,/mnt,/games";
             };
           };
 

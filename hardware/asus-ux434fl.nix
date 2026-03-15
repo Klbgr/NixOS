@@ -31,6 +31,4 @@
   ];
 
   services.howdy.settings.video.device_path = "/dev/video2";
-
-  system.stateVersion = "24.11";
 }

@@ -78,6 +78,7 @@
         "io/github/nozwock/Packet" = {
           auto-start = false;
           device-visibility = true;
+          download-folder = "${config.home.homeDirectory}/Downloads";
           enable-nautilus-plugin = false;
           enable-static-port = true;
           run-in-background = true;

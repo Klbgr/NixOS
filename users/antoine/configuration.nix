@@ -26,7 +26,20 @@
     ];
   };
 
-  # The state version is required and should stay at the version you
-  # originally installed.
-  home-manager.users.antoine.home.stateVersion = "25.11";
+  home-manager.users.antoine = {
+    programs.bash = {
+      enable = true;
+    };
+
+    xdg.userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
+
+    # The state version is required and should stay at the version you
+    # originally installed.
+    home = {
+      stateVersion = "25.11";
+    };
+  };
 }

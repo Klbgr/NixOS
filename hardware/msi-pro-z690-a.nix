@@ -334,4 +334,6 @@
     '';
     mode = "0644";
   };
+
+  system.stateVersion = "25.11";
 }

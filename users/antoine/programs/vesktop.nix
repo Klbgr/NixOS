@@ -47,10 +47,10 @@
         };
       };
 
-      xdg.configFile."autostart/Discord.desktop".text = ''
+      xdg.configFile."autostart/Vesktop.desktop".text = ''
         [Desktop Entry]
         Type = Application
-        Name = Discord
+        Name = Vesktop
         Exec = vesktop -m
       '';
     };

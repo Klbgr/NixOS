@@ -1,0 +1,5 @@
+{ ... }:
+
+{
+  programs.kclock.enable = true;
+}

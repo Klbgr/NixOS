@@ -13,6 +13,7 @@
     ./software/kde.nix
     ./software/modules/home-manager.nix
     ./users/antoine/configuration.nix
+    ./utils
   ];
 
   # Bootloader.

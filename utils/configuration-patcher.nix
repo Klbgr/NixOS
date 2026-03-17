@@ -1,0 +1,67 @@
+{ pkgs, ... }:
+pkgs.writeShellScriptBin "configuration-patcher" ''
+  # --- JSON Merging ---
+  patch_json() {
+    local DEST_FILE="$1"
+    local WANTED_JSON="$2"
+    mkdir -p "$(dirname "$DEST_FILE")"
+
+    if [ -f "$DEST_FILE" ]; then
+      ${pkgs.jq}/bin/jq -s '.[0] * .[1]' "$DEST_FILE" <(echo "$WANTED_JSON") > "$DEST_FILE.tmp" && mv "$DEST_FILE.tmp" "$DEST_FILE"
+    else
+      echo "$WANTED_JSON" > "$DEST_FILE"
+    fi
+  }
+
+  # --- INI Patching ---
+  patch_ini() {
+    local DEST_FILE="$1"
+    local SECTION="$2"
+    local KEY="$3"
+    local VALUE="$4"
+    
+    mkdir -p "$(dirname "$DEST_FILE")"
+    touch "$DEST_FILE"
+
+    local ESCAPED_VAL=$(echo "''${VALUE}" | sed 's/[\/&]/\\&/g')
+
+    # Determine the search range
+    local RANGE_START="1"
+    local RANGE_END="$"
+    
+    if [ -n "''${SECTION}" ]; then
+      # Ensure section exists
+      if ! grep -q "^\[''${SECTION}\]$" "$DEST_FILE"; then
+        echo -e "\n[''${SECTION}]" >> "$DEST_FILE"
+      fi
+      RANGE_START="/^\[''${SECTION}\]$/"
+      RANGE_END="/^\[/"
+    fi
+
+    # Check if key exists in range
+    if sed -n "''${RANGE_START},''${RANGE_END}p" "$DEST_FILE" | grep -q "^''${KEY}="; then
+      # KEY EXISTS: Perform surgical replacement
+      # We detect if the EXISTING line is a ByteArray to know if we need a multi-line range delete
+      if sed -n "''${RANGE_START},''${RANGE_END}p" "$DEST_FILE" | grep "^''${KEY}=" | grep -q "@ByteArray"; then
+          # Multi-line delete: from key to the first line ending in )"
+          sed -i "''${RANGE_START},''${RANGE_END} { /^''${KEY}=/,/)\"$/ { /^''${KEY}=/ s|^.*$|''${KEY}=''${ESCAPED_VAL}|; //!d } }" "$DEST_FILE"
+      else
+          # Simple single-line replacement
+          sed -i "''${RANGE_START},''${RANGE_END} s|^''${KEY}=.*|''${KEY}=''${ESCAPED_VAL}|" "$DEST_FILE"
+      fi
+    else
+      # KEY MISSING: Insert
+      if [ -z "''${SECTION}" ]; then
+        echo "''${KEY}=''${VALUE}" >> "$DEST_FILE"
+      else
+        sed -i "/^\[''${SECTION}\]$/a ''${KEY}=''${VALUE}" "$DEST_FILE"
+      fi
+    fi
+  }
+
+  case "$1" in
+    json) patch_json "$2" "$3" ;;
+    ini)  patch_ini  "$2" "$3" "$4" "$5" ;;
+    *) echo "Usage: configuration-patcher json <file> <json> OR configuration-patcher ini <file> <section> <key> <val>" ;;
+  esac
+''

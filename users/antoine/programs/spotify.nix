@@ -2,7 +2,7 @@
 
 {
   home-manager.users.antoine =
-    { lib, ... }:
+    { pkgs, lib, ... }:
     let
       spicetify-nix = import (builtins.fetchTarball {
         url = "https://github.com/Gerg-L/spicetify-nix/archive/master.tar.gz";
@@ -24,23 +24,11 @@
       };
 
       home.activation.mergeSpotifyConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        merge_spotify_pref() {
-          local PREFS_FILE="$HOME/.config/spotify/prefs"
-          local KEY="$1"
-          local VALUE="$2"
-          local LINE="$KEY=\"$VALUE\""
+        PATCHER="${pkgs.configuration-patcher}/bin/configuration-patcher"
 
-          mkdir -p "$(dirname "$PREFS_FILE")"
-          touch "$PREFS_FILE"
+        CONFIG_FILE="$HOME/.config/spotify/prefs"
 
-          if grep -q "^$KEY=" "$PREFS_FILE"; then
-            sed -i "s|^$KEY=.*|$LINE|" "$PREFS_FILE"
-          else
-            echo "$LINE" >> "$PREFS_FILE"
-          fi
-        }
-
-        merge_spotify_pref "language" "fr"
+        $PATCHER ini "$CONFIG_FILE" "" "language" '"fr"'
       '';
 
       xdg.configFile."autostart/Spotify.desktop".text = ''

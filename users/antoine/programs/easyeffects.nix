@@ -30,7 +30,7 @@
           [Desktop Entry]
           Type = Application
           Name = Easy Effects
-          Exec = easyeffects --hide-window & easyeffects --load-preset "Advanced Auto Gain"
+          Exec = bash -c "easyeffects --service-mode --hide-window & easyeffects --load-preset 'Advanced Auto Gain'"
         '';
       };
     };

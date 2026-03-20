@@ -16,22 +16,35 @@
         easyeffects
       ];
 
-      xdg.configFile = {
-        "easyeffects/output/Advanced Auto Gain.json".source = "${presets-src}/Advanced Auto Gain.json";
-        "easyeffects/db/easyeffectsrc".text = lib.generators.toINI { } {
-          StreamOutputs = {
-            visiblePage = "pluginsPage";
-          };
-          Window = {
-            showTrayIcon = false;
-          };
+      home.activation.mergeEasyEffectsConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        PATCHER="${pkgs.configuration-patcher}/bin/configuration-patcher"
+
+        CONFIG_FILE="$HOME/.config/easyeffects/db/easyeffectsrc"
+
+        $PATCHER ini "$CONFIG_FILE" "StreamOutputs" "visiblePage" "pluginsPage"        
+        $PATCHER ini "$CONFIG_FILE" "Window" "outputAutoloadingFallbackPreset" "Bass Enhancing + Perfect EQ"        
+        $PATCHER ini "$CONFIG_FILE" "Window" "outputAutoloadingUsesFallback" "true"        
+        $PATCHER ini "$CONFIG_FILE" "Window" "showTrayIcon" "false"        
+      '';
+
+      xdg.configFile =
+        (
+          let
+            allFiles = builtins.readDir presets-src;
+            jsonFiles = lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".json" name) allFiles;
+          in
+          lib.mapAttrs' (name: value: {
+            name = "easyeffects/output/${name}";
+            value.source = "${presets-src}/${name}";
+          }) jsonFiles
+        )
+        // {
+          "autostart/EasyEffects.desktop".text = ''
+            [Desktop Entry]
+            Type = Application
+            Name = Easy Effects
+            Exec = easyeffects --service-mode --hide-window
+          '';
         };
-        "autostart/EasyEffects.desktop".text = ''
-          [Desktop Entry]
-          Type = Application
-          Name = Easy Effects
-          Exec = bash -c "easyeffects --service-mode --hide-window & easyeffects --load-preset 'Advanced Auto Gain'"
-        '';
-      };
     };
 }

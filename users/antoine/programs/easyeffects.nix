@@ -4,11 +4,17 @@
   home-manager.users.antoine =
     { lib, pkgs, ... }:
     let
-      presets-src = pkgs.fetchFromGitHub {
+      JackHack96-presets-src = pkgs.fetchFromGitHub {
         owner = "JackHack96";
         repo = "EasyEffects-presets";
         rev = "master";
         sha256 = "sha256-9lSYaWGIQ9K53NwQULmbdDxnS4NijmnOEUvFQWjEF08=";
+      };
+      RaduTek-presets-src = pkgs.fetchFromGitHub {
+        owner = "RaduTek";
+        repo = "EasyEffects-presets";
+        rev = "main";
+        sha256 = "sha256-V+QSKC8MRmvPG3TIz5RcB+xZFHmT9Ay9r/nGqvleyQQ=";
       };
     in
     {
@@ -30,13 +36,18 @@
       xdg.configFile =
         (
           let
-            allFiles = builtins.readDir presets-src;
-            jsonFiles = lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".json" name) allFiles;
+            mkPresets =
+              src:
+              lib.mapAttrs'
+                (name: type: {
+                  name = "easyeffects/output/${name}";
+                  value.source = "${src}/${name}";
+                })
+                (
+                  lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".json" name) (builtins.readDir src)
+                );
           in
-          lib.mapAttrs' (name: value: {
-            name = "easyeffects/output/${name}";
-            value.source = "${presets-src}/${name}";
-          }) jsonFiles
+          mkPresets JackHack96-presets-src // mkPresets RaduTek-presets-src
         )
         // {
           "autostart/EasyEffects.desktop".text = ''

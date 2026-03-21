@@ -73,6 +73,7 @@
             plasmaparc.General.AudioFeedback = false;
             kwinrc.Plugins = {
               overviewEnabled = false;
+              sheetEnabled = true;
               dynamic_workspacesEnabled = true;
               kwin6_effect_aura_glowEnabled = false;
               kwin4_effect_geometry_changeEnabled = true;

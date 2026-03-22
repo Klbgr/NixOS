@@ -57,9 +57,9 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "fr";
+    layout = "fr,us";
     variant = "";
-    options = "caps:shiftlock";
+    options = "caps:shiftlock,grp:win_space_toggle";
   };
 
   # Configure console keymap

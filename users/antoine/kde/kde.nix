@@ -87,16 +87,7 @@
           immutableByDefault = false;
 
           input = {
-            keyboard = {
-              layouts = [
-                { layout = "fr"; }
-                { layout = "us"; }
-              ];
-              model = "pc104";
-              numlockOnStartup = "on";
-              options = [ "caps:digits_row" ];
-            };
-
+            keyboard.numlockOnStartup = "on";
             touchpads = [
               {
                 enable = true;
@@ -404,7 +395,7 @@
           };
 
           shortcuts = {
-            "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = [ "Meta+Space" ];
+            # "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = [ "Meta+Space" ];
             plasmashell."activate task manager entry 1" = [ "Meta+C" ];
             "services/org.kde.plasma-systemmonitor.desktop"._launch = [
               "Ctrl+Shift+Esc"

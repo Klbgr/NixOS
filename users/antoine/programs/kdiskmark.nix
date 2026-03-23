@@ -1,12 +1,5 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
-  home-manager.users.antoine =
-    { pkgs, ... }:
-
-    {
-      home.packages = with pkgs; [
-        kdiskmark
-      ];
-    };
+  environment.systemPackages = [ pkgs.kdiskmark ];
 }

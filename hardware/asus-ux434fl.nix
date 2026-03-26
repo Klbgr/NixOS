@@ -9,7 +9,7 @@
     ./modules/face-recognition.nix
   ];
 
-  networking.hostName = "ZenBook";
+  networking.hostName = "ASUS-UX434FL";
 
   boot = {
     extraModprobeConfig = ''

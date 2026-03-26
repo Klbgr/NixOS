@@ -9,7 +9,7 @@
     ./modules/logitech.nix
   ];
 
-  networking.hostName = "Antoine";
+  networking.hostName = "MSI-PRO-Z690-A";
   boot.kernelModules = [ "nct6687" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     nct6687d

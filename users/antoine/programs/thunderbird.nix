@@ -206,7 +206,7 @@
             "common/exitthunderbirdonquit": true,
             "common/forceIgnoreUnreadEmailsOnMinimize": false,
             "common/hideWhenStartedManually": true,
-            "common/hidewhenminimized": false,
+            "common/hidewhenminimized": true,
             "common/hidewhenrestarted": true,
             "common/hidewhenstarted": true,
             "common/ignoreShowUnreadCount": false,

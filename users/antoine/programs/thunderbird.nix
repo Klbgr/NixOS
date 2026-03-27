@@ -169,6 +169,8 @@
             "privacy.globalprivacycontrol.enabled" = true;
             "mail.compose.default_to_paragraph" = false;
             "spellchecker.dictionary" = "en-US,fr";
+            "calendar.alarms.playsound" = false;
+            "calendar.alarms.show" = false;
           };
         };
       };

@@ -22,6 +22,7 @@
     devices: (
       {
         name: "MX Master 3S";
+        dpi: 2000;
         buttons: (
           {
             cid: 0xc3; # Gesture button

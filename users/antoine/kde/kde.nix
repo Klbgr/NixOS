@@ -88,6 +88,20 @@
 
           input = {
             keyboard.numlockOnStartup = "on";
+            mice = [
+              {
+                enable = true;
+                acceleration = null;
+                accelerationProfile = "none";
+                leftHanded = false;
+                middleButtonEmulation = false;
+                name = "Logitech USB Receiver Mouse";
+                naturalScroll = null;
+                productId = "c548";
+                scrollSpeed = null;
+                vendorId = "046d";
+              }
+            ];
             touchpads = [
               {
                 enable = true;

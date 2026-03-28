@@ -12,6 +12,7 @@
     ./hardware/asus-ux434fl.nix
     ./software/kde.nix
     ./software/modules/home-manager.nix
+    ./software/lanzaboote.nix
     ./users/antoine/configuration.nix
     ./utils
   ];

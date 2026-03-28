@@ -20,6 +20,8 @@
       "wheel"
       "docker"
       "input"
+      "video"
+      "render"
       "ydotool"
       "gamemode"
     ];

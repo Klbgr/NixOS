@@ -14,4 +14,8 @@
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
   };
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="powercap", ACTION=="add", KERNEL=="intel-rapl*", RUN+="${pkgs.coreutils}/bin/chmod -R a+r /sys/class/powercap/intel-rapl"
+  '';
 }

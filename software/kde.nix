@@ -3,10 +3,16 @@
 {
   imports = [ ./sddm-themes/silent-sddm.nix ];
 
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    autoNumlock = true;
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      autoNumlock = true;
+    };
+    autoLogin = {
+      enable = true;
+      user = "antoine";
+    };
   };
 
   environment.sessionVariables = {

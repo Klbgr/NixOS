@@ -33,29 +33,22 @@
         $PATCHER ini "$CONFIG_FILE" "Window" "showTrayIcon" "false"        
       '';
 
-      xdg.configFile =
-        (
-          let
-            mkPresets =
-              src:
-              lib.mapAttrs'
-                (name: type: {
-                  name = "easyeffects/output/${name}";
-                  value.source = "${src}/${name}";
-                })
-                (
-                  lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".json" name) (builtins.readDir src)
-                );
-          in
-          mkPresets JackHack96-presets-src // mkPresets RaduTek-presets-src
-        )
-        // {
-          "autostart/EasyEffects.desktop".text = ''
-            [Desktop Entry]
-            Type = Application
-            Name = Easy Effects
-            Exec = easyeffects --service-mode --hide-window
-          '';
-        };
+      services.easyeffects.enable = true;
+
+      xdg.configFile = (
+        let
+          mkPresets =
+            src:
+            lib.mapAttrs'
+              (name: type: {
+                name = "easyeffects/output/${name}";
+                value.source = "${src}/${name}";
+              })
+              (
+                lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".json" name) (builtins.readDir src)
+              );
+        in
+        mkPresets JackHack96-presets-src // mkPresets RaduTek-presets-src
+      );
     };
 }

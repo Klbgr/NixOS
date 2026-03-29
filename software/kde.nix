@@ -15,10 +15,7 @@
     };
   };
 
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    QT_NO_XDG_DESKTOP_PORTAL = "1";
-  };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   services.desktopManager.plasma6.enable = true;
 

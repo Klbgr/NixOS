@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [ ./sddm-themes/silent-sddm.nix ];
@@ -10,7 +10,7 @@
       autoNumlock = true;
     };
     autoLogin = {
-      enable = true;
+      enable = false;
       user = "antoine";
     };
   };

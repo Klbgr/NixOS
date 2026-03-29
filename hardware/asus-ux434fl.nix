@@ -7,6 +7,7 @@
     ./modules/touchpad.nix
     ./modules/logitech.nix
     ./modules/face-recognition.nix
+    ./modules/auto-keyboard-backlight.nix
   ];
 
   networking.hostName = "ASUS-UX434FL";

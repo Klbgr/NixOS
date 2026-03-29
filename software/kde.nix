@@ -18,13 +18,4 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   services.desktopManager.plasma6.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.kdePackages.xdg-desktop-portal-kde
-    ];
-    config.common.default = "kde";
-    config.kde.default = "kde";
-  };
 }

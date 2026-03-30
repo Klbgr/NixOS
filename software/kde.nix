@@ -8,10 +8,7 @@
       enable = true;
       wayland.enable = true;
       autoNumlock = true;
-    };
-    autoLogin = {
-      enable = false;
-      user = "antoine";
+      settings.Autologin.User = "antoine";
     };
   };
 

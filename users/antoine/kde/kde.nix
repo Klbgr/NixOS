@@ -145,7 +145,7 @@
             };
             autoLock = true;
             lockOnResume = true;
-            lockOnStartup = true;
+            lockOnStartup = false;
             passwordRequired = true;
             passwordRequiredDelay = 5;
             timeout = 5;

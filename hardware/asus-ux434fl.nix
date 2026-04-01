@@ -28,6 +28,7 @@
     {
       device = "/var/lib/swapfile";
       size = 12 * 1024;
+      priority = 0;
     }
   ];
 

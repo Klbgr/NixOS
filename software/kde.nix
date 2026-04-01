@@ -9,6 +9,10 @@
       wayland.enable = false;
       autoNumlock = true;
     };
+    autoLogin = {
+      enable = true;
+      user = "antoine";
+    };
   };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

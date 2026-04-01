@@ -18,22 +18,18 @@
       };
     in
     {
-      home.packages = with pkgs; [
-        easyeffects
-      ];
+      services.easyeffects.enable = true;
 
       home.activation.mergeEasyEffectsConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         PATCHER="${pkgs.configuration-patcher}/bin/configuration-patcher"
 
         CONFIG_FILE="$HOME/.config/easyeffects/db/easyeffectsrc"
 
-        $PATCHER ini "$CONFIG_FILE" "StreamOutputs" "visiblePage" "pluginsPage"        
-        $PATCHER ini "$CONFIG_FILE" "Window" "outputAutoloadingFallbackPreset" "Bass Enhancing + Perfect EQ"        
-        $PATCHER ini "$CONFIG_FILE" "Window" "outputAutoloadingUsesFallback" "true"        
-        $PATCHER ini "$CONFIG_FILE" "Window" "showTrayIcon" "false"        
+        $PATCHER ini "$CONFIG_FILE" "StreamOutputs" "visiblePage" "pluginsPage"
+        $PATCHER ini "$CONFIG_FILE" "Window" "outputAutoloadingFallbackPreset" "Bass Enhancing + Perfect EQ"
+        $PATCHER ini "$CONFIG_FILE" "Window" "outputAutoloadingUsesFallback" "true"
+        $PATCHER ini "$CONFIG_FILE" "Window" "showTrayIcon" "false"
       '';
-
-      services.easyeffects.enable = true;
 
       xdg.configFile = (
         let

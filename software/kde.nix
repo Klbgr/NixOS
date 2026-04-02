@@ -5,8 +5,8 @@
 
   services.displayManager = {
     sddm = {
-      enable = true;
-      wayland.enable = false;
+      enable = false;
+      wayland.enable = true;
       autoNumlock = true;
     };
     autoLogin = {

@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 let
   unstableSrc = builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";

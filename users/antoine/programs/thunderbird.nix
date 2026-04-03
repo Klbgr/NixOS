@@ -177,9 +177,14 @@
 
       home.packages = with pkgs; [
         (birdtray.overrideAttrs (oldAttrs: {
+          nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ makeWrapper ];
           cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
             "-DOPT_THUNDERBIRD_CMDLINE=${pkgs.thunderbird}/bin/thunderbird"
           ];
+          postInstall = (oldAttrs.postInstall or "") + ''
+            wrapProgram $out/bin/birdtray \
+              --set GDK_BACKEND "x11"
+          '';
         }))
       ];
 
@@ -233,7 +238,7 @@
           [Desktop Entry]
           Type = Application
           Name = Birdtray
-          Exec = env GDK_BACKEND=x11 birdtray
+          Exec = birdtray
         '';
       };
     };

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -59,6 +59,7 @@
   # Configure keymap in X11
   services.xserver = {
     enable = true;
+    excludePackages = with pkgs; [ xterm ];
     xkb = {
     layout = "fr,us";
     variant = "";

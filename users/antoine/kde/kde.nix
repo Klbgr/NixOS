@@ -483,6 +483,4 @@
     elisa
     discover
   ];
-
-  services.xserver.excludePackages = with pkgs; [ xterm ];
 }

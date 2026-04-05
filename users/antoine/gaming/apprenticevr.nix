@@ -38,5 +38,10 @@
       home.packages = [
         apprenticevr
       ];
+
+      xdg.configFile."apprenticevr/vrp-data/vrp-config.json".text = builtins.toJSON {
+        baseUri = "https://go.srcdl1.xyz/";
+        password = "Z0w1OVZmZ1B4b0hS";
+      };
     };
 }

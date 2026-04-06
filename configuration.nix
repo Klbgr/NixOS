@@ -38,9 +38,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
-
   # Select internationalisation properties.
   i18n.defaultLocale = "fr_FR.UTF-8";
 
@@ -128,6 +125,12 @@
     enable = true;
     priority = 1000;
   };
+
+  services.geoclue2.enable = true;
+
+  services.automatic-timezoned.enable = true;
+
+  services.fwupd.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

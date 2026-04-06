@@ -1,6 +1,19 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.overlays = [
+    (final: prev: {
+      plasma-panel-colorizer = prev.plasma-panel-colorizer.overrideAttrs (oldAttrs: {
+        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ final.jq ];
+        postInstall = (oldAttrs.postInstall or "") + ''
+          chmod 755 $out/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/tools/list_presets.sh
+          TARGET_FILE="$out/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/presets/Transparent/settings.json"
+          jq '.globalSettings.widgets.normal.shadow.foreground.enabled = false' "$TARGET_FILE" > temp.json && mv temp.json "$TARGET_FILE"
+        '';
+      });
+    })
+  ];
+
   home-manager.users.antoine =
     { pkgs, ... }:
     let
@@ -41,6 +54,7 @@
         kdePackages.dynamic-workspaces
         burn-my-windows-kwin
         geometry-change-kwin
+        plasma-panel-colorizer
       ];
 
       qt = {
@@ -336,6 +350,21 @@
                   };
                 }
                 "org.kde.plasma.minimizeall"
+                {
+                  plasmaPanelColorizer = {
+                    general = {
+                      enable = true;
+                      hideWidget = true;
+                    };
+                    settings.General = {
+                      presetAutoloading = builtins.toJSON {
+                        enabled = true;
+                        maximized = "${pkgs.plasma-panel-colorizer}/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/presets/Default";
+                        normal = "${pkgs.plasma-panel-colorizer}/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/presets/Transparent";
+                      };
+                    };
+                  };
+                }
               ];
             }
           ];

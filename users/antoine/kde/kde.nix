@@ -418,6 +418,9 @@
               "Meta+;"
               "Meta+."
             ];
+            "services/cycle-output.desktop"._launch = [ "Meta+Tab" ];
+            kwin."Walk Through Windows" = [ "Alt+Tab" ];
+            kwin."Walk Through Windows (Reverse)" = [ "Alt+Shift+Tab" ];
           };
 
           window-rules = [

@@ -23,11 +23,15 @@
             magick "${rawIcon}" -background none -gravity center -extent 125% $out
           '';
 
+      geminiCmd = pkgs.writeShellScriptBin "gemini" ''
+        exec google-chrome-stable --user-data-dir="${config.home.homeDirectory}/.config/gemini" --app=https://gemini.google.com --class=chrome-gemini.google.com__-Default --name=chrome-gemini.google.com__-Default "$@"
+      '';
+
       gemini = pkgs.makeDesktopItem {
         name = "chrome-gemini.google.com__-Default";
         desktopName = "Gemini";
         genericName = "Google Gemini";
-        exec = "google-chrome-stable --user-data-dir=${config.home.homeDirectory}/.config/gemini --app=https://gemini.google.com --class=chrome-gemini.google.com__-Default --name=chrome-gemini.google.com__-Default";
+        exec = "gemini";
         terminal = false;
         categories = [ "Network" ];
         type = "Application";
@@ -44,6 +48,7 @@
           ];
         })
         gemini
+        geminiCmd
       ];
     };
 }

@@ -84,6 +84,7 @@
             Mod+L { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
             XF86PowerOff allow-when-locked=true { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
             Mod+V { spawn-sh "noctalia-shell ipc call launcher clipboard"; }
+            Mod+C { spawn "gemini"; }
 
             Mod+Shift+Colon { show-hotkey-overlay; }
             Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
@@ -161,8 +162,8 @@
             Mod+Shift+F { maximize-window-to-edges; }
             Mod+Shift+Control+F { fullscreen-window; }
 
-            Mod+C { center-column; }
-            Mod+Ctrl+C { center-visible-columns; }
+            Mod+Shift+C { center-column; }
+            Mod+Ctrl+Shift+C { center-visible-columns; }
 
             Mod+Minus { set-column-width "-10%"; }
             Mod+Equal { set-column-width "+10%"; }

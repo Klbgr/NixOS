@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -16,6 +16,11 @@
     ./users/antoine/configuration.nix
     ./utils
   ];
+
+  specialisation.noctalia.configuration = {
+    services.desktopManager.plasma6.enable = lib.mkForce false;
+    imports = [ ./software/noctalia.nix ];
+  };
 
   # Bootloader.
   boot = {
@@ -58,9 +63,9 @@
     enable = true;
     excludePackages = with pkgs; [ xterm ];
     xkb = {
-    layout = "fr,us";
-    variant = "";
-    options = "caps:shiftlock,grp:win_space_toggle";
+      layout = "fr,us";
+      variant = "";
+      options = "caps:shiftlock,grp:win_space_toggle";
     };
   };
 

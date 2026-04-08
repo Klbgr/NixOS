@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  imports = [ ./sddm-themes/silent-sddm.nix ];
+  # imports = [ ./sddm-themes/silent-sddm.nix ];
 
   services.displayManager = {
     sddm = {

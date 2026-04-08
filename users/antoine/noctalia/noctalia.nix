@@ -19,7 +19,7 @@
         wtype
       ];
 
-      xdg.configFile."xremap/config.yml".text = ''
+      xdg.configFile."xremap.yml".text = ''
         modmap:
           - name: Super-to-F20
             remap:
@@ -632,12 +632,7 @@
                 "brightnessStep": 5,
                 "enforceMinimum": true,
                 "enableDdcSupport": true,
-                "backlightDeviceMappings": [
-                  {
-                    "device": "/sys/class/backlight/intel_backlight",
-                    "output": "eDP-1"
-                  }
-                ]
+                "backlightDeviceMappings": []
               },
               "colorSchemes": {
                 "useWallpaperColors": true,
@@ -703,12 +698,7 @@
                 "overviewEnabled": true,
                 "gridSnap": true,
                 "gridSnapScale": true,
-                "monitorWidgets": [
-                  {
-                    "name": "eDP-1",
-                    "widgets": []
-                  }
-                ]
+                "monitorWidgets": []
               }
             }
           '';

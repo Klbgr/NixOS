@@ -16,7 +16,10 @@
     extraModprobeConfig = ''
       options asus_wmi fnlock_default=0
     '';
-    kernelParams = [ "i915.enable_psr=0" ];
+    kernelParams = [
+      "i915.enable_psr=0"
+      "btusb.enable_autosuspend=0"
+    ];
   };
 
   hardware.nvidia.prime = {

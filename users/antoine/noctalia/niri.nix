@@ -2,9 +2,16 @@
 
 {
   home-manager.users.antoine =
-    { config, ... }:
+    { config, pkgs, ... }:
 
     {
+      home.pointerCursor = {
+        name = "breeze_cursors";
+        package = pkgs.kdePackages.breeze;
+        gtk.enable = true;
+        x11.enable = true;
+      };
+
       xdg.configFile."niri/config.kdl".text = ''
         input {
             touchpad {

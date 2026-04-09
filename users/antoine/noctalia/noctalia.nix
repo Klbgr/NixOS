@@ -17,6 +17,7 @@
         kdePackages.dolphin
         xremap
         wtype
+        playerctl
       ];
 
       xdg.configFile."xremap.yml".text = ''

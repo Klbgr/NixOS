@@ -101,6 +101,22 @@
                       "textColor": "none",
                       "useMonospaceFont": true,
                       "usePadding": false
+                    },
+                    {
+                      "compactMode": false,
+                      "hideMode": "hidden",
+                      "hideWhenIdle": false,
+                      "id": "MediaMini",
+                      "maxWidth": 145,
+                      "panelShowAlbumArt": true,
+                      "scrollingMode": "always",
+                      "showAlbumArt": true,
+                      "showArtistFirst": true,
+                      "showProgressRing": true,
+                      "showVisualizer": true,
+                      "textColor": "none",
+                      "useFixedWidth": false,
+                      "visualizerType": "linear"
                     }
                   ],
                   "center": [
@@ -188,7 +204,7 @@
                   ]
                 },
                 "mouseWheelAction": "workspace",
-                "reverseScroll": true,
+                "reverseScroll": false,
                 "mouseWheelWrap": false,
                 "middleClickAction": "launcherPanel",
                 "middleClickFollowMouse": false,

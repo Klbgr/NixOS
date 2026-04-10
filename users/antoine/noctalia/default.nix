@@ -8,5 +8,5 @@ let
   importsList = map (name: dir + "/${name}") nixFiles;
 in
 {
-  imports = importsList;
+  imports = importsList ++ [ ../kde/kde-packages ];
 }

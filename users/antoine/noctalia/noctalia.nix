@@ -154,6 +154,17 @@
                       "pinned": []
                     },
                     {
+                      "id": "plugin:privacy-indicator"
+                    },
+                    {
+                      "hideWhenZero": true,
+                      "hideWhenZeroUnread": false,
+                      "iconColor": "none",
+                      "id": "NotificationHistory",
+                      "showUnreadBadge": true,
+                      "unreadBadgeColor": "primary"
+                    },
+                    {
                       "displayMode": "onhover",
                       "iconColor": "none",
                       "id": "Network",
@@ -183,14 +194,6 @@
                       "id": "Clock",
                       "tooltipFormat": "dd/MM/yyyy",
                       "useCustomFont": false
-                    },
-                    {
-                      "hideWhenZero": false,
-                      "hideWhenZeroUnread": true,
-                      "iconColor": "none",
-                      "id": "NotificationHistory",
-                      "showUnreadBadge": true,
-                      "unreadBadgeColor": "primary"
                     },
                     {
                       "colorizeDistroLogo": false,
@@ -719,6 +722,35 @@
               }
             }
           '';
+          plugins = {
+            sources = [
+              {
+                enabled = true;
+                name = "Official Noctalia Plugins";
+                url = "https://github.com/noctalia-dev/noctalia-plugins";
+              }
+            ];
+            states = {
+              privacy-indicator = {
+                enabled = true;
+                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+              };
+            };
+            version = 2;
+          };
+          pluginSettings = {
+            privacy-indicator = ''
+              {
+                "hideInactive": true,
+                "enableToast": false,
+                "removeMargins": false,
+                "iconSpacing": 4,
+                "activeColor": "primary",
+                "inactiveColor": "none",
+                "micFilterRegex": ""
+              }
+            '';
+          };
         };
       };
     };

@@ -18,6 +18,8 @@
         xremap
         wtype
         playerctl
+        gpu-screen-recorder
+        wl-clipboard-rs
       ];
 
       xdg.configFile."xremap.yml".text = ''
@@ -163,6 +165,12 @@
                       "id": "NotificationHistory",
                       "showUnreadBadge": true,
                       "unreadBadgeColor": "primary"
+                    },
+                    {
+                      "id": "plugin:screen-recorder"
+                    },
+                    {
+                      "id": "plugin:usb-drive-manager"
                     },
                     {
                       "displayMode": "onhover",
@@ -409,24 +417,38 @@
                       "id": "Bluetooth"
                     },
                     {
-                      "id": "WallpaperSelector"
+                      "id": "PowerProfile"
                     },
                     {
                       "id": "NoctaliaPerformance"
+                    },
+                    {
+                      "id": "KeepAwake"
                     }
                   ],
                   "right": [
                     {
-                      "id": "Notifications"
+                      "id": "plugin:kde-connect"
                     },
                     {
-                      "id": "PowerProfile"
-                    },
-                    {
-                      "id": "KeepAwake"
+                      "id": "WallpaperSelector"
                     },
                     {
                       "id": "NightLight"
+                    },
+                    {
+                      "id": "plugin:screen-recorder"
+                    },
+                    {
+                      "enableOnStateLogic": false,
+                      "generalTooltipText": "Capture d'écran",
+                      "icon": "screenshot",
+                      "id": "CustomButton",
+                      "onClicked": "noctalia-shell ipc call controlCenter toggle && sleep 1 && niri msg action screenshot",
+                      "onMiddleClicked": "",
+                      "onRightClicked": "",
+                      "showExecTooltip": false,
+                      "stateChecksJson": "[]"
                     }
                   ]
                 },
@@ -735,6 +757,22 @@
                 enabled = true;
                 sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
               };
+              polkit-agent = {
+                enabled = true;
+                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+              };
+              usb-drive-manager = {
+                enabled = true;
+                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+              };
+              screen-recorder = {
+                enabled = true;
+                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+              };
+              kde-connect = {
+                enabled = true;
+                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+              };
             };
             version = 2;
           };
@@ -748,6 +786,46 @@
                 "activeColor": "primary",
                 "inactiveColor": "none",
                 "micFilterRegex": ""
+              }
+            '';
+            usb-drive-manager = ''
+              {
+                "autoMount": false,
+                "fileBrowser": "dolphin",
+                "terminalCommand": "alacritty",
+                "showNotifications": true,
+                "hideWhenEmpty": true,
+                "showBadge": true,
+                "iconColor": "none"
+              }              
+            '';
+            screen-recorder = ''
+              {
+                "hideInactive": true,
+                "iconColor": "none",
+                "directory": "${config.home.homeDirectory}/Videos",
+                "filenamePattern": "recording_yyyyMMdd_HHmmss",
+                "frameRate": "60",
+                "audioCodec": "opus",
+                "videoCodec": "hevc",
+                "quality": "ultra",
+                "colorRange": "full",
+                "showCursor": true,
+                "copyToClipboard": false,
+                "audioSource": "default_output",
+                "videoSource": "portal",
+                "resolution": "original",
+                "replayEnabled": false,
+                "replayDuration": "30",
+                "customReplayDuration": "30",
+                "replayStorage": "ram",
+                "restorePortalSession": false,
+                "customFrameRate": "60"
+              }              
+            '';
+            kde-connect = ''
+              {
+                "hideIfNoDeviceConnected": true
               }
             '';
           };

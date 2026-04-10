@@ -15,6 +15,10 @@ in
     useNautilus = false;
   };
 
+  environment.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "niri:GNOME";
+  };
+
   environment.systemPackages = [
     noctalia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.xwayland-satellite

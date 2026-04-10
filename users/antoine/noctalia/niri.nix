@@ -6,8 +6,8 @@
 
     {
       home.pointerCursor = {
-        name = "breeze_cursors";
-        package = pkgs.kdePackages.breeze;
+        name = "Bibata-Modern-Classic";
+        package = pkgs.bibata-cursors;
         gtk.enable = true;
         x11.enable = true;
       };

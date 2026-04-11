@@ -29,6 +29,7 @@
       "render"
       "ydotool"
       "gamemode"
+      "dialout"
     ];
   };
 

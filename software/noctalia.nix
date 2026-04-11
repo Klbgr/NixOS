@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   noctalia-shell = builtins.getFlake "github:noctalia-dev/noctalia-shell";
 in
@@ -23,4 +23,6 @@ in
     noctalia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.xwayland-satellite
   ];
+
+  services.gnome.gnome-keyring.enable = lib.mkForce false;
 }

@@ -26,6 +26,9 @@
                 // accel-profile "flat"
                 // scroll-method "no-scroll"
             }
+            keyboard {
+                numlock
+            }
             focus-follows-mouse max-scroll-amount="0%"
             disable-power-key-handling
         }

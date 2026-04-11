@@ -402,7 +402,7 @@
                 "enableSessionSearch": true,
                 "ignoreMouseInput": false,
                 "screenshotAnnotationTool": "",
-                "overviewLayer": false,
+                "overviewLayer": true,
                 "density": "default"
               },
               "controlCenter": {
@@ -679,7 +679,7 @@
               "colorSchemes": {
                 "useWallpaperColors": true,
                 "predefinedScheme": "Noctalia (default)",
-                "darkMode": true,
+                "darkMode": false,
                 "schedulingMode": "location",
                 "manualSunrise": "06:30",
                 "manualSunset": "18:30",

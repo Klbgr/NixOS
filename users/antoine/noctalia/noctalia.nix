@@ -773,6 +773,10 @@
                 enabled = true;
                 sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
               };
+              battery-actions = {
+                enabled = true;
+                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+              };
             };
             version = 2;
           };
@@ -826,6 +830,12 @@
             kde-connect = ''
               {
                 "hideIfNoDeviceConnected": true
+              }
+            '';
+            battery-actions = ''
+              {
+                "pluggedInScript": "noctalia-shell ipc call powerProfile set performance",
+                "onBatteryScript": "noctalia-shell ipc call powerProfile set balanced"
               }
             '';
           };

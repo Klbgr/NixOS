@@ -171,8 +171,8 @@
             effects = {
               blur = {
                 enable = true;
-                noiseStrength = 5;
-                strength = 8;
+                noiseStrength = 0;
+                strength = 1;
               };
               cube.enable = false;
               desktopSwitching = {

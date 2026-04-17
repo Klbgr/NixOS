@@ -60,13 +60,6 @@
     auto_switch_profiles: false
   '';
 
-  environment.etc."coolercontrol/alerts.json" = {
-    text = ''
-      {"alerts":[],"logs":[]}
-    '';
-    mode = "0644";
-  };
-
   environment.etc."coolercontrol/config.toml" = {
     text = ''
       # This is the CoolerControl configuration file.
@@ -88,14 +81,13 @@
       c34fecca5757e17ac005b293d2fe7515e6da0ca72e18037ea0939bf2d26554be = "12th Gen Intel(R) Core(TM) i9-12900K"
       4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807 = "NZXT Kraken X (X53, X63 or X73)"
       f42333b13a2853dfb8e516c576470622e74a4659bfffe7ca229f68733beae979 = "acpitz"
-      32a0e611027bfc6d540ce4b0b7c2820cbcfa9f92ec6b259b6a508a8e194dff65 = "NVIDIA T400 4GB"
       3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159 = "NVIDIA GeForce RTX 3070"
       05c2c2d0c40387973a7ecd97d789f061b652f39d10714f0c2599f8a3bd645303 = "nvme"
       19e098e312e1b1b39163a343ea22b6ea17f18ec1a803ffe0ce44f5bacd6076ee = "Custom Sensors"
       33f022b13ddcf5eef2951eec6ee8e408eabdf92b3ae22bbc7d2c06decea183cb = "iwlwifi_1"
       524778e4a6e810a8814e6cf90367bc8d5f8faf67bb9e44758f6219d9ea5d76cf = "iwlwifi_1"
       7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7 = "nct6687"
-      8620f7a6277716ec568f8a7de66471129041f6096cc18e8d82b75226a688b081 = "nvme0"
+      8620f7a6277716ec568f8a7de66471129041f6096cc18e8d82b75226a688b081 = "nvme"
       f8a50e66819260384cb74fb32f2d291efe439d369d8598bdd0a0a84751341cfd = "x53"
 
 
@@ -125,8 +117,8 @@
       [device-settings]
 
       [device-settings.3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159]
-      fan1 = { profile_uid = "0" }
-      fan2 = { profile_uid = "0" }
+      fan1 = { profile_uid = "e2b22311-4f2c-4c6b-9ee6-d0ba1873496e" }
+      fan2 = { profile_uid = "e2b22311-4f2c-4c6b-9ee6-d0ba1873496e" }
 
       [device-settings.7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7]
       fan1 = { profile_uid = "69627b9d-b7ac-4291-8d53-e81d17d69f89" }
@@ -160,7 +152,7 @@
       uid = "e2b22311-4f2c-4c6b-9ee6-d0ba1873496e"
       name = "GPU"
       p_type = "Graph"
-      speed_profile = [[0.0, 30], [60.0, 30], [80.0, 100], [100.0, 100]]
+      speed_profile = [[0.0, 0], [50.0, 0], [80.0, 100], [100.0, 100]]
       temp_source = { temp_name = "GPU Temp", device_uid = "3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159" }
       temp_min = 0.0
       temp_max = 100.0
@@ -171,7 +163,7 @@
       uid = "5bec4352-e2be-454c-85cc-0839b6226198"
       name = "CPU"
       p_type = "Graph"
-      speed_profile = [[0.0, 30], [45.0, 30], [80.0, 100], [100.0, 100]]
+      speed_profile = [[0.0, 30], [50.0, 30], [80.0, 100], [100.0, 100]]
       temp_source = { temp_name = "temp1", device_uid = "7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7" }
       temp_min = 0.0
       temp_max = 100.0
@@ -249,12 +241,6 @@
       freq_graphics = { label = "GPU Freq Graphics", disabled = true }
       freq_sm = { label = "GPU Freq SM", disabled = true }
 
-      [settings.32a0e611027bfc6d540ce4b0b7c2820cbcfa9f92ec6b259b6a508a8e194dff65]
-      name = "NVIDIA T400 4GB"
-      disable = true
-
-      [settings.32a0e611027bfc6d540ce4b0b7c2820cbcfa9f92ec6b259b6a508a8e194dff65.channel_settings]
-
       [settings.4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807]
       name = "NZXT Kraken X"
       disable = false
@@ -325,23 +311,138 @@
     mode = "0644";
   };
 
-  environment.etc."coolercontrol/config-ui.json" = {
-    text = ''
-      {"devices":["19e098e312e1b1b39163a343ea22b6ea17f18ec1a803ffe0ce44f5bacd6076ee","3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807","7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","f8a50e66819260384cb74fb32f2d291efe439d369d8598bdd0a0a84751341cfd","c34fecca5757e17ac005b293d2fe7515e6da0ca72e18037ea0939bf2d26554be","32a0e611027bfc6d540ce4b0b7c2820cbcfa9f92ec6b259b6a508a8e194dff65","f42333b13a2853dfb8e516c576470622e74a4659bfffe7ca229f68733beae979","33f022b13ddcf5eef2951eec6ee8e408eabdf92b3ae22bbc7d2c06decea183cb","05c2c2d0c40387973a7ecd97d789f061b652f39d10714f0c2599f8a3bd645303","8620f7a6277716ec568f8a7de66471129041f6096cc18e8d82b75226a688b081","524778e4a6e810a8814e6cf90367bc8d5f8faf67bb9e44758f6219d9ea5d76cf"],"deviceSettings":[{"names":[],"sensorAndChannelSettings":[]},{"names":["GPU Temp","fan1","fan2"],"sensorAndChannelSettings":[{"viewType":"Control","hide":false},{"viewType":"Control","channelDashboard":{"uid":"36304ede-309c-429d-ad52-3057f93fbd57","name":"fan1","chartType":"Time Chart","timeRangeSeconds":300,"autoScaleDegree":false,"autoScaleFrequency":true,"autoScaleWatts":true,"degreeMax":100,"degreeMin":0,"frequencyMax":10000,"frequencyMin":0,"wattsMax":800,"wattsMin":0,"dataTypes":[],"deviceChannelNames":[{"deviceUID":"3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","channelName":"fan1"}]},"hide":false},{"viewType":"Control","channelDashboard":{"uid":"b45aa2cc-2b84-4a69-aff9-9b3209dca974","name":"fan2","chartType":"Time Chart","timeRangeSeconds":300,"autoScaleDegree":false,"autoScaleFrequency":true,"autoScaleWatts":true,"degreeMax":100,"degreeMin":0,"frequencyMax":10000,"frequencyMin":0,"wattsMax":800,"wattsMin":0,"dataTypes":[],"deviceChannelNames":[{"deviceUID":"3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","channelName":"fan2"}]}}]},{"names":["pump"],"sensorAndChannelSettings":[{"viewType":"Control","channelDashboard":{"uid":"9d7e7972-de5f-47b6-ae87-db243064402e","name":"Pump","chartType":"Time Chart","timeRangeSeconds":300,"autoScaleDegree":false,"autoScaleFrequency":true,"autoScaleWatts":true,"degreeMax":100,"degreeMin":0,"frequencyMax":10000,"frequencyMin":0,"wattsMax":800,"wattsMin":0,"dataTypes":[],"deviceChannelNames":[{"deviceUID":"4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807","channelName":"pump"}]}}]},{"names":["temp1","fan1","fan3","fan4"],"sensorAndChannelSettings":[{"viewType":"Control","channelDashboard":{"uid":"0ddafd27-d744-49ce-b17d-bf0063db9107","name":"Cpu","chartType":"Time Chart","timeRangeSeconds":300,"autoScaleDegree":false,"autoScaleFrequency":true,"autoScaleWatts":true,"degreeMax":100,"degreeMin":0,"frequencyMax":10000,"frequencyMin":0,"wattsMax":800,"wattsMin":0,"dataTypes":[],"deviceChannelNames":[{"deviceUID":"7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","channelName":"temp1"}]},"hide":false},{"viewType":"Control","channelDashboard":{"uid":"18aff483-d042-4a9f-b7b5-b83e68627f5c","name":"CPU Fan","chartType":"Time Chart","timeRangeSeconds":300,"autoScaleDegree":false,"autoScaleFrequency":true,"autoScaleWatts":true,"degreeMax":100,"degreeMin":0,"frequencyMax":10000,"frequencyMin":0,"wattsMax":800,"wattsMin":0,"dataTypes":[],"deviceChannelNames":[{"deviceUID":"7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","channelName":"fan1"}]},"hide":false},{"viewType":"Control","channelDashboard":{"uid":"4a78b6c9-41a7-4b0a-aea2-71eff15caff8","name":"System Fan #1","chartType":"Time Chart","timeRangeSeconds":300,"autoScaleDegree":false,"autoScaleFrequency":true,"autoScaleWatts":true,"degreeMax":100,"degreeMin":0,"frequencyMax":10000,"frequencyMin":0,"wattsMax":800,"wattsMin":0,"dataTypes":[],"deviceChannelNames":[{"deviceUID":"7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","channelName":"fan3"}]},"hide":false},{"viewType":"Control","channelDashboard":{"uid":"46205e9c-6a30-448f-afec-b309da81370b","name":"System Fan #2","chartType":"Time Chart","timeRangeSeconds":300,"autoScaleDegree":false,"autoScaleFrequency":true,"autoScaleWatts":true,"degreeMax":100,"degreeMin":0,"frequencyMax":10000,"frequencyMin":0,"wattsMax":800,"wattsMin":0,"dataTypes":[],"deviceChannelNames":[{"deviceUID":"7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","channelName":"fan4"}]},"hide":false}]},{"names":[],"sensorAndChannelSettings":[]},{"names":[],"sensorAndChannelSettings":[]},{"names":[],"sensorAndChannelSettings":[]},{"names":[],"sensorAndChannelSettings":[]},{"names":[],"sensorAndChannelSettings":[]},{"names":[],"sensorAndChannelSettings":[]},{"names":[],"sensorAndChannelSettings":[]},{"names":[],"sensorAndChannelSettings":[]}],"dashboards":[{"uid":"d4e36ce2-c96b-48ab-b9b6-38f28544caab","name":"System","chartType":"Time Chart","timeRangeSeconds":60,"autoScaleDegree":false,"autoScaleFrequency":true,"autoScaleWatts":true,"degreeMax":100,"degreeMin":0,"frequencyMax":10000,"frequencyMin":0,"wattsMax":800,"wattsMin":0,"dataTypes":["Temp","Duty","Load"],"deviceChannelNames":[]}],"homeDashboard":"d4e36ce2-c96b-48ab-b9b6-38f28544caab","themeMode":"system","chartLineScale":1.5,"time24":true,"menuOrder":[],"expandedMenuIds":["alerts","4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807","f42333b13a2853dfb8e516c576470622e74a4659bfffe7ca229f68733beae979","33f022b13ddcf5eef2951eec6ee8e408eabdf92b3ae22bbc7d2c06decea183cb","7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","05c2c2d0c40387973a7ecd97d789f061b652f39d10714f0c2599f8a3bd645303","dashboards","alerts","19e098e312e1b1b39163a343ea22b6ea17f18ec1a803ffe0ce44f5bacd6076ee","3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","f8a50e66819260384cb74fb32f2d291efe439d369d8598bdd0a0a84751341cfd","dashboards","modes","alerts","19e098e312e1b1b39163a343ea22b6ea17f18ec1a803ffe0ce44f5bacd6076ee","3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807","7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","dashboards","modes","functions","alerts","19e098e312e1b1b39163a343ea22b6ea17f18ec1a803ffe0ce44f5bacd6076ee","3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807","7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","dashboards","modes","profiles","functions","alerts","19e098e312e1b1b39163a343ea22b6ea17f18ec1a803ffe0ce44f5bacd6076ee","3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807","7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","dashboards","modes","profiles","functions","alerts","19e098e312e1b1b39163a343ea22b6ea17f18ec1a803ffe0ce44f5bacd6076ee","3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807","7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","dashboards","modes","profiles","functions","alerts","19e098e312e1b1b39163a343ea22b6ea17f18ec1a803ffe0ce44f5bacd6076ee","3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807","7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","dashboards","modes","profiles","functions","alerts","19e098e312e1b1b39163a343ea22b6ea17f18ec1a803ffe0ce44f5bacd6076ee","3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807","7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7","dashboards","modes","profiles","functions","alerts","19e098e312e1b1b39163a343ea22b6ea17f18ec1a803ffe0ce44f5bacd6076ee","3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159","4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807","7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7"],"pinnedIds":[],"collapsedMainMenu":true,"hideMenuCollapseIcon":false,"mainMenuWidthRem":24,"frequencyPrecision":1,"customTheme":{"accent":"86 138 242","bgOne":"27 30 35","bgTwo":"44 49 60","borderOne":"138 149 170 0.25","textColor":"220 225 236","textColorSecondary":"138 149 170"},"entityColors":[],"showOnboarding":false}
-    '';
-    mode = "0644";
-  };
-
   environment.etc."coolercontrol/modes.json" = {
     text = ''
-      {"modes":[{"uid":"ef625307-76be-4b07-a4d4-18905be08051","name":"Normal","all_device_settings":{"3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159":{"fan2":{"channel_name":"fan2","speed_fixed":null,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":"0"},"fan1":{"channel_name":"fan1","speed_fixed":null,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":"0"}},"7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7":{"fan4":{"channel_name":"fan4","speed_fixed":null,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":"69627b9d-b7ac-4291-8d53-e81d17d69f89"},"fan1":{"channel_name":"fan1","speed_fixed":null,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":"69627b9d-b7ac-4291-8d53-e81d17d69f89"},"fan3":{"channel_name":"fan3","speed_fixed":null,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":"69627b9d-b7ac-4291-8d53-e81d17d69f89"}},"4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807":{"pump":{"channel_name":"pump","speed_fixed":null,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":"5fc29cf7-4a7d-4324-94d9-ea2846584d19"}}}},{"uid":"d8d9832b-cc00-43dc-8f9b-221551c5fd8d","name":"Max","all_device_settings":{"3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159":{"fan2":{"channel_name":"fan2","speed_fixed":100,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":null},"fan1":{"channel_name":"fan1","speed_fixed":100,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":null}},"4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807":{"pump":{"channel_name":"pump","speed_fixed":100,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":null}},"7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7":{"fan1":{"channel_name":"fan1","speed_fixed":100,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":null},"fan3":{"channel_name":"fan3","speed_fixed":100,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":null},"fan4":{"channel_name":"fan4","speed_fixed":100,"lighting":null,"lcd":null,"reset_to_default":null,"profile_uid":null}}}}],"order":["d8d9832b-cc00-43dc-8f9b-221551c5fd8d","ef625307-76be-4b07-a4d4-18905be08051"],"current_active_mode":"ef625307-76be-4b07-a4d4-18905be08051","previous_active_mode":"d8d9832b-cc00-43dc-8f9b-221551c5fd8d"}    
-    '';
-    mode = "0644";
-  };
-
-  environment.etc."coolercontrol/.passwd" = {
-    text = ''
-      e8692a047ca825887a04c68fe2ad398372bb0188a650c75b20034432dccd7a1303bce032b6388c45a7d40a1884ca2868e553f71116bc8772fe7c1e10cfc105d9
+      {
+        "modes":[
+            {
+              "uid":"ef625307-76be-4b07-a4d4-18905be08051",
+              "name":"Normal",
+              "all_device_settings":{
+                  "3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159":{
+                    "fan1":{
+                        "channel_name":"fan1",
+                        "speed_fixed":null,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":"e2b22311-4f2c-4c6b-9ee6-d0ba1873496e"
+                    },
+                    "fan2":{
+                        "channel_name":"fan2",
+                        "speed_fixed":null,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":"e2b22311-4f2c-4c6b-9ee6-d0ba1873496e"
+                    }
+                  },
+                  "7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7":{
+                    "fan1":{
+                        "channel_name":"fan1",
+                        "speed_fixed":null,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":"69627b9d-b7ac-4291-8d53-e81d17d69f89"
+                    },
+                    "fan4":{
+                        "channel_name":"fan4",
+                        "speed_fixed":null,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":"69627b9d-b7ac-4291-8d53-e81d17d69f89"
+                    },
+                    "fan3":{
+                        "channel_name":"fan3",
+                        "speed_fixed":null,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":"69627b9d-b7ac-4291-8d53-e81d17d69f89"
+                    }
+                  },
+                  "4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807":{
+                    "pump":{
+                        "channel_name":"pump",
+                        "speed_fixed":null,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":"5fc29cf7-4a7d-4324-94d9-ea2846584d19"
+                    }
+                  }
+              }
+            },
+            {
+              "uid":"d8d9832b-cc00-43dc-8f9b-221551c5fd8d",
+              "name":"Max",
+              "all_device_settings":{
+                  "3d56d0d9753fcbe48edbccc5b323b1eb63a466a7b9a703574773906edb9fd159":{
+                    "fan2":{
+                        "channel_name":"fan2",
+                        "speed_fixed":100,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":null
+                    },
+                    "fan1":{
+                        "channel_name":"fan1",
+                        "speed_fixed":100,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":null
+                    }
+                  },
+                  "4b9cd1bc5fb2921253e6b7dd5b1b011086ea529d915a86b3560c236084452807":{
+                    "pump":{
+                        "channel_name":"pump",
+                        "speed_fixed":100,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":null
+                    }
+                  },
+                  "7bfee7e15e0af819a1c74ac2f088d69197bdae5f361d2af4da2960c931be3cc7":{
+                    "fan1":{
+                        "channel_name":"fan1",
+                        "speed_fixed":100,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":null
+                    },
+                    "fan3":{
+                        "channel_name":"fan3",
+                        "speed_fixed":100,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":null
+                    },
+                    "fan4":{
+                        "channel_name":"fan4",
+                        "speed_fixed":100,
+                        "lighting":null,
+                        "lcd":null,
+                        "reset_to_default":null,
+                        "profile_uid":null
+                    }
+                  }
+              }
+            }
+        ],
+        "order":[
+            "ef625307-76be-4b07-a4d4-18905be08051",
+            "d8d9832b-cc00-43dc-8f9b-221551c5fd8d"
+        ],
+        "current_active_mode":"ef625307-76be-4b07-a4d4-18905be08051",
+        "previous_active_mode":"d8d9832b-cc00-43dc-8f9b-221551c5fd8d"
+      }
     '';
     mode = "0644";
   };

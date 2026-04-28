@@ -6,10 +6,10 @@
     let
       apprenticevr = pkgs.appimageTools.wrapType2 rec {
         pname = "apprenticevr";
-        version = "2.1.0";
+        version = "2.1.1";
         src = pkgs.fetchurl {
           url = "https://github.com/mula-bb/apprenticeVrSrc/releases/download/v${version}/apprenticevr-${version}-x86_64.AppImage";
-          hash = "sha256-yOUJnIm35an/uCHcciSPQ2q6WKa9FuWZIxQEH4Ma598=";
+          hash = "sha256-uSSMJB6RQFgeJS1L1ig7vPWEJMpt6KY1A8OojgEeptE=";
         };
 
         extraInstallCommands = ''

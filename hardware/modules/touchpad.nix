@@ -49,6 +49,6 @@
     hold:
       4:
         command: "ydotool key 164:1 164:0"
-        threshold: 0.25
+        threshold: 0.0
   '';
 }

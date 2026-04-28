@@ -2,9 +2,8 @@
 
 {
   imports = [
-    ./modules/intel-igpu.nix
+    ./modules/intel-cpu.nix
     ./modules/nvidia-gpu-prime.nix
-    ./modules/logitech.nix
     ./modules/face-recognition.nix
     ./modules/asus.nix
     ./modules/touchpad.nix

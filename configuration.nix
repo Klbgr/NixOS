@@ -11,8 +11,10 @@
     # ./hardware/msi-pro-z690-a.nix
     ./hardware/asus-ux434fl.nix
     ./software/kde.nix
-    ./software/modules/home-manager.nix
+    ./software/logitech.nix
+    ./software/cachyos-kernel.nix
     ./software/lanzaboote.nix
+    ./software/modules/home-manager.nix
     ./users/antoine/configuration.nix
     ./utils
   ];

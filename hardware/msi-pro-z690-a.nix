@@ -2,12 +2,10 @@
 
 {
   imports = [
-    ./modules/intel-igpu.nix
+    ./modules/intel-cpu.nix
     ./modules/nvidia-gpu.nix
     ./modules/fan.nix
     ./modules/led.nix
-    ./modules/logitech.nix
-    ./modules/cachyos-kernel.nix
   ];
 
   networking.hostName = "MSI-PRO-Z690-A";

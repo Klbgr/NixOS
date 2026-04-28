@@ -7,6 +7,7 @@
     ./modules/logitech.nix
     ./modules/face-recognition.nix
     ./modules/asus.nix
+    ./modules/touchpad.nix
   ];
 
   networking.hostName = "ASUS-UX434FL";

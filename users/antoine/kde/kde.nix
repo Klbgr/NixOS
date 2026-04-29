@@ -236,6 +236,7 @@
                 { panelSpacer.expanding = true; }
                 {
                   kickoff = {
+                    icon = "distributor-logo-nixos";
                     sortAlphabetically = true;
                     compactDisplayStyle = false;
                     sidebarPosition = "left";

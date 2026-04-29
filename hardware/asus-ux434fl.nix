@@ -1,9 +1,9 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 {
   imports = [
     ./modules/intel-cpu.nix
-    ./modules/nvidia-gpu-prime.nix
+    ./modules/nvidia-gpu.nix
     ./modules/face-recognition.nix
     ./modules/asus.nix
     ./modules/touchpad.nix
@@ -16,9 +16,17 @@
     "btusb.enable_autosuspend=0"
   ];
 
-  hardware.nvidia.prime = {
-    intelBusId = "PCI:0@0:2:0";
-    nvidiaBusId = "PCI:2@0:0:0";
+  hardware.nvidia = {
+    open = lib.mkForce false;
+    package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.legacy_580;
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      intelBusId = "PCI:0@0:2:0";
+      nvidiaBusId = "PCI:2@0:0:0";
+    };
   };
 
   swapDevices = lib.mkForce [

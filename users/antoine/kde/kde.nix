@@ -504,6 +504,11 @@
           workspace = {
             enableMiddleClickPaste = true;
             clickItemTo = "select";
+            cursor = {
+              animationTime = null;
+              cursorFeedback = "None";
+              taskManagerFeedback = true;
+            };
             wallpaperBackground.color = "0,0,0";
             wallpaperFillMode = "preserveAspectCrop";
           };

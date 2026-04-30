@@ -31,6 +31,7 @@
       home.packages = with pkgs; [
         leaf
         papirus-icon-theme
+        bibata-cursors
       ];
 
       # qt = {
@@ -44,7 +45,7 @@
           kscreenlocker.appearance.wallpaper = wallpaper;
           workspace = {
             colorScheme = "LeafLight";
-            # cursor.theme = "";
+            cursor.theme = "Bibata-Modern-Classic";
             iconTheme = "Papirus";
             splashScreen.theme = "leaf-light";
             theme = "Leaf";

@@ -9,6 +9,7 @@
     {
       home.packages = with pkgs; [
         papirus-icon-theme
+        bibata-cursors
       ];
 
       # qt = {
@@ -22,7 +23,7 @@
           kscreenlocker.appearance.wallpaper = wallpaper;
           workspace = {
             colorScheme = "BreezeLight";
-            cursor.theme = "breeze_cursors";
+            cursor.theme = "Bibata-Modern-Classic";
             iconTheme = "Papirus";
             soundTheme = "ocean";
             splashScreen.theme = "org.kde.breeze.desktop";

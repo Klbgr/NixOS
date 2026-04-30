@@ -34,6 +34,7 @@
       home.packages = with pkgs; [
         dream
         tela-icon-theme
+        bibata-cursors
       ];
 
       qt = {
@@ -47,7 +48,7 @@
           kscreenlocker.appearance.wallpaper = wallpaper;
           workspace = {
             colorScheme = "DreamLimeGreenDarkColor";
-            # cursor.theme = "";
+            cursor.theme = "Bibata-Modern-Classic";
             iconTheme = "Tela-green";
             # splashScreen.theme = "";
             theme = "Dream-Color-Plasma";

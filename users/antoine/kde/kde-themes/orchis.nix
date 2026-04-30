@@ -32,6 +32,7 @@
       home.packages = with pkgs; [
         orchis
         tela-icon-theme
+        bibata-cursors
       ];
 
       qt = {
@@ -45,7 +46,7 @@
           kscreenlocker.appearance.wallpaper = wallpaper;
           workspace = {
             colorScheme = "Orchis";
-            # cursor.theme = "";
+            cursor.theme = "Bibata-Modern-Classic";
             iconTheme = "Tela";
             splashScreen.theme = "com.github.vinceliuice.Orchis";
             theme = "Orchis";

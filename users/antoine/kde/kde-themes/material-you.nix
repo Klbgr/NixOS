@@ -8,6 +8,7 @@
       home.packages = with pkgs; [
         python312Packages.kde-material-you-colors
         papirus-icon-theme
+        bibata-cursors
       ];
 
       # qt = {
@@ -21,7 +22,7 @@
           kscreenlocker.appearance.wallpaperPictureOfTheDay.provider = "bing";
           workspace = {
             colorScheme = "MaterialYouLight";
-            cursor.theme = "breeze_cursors";
+            cursor.theme = "Bibata-Modern-Classic";
             iconTheme = "Papirus";
             soundTheme = "ocean";
             splashScreen.theme = "org.kde.breeze.desktop";

@@ -31,6 +31,7 @@
       home.packages = with pkgs; [
         nothing
         tela-icon-theme
+        bibata-cursors
       ];
 
       # qt = {
@@ -44,7 +45,7 @@
           kscreenlocker.appearance.wallpaper = wallpaper;
           workspace = {
             colorScheme = "Nothing";
-            # cursor.theme = "";
+            cursor.theme = "Bibata-Modern-Classic";
             iconTheme = "Tela-grey";
             # splashScreen.theme = "";
             theme = "Nothing";

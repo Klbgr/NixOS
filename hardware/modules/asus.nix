@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  ayuz-flake = builtins.getFlake "github:Klbgr/Ayuz";
+  ayuz-flake = builtins.getFlake "github:Traciges/Ayuz";
 in
 {
   imports = [

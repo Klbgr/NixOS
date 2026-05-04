@@ -28,6 +28,7 @@
   boot = {
     consoleLogLevel = 0;
     initrd.verbose = false;
+    kernelModules = [ "ntsync" ];
     kernelParams = [
       "quiet"
       "udev.log_level=3"

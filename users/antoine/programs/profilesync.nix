@@ -11,7 +11,7 @@
           owner = "duke8253";
           repo = "slicer_profile_sync_tool";
           rev = version;
-          hash = "sha256-HvISwa7Kn4G+HBBKUTjnMAOVE9dXjxEj1v1dt6TIXgM=";
+          hash = "sha256-3IVYWT+tXH1NpqHspi+EM+OH2MQR9SzSKXF2euEqP3M=";
         };
         format = "other";
         propagatedBuildInputs = with pkgs.python3Packages; [

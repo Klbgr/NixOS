@@ -47,6 +47,8 @@
             && !(builtins.elem (baseNameOf (toString path)) [
               "Spam.msf"
               "Junk.msf"
+              "Corbeille.msf"
+              "Trash.msf"
             ])
           ) (lib.filesystem.listFilesRecursive profile)
         else

@@ -41,12 +41,22 @@
       profile = "${config.home.homeDirectory}/.thunderbird/Default";
       msfFiles =
         if builtins.pathExists profile then
-          builtins.filter (path: lib.hasSuffix ".msf" (toString path)) (
-            lib.filesystem.listFilesRecursive profile
-          )
+          builtins.filter (
+            path:
+            lib.hasSuffix ".msf" (toString path)
+            && !(builtins.elem (baseNameOf (toString path)) [
+              "Spam.msf"
+              "Junk.msf"
+            ])
+          ) (lib.filesystem.listFilesRecursive profile)
         else
           [ ];
-      accounts = builtins.toJSON msfFiles;
+      accounts = builtins.toJSON (
+        map (path: {
+          color = "#0000ff";
+          path = toString path;
+        }) msfFiles
+      );
     in
     {
       accounts = {

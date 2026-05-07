@@ -16,7 +16,6 @@
 
         $PATCHER json "$CONFIG_FILE" '{
           "defaultSettings": {
-            "language": "fr",
             "checkForUpdatesOnStartup": false,
             "autoUpdateGames": false,
             "enableUpdates": false,
@@ -46,6 +45,13 @@
             "useSteamRuntime": true,
             "battlEyeRuntime": true,
             "eacRuntime": true,
+            "enviromentOptions": [
+              {
+                "key": "PROTON_PREFER_SDL",
+                "value": "1"
+              }
+            ],
+            "language": "fr",
             "showValveProton": false,
             "experimentalFeatures": {
                 "enableHelp": false,

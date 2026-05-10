@@ -3,7 +3,7 @@ let
   nix-cachyos-kernel = builtins.getFlake "github:xddxdd/nix-cachyos-kernel/release";
 in
 {
-  nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
+  nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
 
   boot.kernelPackages =
     nix-cachyos-kernel.legacyPackages."${pkgs.system}".linuxPackages-cachyos-latest-lto-x86_64-v3;

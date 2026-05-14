@@ -15,7 +15,12 @@
   ];
 
   home-manager.users.antoine =
-    { pkgs, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     let
       plasma-manager = builtins.fetchTarball "https://github.com/pjones/plasma-manager/archive/trunk.tar.gz";
       burn-my-windows-kwin = pkgs.stdenv.mkDerivation {
@@ -512,6 +517,40 @@
             wallpaperBackground.color = "0,0,0";
             wallpaperFillMode = "preserveAspectCrop";
           };
+        };
+      };
+
+      xdg.configFile."autostart/plasma-manager-autostart.desktop".text = lib.mkForce ''
+        [Desktop Entry]
+        Hidden=true
+      '';
+
+      systemd.user.services.plasma-manager-first-unlock = {
+        Unit = {
+          Description = "Apply Plasma Manager settings only on the first unlock";
+          After = [ "graphical-session.target" ];
+          PartOf = [ "graphical-session.target" ];
+        };
+
+        Service = {
+          Type = "simple";
+          ExecStart = pkgs.writeShellScript "plasma-manager-trigger" ''
+            set -e
+            echo "Waiting for first unlock signal..."
+            ${pkgs.dbus}/bin/dbus-monitor "type='signal',interface='org.freedesktop.ScreenSaver',member='ActiveChanged'" | \
+            while read -r line; do
+              if [[ "$line" == *"boolean false"* ]]; then
+                echo "First unlock detected. Applying configuration..."
+                ${config.home.homeDirectory}/.local/share/plasma-manager/run_all.sh
+                echo "Success. Terminating trigger service."
+                exit 0
+              fi
+            done
+          '';
+          Restart = "no";
+        };
+        Install = {
+          WantedBy = [ "graphical-session.target" ];
         };
       };
     };

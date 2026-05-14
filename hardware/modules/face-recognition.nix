@@ -21,6 +21,7 @@ in
     settings.core = {
       no_confirmation = true;
       detection_notice = true;
+      workaround = "native"; 
     };
   };
 

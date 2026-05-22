@@ -4,13 +4,11 @@
   services.logind.settings.Login.HandlePowerKey = "ignore";
 
   home-manager.users.antoine =
-    { config, ... }:
-    let
-      noctalia-shell = builtins.getFlake "github:noctalia-dev/noctalia-shell";
-    in
+    { inputs, config, ... }:
+
     {
       imports = [
-        noctalia-shell.homeModules.default
+        inputs.noctalia.homeModules.default
       ];
 
       home.packages = with pkgs; [

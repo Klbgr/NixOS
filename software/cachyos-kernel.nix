@@ -1,12 +1,10 @@
-{ pkgs, ... }:
-let
-  nix-cachyos-kernel = builtins.getFlake "github:xddxdd/nix-cachyos-kernel/release";
-in
+{ inputs, pkgs, ... }:
+
 {
-  nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
+  nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.default ];
 
   boot.kernelPackages =
-    nix-cachyos-kernel.legacyPackages."${pkgs.system}".linuxPackages-cachyos-latest-lto-x86_64-v3;
+    inputs.nix-cachyos-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxPackages-cachyos-latest-lto-x86_64-v3;
 
   nix.settings = {
     substituters = [

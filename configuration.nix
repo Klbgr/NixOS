@@ -2,19 +2,20 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    # ./hardware/msi-pro-z690-a.nix
-    ./hardware/asus-ux434fl.nix
+    inputs.home-manager.nixosModules.home-manager
     ./software/kde.nix
     ./software/logitech.nix
     ./software/cachyos-kernel.nix
     ./software/lanzaboote.nix
-    ./software/modules/home-manager.nix
     ./users/antoine/configuration.nix
     ./utils
   ];
@@ -104,6 +105,7 @@
   home-manager = {
     useGlobalPkgs = true;
     backupFileExtension = "backup";
+    extraSpecialArgs = { inherit inputs; };
   };
 
   security.rtkit.enable = true;
@@ -132,6 +134,7 @@
   zramSwap = {
     enable = true;
     priority = 1000;
+    memoryPercent = 100;
   };
 
   services.geoclue2.enable = true;
@@ -143,6 +146,8 @@
   services.power-profiles-daemon.enable = true;
 
   services.upower.enable = true;
+
+  services.nohang.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

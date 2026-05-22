@@ -2,10 +2,11 @@
 
 {
   imports = [
-    ./modules/intel-cpu.nix
-    ./modules/nvidia-gpu.nix
-    ./modules/fan.nix
-    ./modules/led.nix
+    ./hardware-configuration.nix
+    ../modules/intel-cpu.nix
+    ../modules/nvidia-gpu.nix
+    ../modules/fan.nix
+    ../modules/led.nix
   ];
 
   networking.hostName = "MSI-PRO-Z690-A";
@@ -21,6 +22,8 @@
       priority = 0;
     }
   ];
+
+  services.nohang.configPath = "desktop";
 
   fileSystems."/games" = {
     device = "/dev/disk/by-label/games";

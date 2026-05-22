@@ -2,16 +2,18 @@
 
 {
   home-manager.users.antoine =
-    { pkgs, lib, ... }:
+    {
+      inputs,
+      pkgs,
+      lib,
+      ...
+    }:
     let
-      spicetify-nix = import (builtins.fetchTarball {
-        url = "https://github.com/Gerg-L/spicetify-nix/archive/master.tar.gz";
-      }) { };
-      spicePkgs = spicetify-nix.packages;
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in
     {
       imports = [
-        spicetify-nix.homeManagerModules.spicetify
+        inputs.spicetify-nix.homeManagerModules.spicetify
       ];
 
       programs.spicetify = {

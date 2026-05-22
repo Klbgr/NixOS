@@ -9,22 +9,12 @@
         nixfmt
         nixd
         nix-search-cli
+        hydra-check
         clang-tools
       ];
 
-      programs.vscode = {
+      programs.antigravity = {
         enable = true;
-        package =
-          (pkgs.symlinkJoin {
-            name = "antigravity-wrapped";
-            paths = [ pkgs.antigravity ];
-            postBuild = ''
-              ln -s ${pkgs.antigravity}/lib/antigravity/resources/app/product.json $out/product.json
-            '';
-          })
-          // {
-            inherit (pkgs.antigravity) executableName pname version;
-          };
         profiles.default = {
           extensions = with pkgs.vscode-extensions; [
             ms-ceintl.vscode-language-pack-fr
@@ -55,5 +45,7 @@
           };
         };
       };
+
+      programs.bash.shellAliases.code = "antigravity";
     };
 }

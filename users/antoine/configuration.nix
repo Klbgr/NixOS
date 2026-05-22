@@ -36,11 +36,16 @@
   home-manager.users.antoine = {
     programs.bash = {
       enable = true;
+      shellAliases = {
+        rebuild = "sudo nixos-rebuild switch --flake /etc/nixos/";
+        configure = "code /etc/nixos";
+      };
     };
 
     xdg.userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables = true;
     };
 
     # The state version is required and should stay at the version you

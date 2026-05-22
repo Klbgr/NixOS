@@ -1,13 +1,13 @@
-{ pkgs, lib, ... }:
-let
-  lanzabooteSrc = fetchTarball {
-    url = "https://github.com/nix-community/lanzaboote/archive/v1.0.0.tar.gz";
-  };
-  lanzaboote = import lanzabooteSrc { inherit pkgs; };
-in
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
+
 {
   imports = [
-    lanzaboote.nixosModules.lanzaboote
+    inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
   environment.systemPackages = [

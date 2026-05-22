@@ -1,7 +1,10 @@
-{ lib, pkgs, ... }:
-let
-  noctalia-shell = builtins.getFlake "github:noctalia-dev/noctalia-shell";
-in
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+
 {
   nix.settings = {
     extra-substituters = [ "https://noctalia.cachix.org" ];
@@ -20,7 +23,7 @@ in
   };
 
   environment.systemPackages = [
-    noctalia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.xwayland-satellite
   ];
 

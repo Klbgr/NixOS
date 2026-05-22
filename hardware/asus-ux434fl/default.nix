@@ -2,11 +2,12 @@
 
 {
   imports = [
-    ./modules/intel-cpu.nix
-    ./modules/nvidia-gpu.nix
-    ./modules/face-recognition.nix
-    ./modules/asus.nix
-    ./modules/touchpad.nix
+    ./hardware-configuration.nix
+    ../modules/intel-cpu.nix
+    ../modules/nvidia-gpu.nix
+    ../modules/face-recognition.nix
+    ../modules/asus.nix
+    ../modules/touchpad.nix
   ];
 
   networking.hostName = "ASUS-UX434FL";
@@ -36,6 +37,8 @@
       priority = 0;
     }
   ];
+
+  services.nohang.configPath = "basic";
 
   services.howdy.settings.video.device_path = "/dev/video2";
 }

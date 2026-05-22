@@ -1,10 +1,8 @@
-{ pkgs, config, ... }:
-let
-  ayuz-flake = builtins.getFlake "github:Traciges/Ayuz";
-in
+{ inputs, ... }:
+
 {
   imports = [
-    ayuz-flake.nixosModules.default
+    inputs.ayuz.nixosModules.default
   ];
 
   services.ayuz = {
@@ -18,7 +16,7 @@ in
 
     {
       imports = [
-        ayuz-flake.homeManagerModules.default
+        inputs.ayuz.homeManagerModules.default
       ];
 
       programs.ayuz = {

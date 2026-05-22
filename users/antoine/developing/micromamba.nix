@@ -56,7 +56,7 @@
       util-linux
       xz
       systemd
-      xorg.libxcb
+      libxcb
     ];
   };
 }

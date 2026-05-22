@@ -16,13 +16,13 @@
 
   home-manager.users.antoine =
     {
+      inputs,
       pkgs,
       config,
       lib,
       ...
     }:
     let
-      plasma-manager = builtins.fetchTarball "https://github.com/pjones/plasma-manager/archive/trunk.tar.gz";
       burn-my-windows-kwin = pkgs.stdenv.mkDerivation {
         pname = "burn-my-windows-kwin";
         version = "latest";
@@ -51,7 +51,7 @@
     in
     {
       imports = [
-        "${plasma-manager}/modules"
+        "${inputs.plasma-manager}/modules"
       ];
 
       home.packages = with pkgs; [

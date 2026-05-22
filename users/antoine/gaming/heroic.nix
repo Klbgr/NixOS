@@ -45,12 +45,6 @@
             "useSteamRuntime": true,
             "battlEyeRuntime": true,
             "eacRuntime": true,
-            "enviromentOptions": [
-              {
-                "key": "PROTON_PREFER_SDL",
-                "value": "1"
-              }
-            ],
             "language": "fr",
             "showValveProton": false,
             "experimentalFeatures": {

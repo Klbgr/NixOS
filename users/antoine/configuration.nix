@@ -38,7 +38,10 @@
       enable = true;
       shellAliases = {
         rebuild = "sudo nixos-rebuild switch --flake /etc/nixos/";
+        dry-run = "sudo nixos-rebuild dry-run --flake /etc/nixos/";
         configure = "code /etc/nixos";
+        clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+        optimise = "nix-store --optimise";
       };
     };
 

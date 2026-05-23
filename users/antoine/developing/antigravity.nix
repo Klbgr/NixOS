@@ -1,6 +1,20 @@
 { ... }:
 
 {
+  #TODO remove once fixed in nixpkgs
+  nixpkgs.overlays = [
+    (final: prev: {
+      pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+        (pythonFinal: pythonPrev: {
+          jedi-language-server = pythonPrev.jedi-language-server.overrideAttrs (oldAttrs: {
+            dontCheckRuntimeDeps = true;
+            doCheck = false;
+          });
+        })
+      ];
+    })
+  ];
+
   home-manager.users.antoine =
     { pkgs, ... }:
 

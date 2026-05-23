@@ -21,8 +21,14 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ayuz.url = "github:Traciges/Ayuz";
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    ayuz = {
+      url = "github:Traciges/Ayuz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

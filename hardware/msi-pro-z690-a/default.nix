@@ -15,6 +15,8 @@
     nct6687d
   ];
 
+  hardware.nvidia.powerManagement.enable = lib.mkForce true;
+
   swapDevices = lib.mkForce [
     {
       device = "/var/lib/swapfile";

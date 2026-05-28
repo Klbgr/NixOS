@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   services.howdy = {
@@ -12,4 +12,14 @@
   };
 
   security.pam.howdy.enable = true;
+
+  systemd.services."polkit-agent-helper@" = {
+    serviceConfig = {
+      PrivateDevices = lib.mkForce false;
+      DeviceAllow = [
+        "char-video4linux rw"
+        "/dev/uinput rw"
+      ];
+    };
+  };
 }

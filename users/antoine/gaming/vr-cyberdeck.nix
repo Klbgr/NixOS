@@ -6,10 +6,10 @@
     let
       vr-cyberdeck = pkgs.appimageTools.wrapType2 rec {
         pname = "vr-cyberdeck";
-        version = "1.2.3";
+        version = "1.2.7";
         src = pkgs.fetchurl {
           url = "https://github.com/KaladinDMP/VR-CyberDeck/releases/download/v${version}/vr-cyberdeck-${version}-x86_64.AppImage";
-          hash = "sha256-+4rWUS3L5nA+Y7mrlWSrkQgUbHy0IiHv8C5jtBIknFc=";
+          hash = "sha256-fPgdXIlewyK7zvpmo+0BDTB5Q5b9hd6qSw8H9GKAV2c=";
         };
 
         extraInstallCommands = ''

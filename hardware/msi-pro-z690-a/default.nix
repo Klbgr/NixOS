@@ -36,6 +36,11 @@
     "d /games 0775 root users -"
   ];
 
+  environment.sessionVariables = {
+    LOW_LATENCY_LAYER = "1";
+    LOW_LATENCY_LAYER_REFLEX = "1";
+  };
+
   environment.etc."lact/config.yaml".text = ''
     version: 5
     daemon:

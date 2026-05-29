@@ -16,6 +16,7 @@
     ./software/logitech.nix
     ./software/cachyos-kernel.nix
     ./software/lanzaboote.nix
+    ./software/low-latency-layer.nix
     ./users/antoine/configuration.nix
     ./utils
   ];
@@ -42,6 +43,12 @@
       efi.canTouchEfiVariables = true;
     };
     plymouth.enable = true;
+  };
+
+  # Enable OpenGL
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
   };
 
   # Enable networking

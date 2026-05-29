@@ -148,6 +148,7 @@
   services.upower.enable = true;
 
   services.nohang.enable = true;
+  systemd.oomd.enable = false;
 
   nix.settings = {
     substituters = [

@@ -43,16 +43,6 @@
         clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
         optimise = "nix-store --optimise";
       };
-      initExtra = ''
-        nix-checkout() {
-          if [ -z "$1" ]; then
-            echo "Error: Please provide a nixpkgs commit hash. See https://status.nixos.org"
-            echo "Usage: nix-checkout <commit-hash>"
-            return 1
-          fi
-          nix flake lock --override-input nixpkgs "github:nixos/nixpkgs/$1"
-        }
-      '';
     };
 
     xdg.userDirs = {

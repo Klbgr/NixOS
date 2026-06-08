@@ -1,14 +1,8 @@
 { ... }:
 
 {
-  # imports = [ ./sddm-themes/silent-sddm.nix ];
-
   services.displayManager = {
-    sddm = {
-      enable = false;
-      wayland.enable = true;
-      autoNumlock = true;
-    };
+    plasma-login-manager.enable = true;
     autoLogin = {
       enable = true;
       user = "antoine";

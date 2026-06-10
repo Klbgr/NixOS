@@ -13,6 +13,19 @@ pkgs.writeShellScriptBin "configuration-patcher" ''
     fi
   }
 
+  # --- YAML Merging ---
+  patch_yaml() {
+    local DEST_FILE="$1"
+    local WANTED_YAML="$2"
+    mkdir -p "$(dirname "$DEST_FILE")"
+
+    if [ -f "$DEST_FILE" ]; then
+      ${pkgs.yq-go}/bin/yq eval-all '. as $item ireduce ({}; . * $item )' "$DEST_FILE" <(echo "$WANTED_YAML") > "$DEST_FILE.tmp" && mv "$DEST_FILE.tmp" "$DEST_FILE"
+    else
+      echo "$WANTED_YAML" > "$DEST_FILE"
+    fi
+  }
+
   # --- INI Patching ---
   patch_ini() {
     local DEST_FILE="$1"
@@ -61,7 +74,14 @@ pkgs.writeShellScriptBin "configuration-patcher" ''
 
   case "$1" in
     json) patch_json "$2" "$3" ;;
+    yaml) patch_yaml "$2" "$3" ;;
     ini)  patch_ini  "$2" "$3" "$4" "$5" ;;
-    *) echo "Usage: configuration-patcher json <file> <json> OR configuration-patcher ini <file> <section> <key> <val>" ;;
+    *) 
+      echo "Usage:"
+      echo "  configuration-patcher json <file> <json>"
+      echo "  configuration-patcher yaml <file> <yaml>"
+      echo "  configuration-patcher ini  <file> <section> <key> <val>"
+      exit 1
+      ;;
   esac
 ''

@@ -10,8 +10,16 @@
       }) { inherit (pkgs) system; };
     in
     {
-      home.packages = [
-        pinnedPkgs.rpcs3
+      home.packages = with pkgs; [
+        (symlinkJoin {
+          name = "rpcs3-with-mangohud";
+          paths = [ pinnedPkgs.rpcs3 ];
+          nativeBuildInputs = [ makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/rpcs3 \
+              --run "${mangohud}/bin/mangohud ${pinnedPkgs.rpcs3}/bin/rpcs3"
+          '';
+        })
       ];
     };
 }

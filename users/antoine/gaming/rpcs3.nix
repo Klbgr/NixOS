@@ -17,7 +17,7 @@
           nativeBuildInputs = [ makeWrapper ];
           postBuild = ''
             wrapProgram $out/bin/rpcs3 \
-              --run "${mangohud}/bin/mangohud ${pinnedPkgs.rpcs3}/bin/rpcs3"
+              --run "${mangohud}/bin/mangohud ${pinnedPkgs.rpcs3}/bin/rpcs3; exit 0"
           '';
         })
       ];

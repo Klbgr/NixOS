@@ -14,36 +14,39 @@
 
         CONFIG_FILE="$HOME/.config/Moonlight Game Streaming Project/Moonlight.conf"
 
-        $PATCHER ini "$CONFIG_FILE" "General" "bitrate" "500000"
-        $PATCHER ini "$CONFIG_FILE" "General" "windowmode" "1"
-        $PATCHER ini "$CONFIG_FILE" "General" "vsync" "true"
-        $PATCHER ini "$CONFIG_FILE" "General" "framepacing" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "audiocfg" "0"
-        $PATCHER ini "$CONFIG_FILE" "General" "hostaudio" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "muteonfocusloss" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "gameopts" "true"
-        $PATCHER ini "$CONFIG_FILE" "General" "quitAppAfter" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "language" "0"
-        $PATCHER ini "$CONFIG_FILE" "General" "uidisplaymode" "0"
-        $PATCHER ini "$CONFIG_FILE" "General" "connwarnings" "true"
-        $PATCHER ini "$CONFIG_FILE" "General" "keepawake" "true"
-        $PATCHER ini "$CONFIG_FILE" "General" "mouseacceleration" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "capturesyskeys" "1"
-        $PATCHER ini "$CONFIG_FILE" "General" "abstouchmode" "true"
-        $PATCHER ini "$CONFIG_FILE" "General" "swapmousebuttons" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "reversescroll" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "swapfacebuttons" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "multicontroller" "true"
-        $PATCHER ini "$CONFIG_FILE" "General" "gamepadmouse" "true"
-        $PATCHER ini "$CONFIG_FILE" "General" "backgroundgamepad" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "videodec" "0"
-        $PATCHER ini "$CONFIG_FILE" "General" "videocfg" "0"
-        $PATCHER ini "$CONFIG_FILE" "General" "hdr" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "yuv444" "false"
-        $PATCHER ini "$CONFIG_FILE" "General" "unlockbitrate" "true"
-        $PATCHER ini "$CONFIG_FILE" "General" "mdns" "true"
-        $PATCHER ini "$CONFIG_FILE" "General" "detectnetblocking" "true"
-        $PATCHER ini "$CONFIG_FILE" "General" "showperfoverlay" "false"
+        $PATCHER ini "$CONFIG_FILE" '
+          [General]
+          bitrate = 500000
+          windowmode = 1
+          vsync = true
+          framepacing = false
+          audiocfg = 0
+          hostaudio = false
+          muteonfocusloss = false
+          gameopts = true
+          quitAppAfter = false
+          language = 0
+          uidisplaymode = 0
+          connwarnings = true
+          keepawake = true
+          mouseacceleration = false
+          capturesyskeys = 1
+          abstouchmode = true
+          swapmousebuttons = false
+          reversescroll = false
+          swapfacebuttons = false
+          multicontroller = true
+          gamepadmouse = true
+          backgroundgamepad = false
+          videodec = 0
+          videocfg = 0
+          hdr = false
+          yuv444 = false
+          unlockbitrate = true
+          mdns = true
+          detectnetblocking = true
+          showperfoverlay = false
+        '
       '';
     };
 }

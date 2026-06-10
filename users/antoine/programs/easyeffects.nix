@@ -25,10 +25,15 @@
 
         CONFIG_FILE="$HOME/.config/easyeffects/db/easyeffectsrc"
 
-        $PATCHER ini "$CONFIG_FILE" "StreamOutputs" "visiblePage" "pluginsPage"
-        $PATCHER ini "$CONFIG_FILE" "Window" "outputAutoloadingFallbackPreset" "Bass Enhancing + Perfect EQ"
-        $PATCHER ini "$CONFIG_FILE" "Window" "outputAutoloadingUsesFallback" "true"
-        $PATCHER ini "$CONFIG_FILE" "Window" "showTrayIcon" "false"
+        $PATCHER ini "$CONFIG_FILE" '
+          [StreamOutputs]
+          visiblePage = pluginsPage
+
+          [Window]
+          outputAutoloadingFallbackPreset = Bass Enhancing + Perfect EQ
+          outputAutoloadingUsesFallback = true
+          showTrayIcon = false
+        '
       '';
 
       xdg.configFile = (

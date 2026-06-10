@@ -25,7 +25,6 @@
         $PATCHER toml "$CONFIG_FILE" '
           MuteFastForward = false
           SlowmoFPS = 30.0
-          LastBIOSFolder = ""
           FastForwardFPS = 1000.0
           PauseLostFocus = false
           UITheme = ""

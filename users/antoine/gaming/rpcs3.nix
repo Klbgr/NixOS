@@ -193,12 +193,19 @@
             Window Title Format: "FPS: %F | %R | %V | %T [%t]"
         '
 
-        $PATCHER ini "$GUI_CONFIG_FILE" "Localization" "language" "fr"
-        $PATCHER ini "$GUI_CONFIG_FILE" "Meta" "checkUpdateStart" "false"
-        $PATCHER ini "$GUI_CONFIG_FILE" "Meta" "currentStylesheet" "default"
-        $PATCHER ini "$GUI_CONFIG_FILE" "Meta" "discordState" ""
-        $PATCHER ini "$GUI_CONFIG_FILE" "Meta" "useRichPresence" "true"
-        $PATCHER ini "$GUI_CONFIG_FILE" "main_window" "infoBoxEnabledWelcome" "false"
+        $PATCHER ini "$GUI_CONFIG_FILE" '
+          [Localization]
+          language = fr
+
+          [Meta]
+          checkUpdateStart = false
+          currentStylesheet = default
+          discordState = ""
+          useRichPresence = true
+
+          [main_window]
+          infoBoxEnabledWelcome = false
+        '
       '';
     };
 }

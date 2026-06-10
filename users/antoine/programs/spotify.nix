@@ -30,9 +30,7 @@
 
         CONFIG_FILE="$HOME/.config/spotify/prefs"
 
-        $PATCHER ini "$CONFIG_FILE" '
-          language = '"fr"'
-        '
+        $PATCHER ini-legacy "$CONFIG_FILE" "" "language" '"fr"'
       '';
 
       xdg.configFile."autostart/Spotify.desktop".text = ''

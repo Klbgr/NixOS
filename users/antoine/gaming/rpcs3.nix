@@ -195,7 +195,7 @@
 
         $PATCHER ini "$GUI_CONFIG_FILE" '
           [Localization]
-          language = fr
+          language = en
 
           [Meta]
           checkUpdateStart = false

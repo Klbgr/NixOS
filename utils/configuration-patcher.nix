@@ -46,7 +46,7 @@ pkgs.writeShellScriptBin "configuration-patcher" ''
     mkdir -p "$(dirname "$DEST_FILE")"
 
     if [ -f "$DEST_FILE" ]; then
-      ${pkgs.yq-go}/bin/yq eval-all -p ini -o ini '. as $item ireduce ({}; . * $item )' "$DEST_FILE" <(echo "$WANTED_INI") > "$DEST_FILE.tmp" && mv "$DEST_FILE.tmp" "$DEST_FILE"
+      cat "$DEST_FILE" <(echo "") <(echo "$WANTED_INI") | ${pkgs.yq-go}/bin/yq eval -p ini -o ini '.' - > "$DEST_FILE.tmp" && mv "$DEST_FILE.tmp" "$DEST_FILE"
     else
       echo "$WANTED_INI" > "$DEST_FILE"
     fi

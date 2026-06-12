@@ -16,7 +16,7 @@
 
         $PATCHER ini "$CONFIG_FILE" '
           [General]
-          bitrate = 500000
+          bitrate = 300000
           windowmode = 1
           vsync = true
           framepacing = false

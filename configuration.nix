@@ -43,12 +43,6 @@
       efi.canTouchEfiVariables = true;
     };
     plymouth.enable = true;
-    kernel.sysctl = {
-      "net.core.rmem_max" = 134217728;
-      "net.core.wmem_max" = 134217728;
-      "net.core.rmem_default" = 67108864;
-      "net.core.wmem_default" = 67108864;
-    };
   };
 
   # Enable OpenGL

@@ -155,7 +155,7 @@
   services.upower.enable = true;
 
   services.nohang.enable = true;
-  systemd.oomd.enable = false;
+  systemd.oomd.enable = lib.mkForce false;
 
   nix.settings = {
     substituters = [

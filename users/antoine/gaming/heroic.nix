@@ -3,6 +3,33 @@ let
   rpcs3-nixpkgs = import inputs.rpcs3-nixpkgs {
     inherit (pkgs) system;
   };
+
+  emulators = [
+    {
+      id = "ryujinx";
+      title = "Ryujinx";
+      exe = "${pkgs.ryubing}/bin/ryujinx";
+      art = "8b74109a090f26752e80c9575b7c5508";
+    }
+    {
+      id = "rpcs3";
+      title = "RPCS3";
+      exe = "${rpcs3-nixpkgs.rpcs3}/bin/rpcs3";
+      art = "ace27c5277ecc8da47cd53ff5c82cb4f";
+    }
+    {
+      id = "dolphin";
+      title = "Dolphin";
+      exe = "${pkgs.dolphin-emu}/bin/dolphin-emu";
+      art = "0bbb77fa3a8420150c5cf70c3aff3fa9";
+    }
+    {
+      id = "melonds";
+      title = "melonDS";
+      exe = "${pkgs.melonds}/bin/melonDS";
+      art = "f1f0d32c08e78326f3a8b8ac5e7469a8";
+    }
+  ];
 in
 {
   home-manager.users.antoine =
@@ -16,10 +43,9 @@ in
       home.activation.mergeHeroicConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         PATCHER="${pkgs.configuration-patcher}/bin/configuration-patcher"
 
-        CONFIG_FILE="$HOME/.config/heroic/config.json"
-        SIDELOAD_FILE="$HOME/.config/heroic/sideload_apps/library.json"
+        HEROIC_DIR="$HOME/.config/heroic"
 
-        $PATCHER json "$CONFIG_FILE" '{
+        $PATCHER json "$HEROIC_DIR/config.json" '{
           "defaultSettings": {
             "checkForUpdatesOnStartup": false,
             "autoUpdateGames": false,
@@ -60,107 +86,42 @@ in
           }
         }'
 
-        $PATCHER json-heroic "$SIDELOAD_FILE" '{
-          "games": [
-            {
-              "runner": "sideload",
-              "app_name": "ryujinx",
-              "title": "Ryujinx",
-              "install": {
-                "executable": "${pkgs.ryubing}/bin/ryujinx",
-                "platform": "linux",
-                "is_dlc": false
-              },
-              "folder_name": ".",
-              "art_cover": "https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/8b74109a090f26752e80c9575b7c5508.png",
-              "is_installed": true,
-              "art_square": "https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/8b74109a090f26752e80c9575b7c5508.png",
-              "canRunOffline": true,
-              "browserUrl": "",
-              "customUserAgent": "",
-              "launchFullScreen": false
-            },
-            {
-              "runner": "sideload",
-              "app_name": "rpcs3",
-              "title": "RPCS3",
-              "install": {
-                "executable": "${rpcs3-nixpkgs.rpcs3}/bin/rpcs3",
-                "platform": "linux",
-                "is_dlc": false
-              },
-              "folder_name": ".",
-              "art_cover": "https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/ace27c5277ecc8da47cd53ff5c82cb4f.png",
-              "is_installed": true,
-              "art_square": "https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/ace27c5277ecc8da47cd53ff5c82cb4f.png",
-              "canRunOffline": true,
-              "browserUrl": "",
-              "customUserAgent": "",
-              "launchFullScreen": false
-            },
-            {
-              "runner": "sideload",
-              "app_name": "dolphin",
-              "title": "Dolphin",
-              "install": {
-                "executable": "${pkgs.dolphin-emu}/bin/dolphin-emu",
-                "platform": "linux",
-                "is_dlc": false
-              },
-              "folder_name": ".",
-              "art_cover": "https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/0bbb77fa3a8420150c5cf70c3aff3fa9.png",
-              "is_installed": true,
-              "art_square": "https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/0bbb77fa3a8420150c5cf70c3aff3fa9.png",
-              "canRunOffline": true,
-              "browserUrl": "",
-              "customUserAgent": "",
-              "launchFullScreen": false
-            },
-            {
-              "runner": "sideload",
-              "app_name": "melonds",
-              "title": "melonDS",
-              "install": {
-                "executable": "${pkgs.melonds}/bin/melonDS",
-                "platform": "linux",
-                "is_dlc": false
-              },
-              "folder_name": ".",
-              "art_cover": "https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/f1f0d32c08e78326f3a8b8ac5e7469a8.png",
-              "is_installed": true,
-              "art_square": "https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/f1f0d32c08e78326f3a8b8ac5e7469a8.png",
-              "canRunOffline": true,
-              "browserUrl": "",
-              "customUserAgent": "",
-              "launchFullScreen": false
-            }          
-          ]
-        }'
-      '';
-
-      home.file =
-        let
-          games = [
-            "ryujinx"
-            "rpcs3"
-            "dolphin"
-            "melonds"
-          ];
-          mkConfig = name: {
-            text = builtins.toJSON {
-              "${name}" = {
-                showMangohud = false;
-                useGameMode = false;
-                useSteamRuntime = false;
+        $PATCHER json-heroic "$HEROIC_DIR/sideload_apps/library.json" '${
+          builtins.toJSON {
+            games = map (emu: {
+              runner = "sideload";
+              app_name = emu.id;
+              title = emu.title;
+              install = {
+                executable = emu.exe;
+                platform = "linux";
+                is_dlc = false;
               };
-            };
-          };
-        in
-        builtins.listToAttrs (
-          map (name: {
-            name = ".config/heroic/GamesConfig/${name}.json";
-            value = mkConfig name;
-          }) games
-        );
+              folder_name = ".";
+              art_cover = "https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/${emu.art}.png";
+              is_installed = true;
+              art_square = "https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/${emu.art}.png";
+              canRunOffline = true;
+              browserUrl = "";
+              customUserAgent = "";
+              launchFullScreen = false;
+            }) emulators;
+          }
+        }'
+
+        ${lib.strings.concatStringsSep "\n" (
+          map (emu: ''
+            $PATCHER json "$HEROIC_DIR/GamesConfig/${emu.id}.json" '${
+              builtins.toJSON {
+                ${emu.id} = {
+                  showMangohud = false;
+                  useGameMode = false;
+                  useSteamRuntime = false;
+                };
+              }
+            }'
+          '') emulators
+        )}
+      '';
     };
 }

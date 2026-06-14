@@ -11,13 +11,13 @@ in
     {
       home.packages = with pkgs; [
         (symlinkJoin {
-          name = "rpcs3-with-mangohud";
-          paths = [ rpcs3-nixpkgs.rpcs3 ];
-          nativeBuildInputs = [ makeWrapper ];
-          postBuild = ''
-            wrapProgram $out/bin/rpcs3 \
-              --run "${mangohud}/bin/mangohud ${rpcs3-nixpkgs.rpcs3}/bin/rpcs3; exit 0"
-          '';
+          name = "rpcs3-with-gamemoderun-mangohud";
+          paths = [
+            (writeShellScriptBin "rpcs3" ''
+              exec ${gamemode}/bin/gamemoderun ${mangohud}/bin/mangohud ${rpcs3-nixpkgs.rpcs3}/bin/rpcs3 "$@"
+            '')
+            rpcs3-nixpkgs.rpcs3
+          ];
         })
       ];
 

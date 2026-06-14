@@ -8,12 +8,12 @@
       home.packages = with pkgs; [
         (symlinkJoin {
           name = "melonds-with-gamemoderun";
-          paths = [ melonds ];
-          nativeBuildInputs = [ makeWrapper ];
-          postBuild = ''
-            wrapProgram $out/bin/melonDS \
-              --run "${gamemode}/bin/gamemoderun ${melonds}/bin/melonDS; exit 0"
-          '';
+          paths = [
+            (writeShellScriptBin "melonDS" ''
+              exec ${gamemode}/bin/gamemoderun ${melonds}/bin/melonDS "$@"
+            '')
+            melonds
+          ];
         })
       ];
 

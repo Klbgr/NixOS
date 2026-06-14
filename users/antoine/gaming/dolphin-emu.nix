@@ -7,13 +7,13 @@
     {
       home.packages = with pkgs; [
         (symlinkJoin {
-          name = "dolphin-emu-with-mangohud";
-          paths = [ dolphin-emu ];
-          nativeBuildInputs = [ makeWrapper ];
-          postBuild = ''
-            wrapProgram $out/bin/dolphin-emu \
-              --run "${gamemode}/bin/gamemoderun ${mangohud}/bin/mangohud ${dolphin-emu}/bin/dolphin-emu; exit 0"
-          '';
+          name = "dolphin-with-gamemoderun-mangohud";
+          paths = [
+            (writeShellScriptBin "dolphin-emu" ''
+              exec ${gamemode}/bin/gamemoderun ${mangohud}/bin/mangohud ${dolphin-emu}/bin/dolphin-emu "$@"
+            '')
+            dolphin-emu
+          ];
         })
       ];
 

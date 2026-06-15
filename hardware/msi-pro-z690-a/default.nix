@@ -32,10 +32,6 @@
     fsType = "ext4";
   };
 
-  systemd.tmpfiles.rules = [
-    "d /games 0775 root users -"
-  ];
-
   environment.etc."lact/config.yaml".text = ''
     version: 5
     daemon:

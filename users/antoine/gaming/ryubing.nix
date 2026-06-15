@@ -23,7 +23,7 @@
         CONFIG_FILE="$HOME/.config/Ryujinx/Config.json"
 
         $PATCHER json "$CONFIG_FILE" '{
-          "start_fullscreen": false,
+          "start_fullscreen": true,
           "start_no_ui": false,
           "language_code": "fr_FR",
 

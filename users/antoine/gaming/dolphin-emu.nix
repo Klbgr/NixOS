@@ -101,7 +101,7 @@
           MuteOnDisabledSpeedLimit = False
           Volume = 100
           [Display]
-          Fullscreen = False
+          Fullscreen = True
           RenderToMain = False
           RenderWindowAutoSize = False
 

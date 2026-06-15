@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
   pegasusIcon = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/mmatyas/pegasus-frontend/refs/heads/master/assets/icon.png";
-    hash = "sha256-u5Yb/JjrJ2ueWZyFsyGgQmVc8hMnVv8ycfNp+UcO7EU=";
+    url = "https://cdn2.steamgriddb.com/grid/90b8b243b361a90856ebe6543a502ccd.png";
+    hash = "sha256-L4qC0uUHtWNYvplmCxV8JrVZG/RhZge6gEt82v1BgDY=";
   };
 in
 {

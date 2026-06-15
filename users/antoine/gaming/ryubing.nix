@@ -34,6 +34,12 @@
           "update_checker_type": "Off",
           "hide_cursor": 1,
           "base_style": "Dark",
+          "game_dirs": [
+            "/games/Switch"
+          ],
+          "autoload_dirs": [
+            "/games/Switch/DLC"
+          ],
 
           "system_region": "Europe",
           "system_language": "French",

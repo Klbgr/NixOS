@@ -47,6 +47,9 @@ in
 
         $PATCHER json "$HEROIC_DIR/config.json" '{
           "defaultSettings": {
+            "defaultInstallPath": "/games/Heroic",
+            "defaultWinePrefix": "/games/Heroic/Prefixes/default",
+            "defaultWinePrefixDir": "/games/Heroic/Prefixes/default",
             "checkForUpdatesOnStartup": false,
             "autoUpdateGames": false,
             "enableUpdates": false,
@@ -65,6 +68,7 @@ in
             "analyticsOptIn": false,
             "libraryTopSection": "disabled",
             "maxWorkers": 0,
+            "winePrefix": "/games/Heroic/Prefixes/default",
             "autoInstallDxvkNvapi": true,
             "enableEsync": true,
             "enableFsync": true,

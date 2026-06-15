@@ -34,7 +34,7 @@ let
       shortname: ${cfg.shortname}
       launch: ${cfg.launch}
       extensions: ${cfg.extensions}
-      files: *
+      ignore-regex: .*[/\\]DLC[/\\].*
     ''
   ) systems;
 in
@@ -55,7 +55,7 @@ in
   systemd.tmpfiles.rules = lib.flatten (
     lib.mapAttrsToList (name: file: [
       "d /games/${name} 0775 root users -"
-      "C /games/${name}/metadata.txt 0664 root users - ${file}"
+      "L+ /games/${name}/metadata.txt 0664 root users - ${file}"
     ]) metadataFiles
   );
 }

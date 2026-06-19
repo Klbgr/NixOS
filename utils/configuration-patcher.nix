@@ -98,30 +98,12 @@ pkgs.writeShellScriptBin "configuration-patcher" ''
     fi
   }
 
-  # --- Heroic Games Library JSON Merging ---
-  patch_json_heroic() {
-    local DEST_FILE="$1"
-    local WANTED_JSON="$2"
-    mkdir -p "$(dirname "$DEST_FILE")"
-
-    if [ -f "$DEST_FILE" ]; then
-      ${pkgs.yq-go}/bin/yq eval-all -p json -o json '
-        select(fileIndex == 1) as $updates |
-        select(fileIndex == 0) |
-        .games = ([ $updates.games[], .games[] ] | unique_by(.app_name))
-      ' "$DEST_FILE" <(echo "$WANTED_JSON") > "$DEST_FILE.tmp" && mv "$DEST_FILE.tmp" "$DEST_FILE"
-    else
-      echo "$WANTED_JSON" > "$DEST_FILE"
-    fi
-  }
-
   case "$1" in
     json) patch_json "$2" "$3" ;;
     yaml) patch_yaml "$2" "$3" ;;
     toml) patch_toml "$2" "$3" ;;
     ini)  patch_ini  "$2" "$3" ;;
     ini-legacy) patch_ini_legacy "$2" "$3" "$4" "$5" ;;
-    json-heroic) patch_json_heroic "$2" "$3" ;;
     *) 
       echo "Usage:"
       echo "  configuration-patcher json <file> <json>"
@@ -129,7 +111,6 @@ pkgs.writeShellScriptBin "configuration-patcher" ''
       echo "  configuration-patcher toml <file> <toml>"
       echo "  configuration-patcher ini  <file> <ini>"
       echo "  configuration-patcher ini-legacy <file> <section> <key> <value>"
-      echo "  configuration-patcher json-heroic <file> <json>"
       exit 1
       ;;
   esac

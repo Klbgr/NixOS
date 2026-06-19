@@ -154,8 +154,11 @@
 
   services.upower.enable = true;
 
-  services.nohang.enable = true;
   systemd.oomd.enable = lib.mkForce false;
+  services.nohang = {
+    enable = true;
+    configPath = "desktop";
+  };
 
   nix.settings = {
     substituters = [

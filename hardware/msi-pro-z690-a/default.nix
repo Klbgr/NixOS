@@ -25,8 +25,6 @@
     }
   ];
 
-  services.nohang.configPath = "desktop";
-
   fileSystems."/games" = {
     device = "/dev/disk/by-label/games";
     fsType = "ext4";

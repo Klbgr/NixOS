@@ -38,7 +38,5 @@
     }
   ];
 
-  services.nohang.configPath = "basic";
-
   services.howdy.settings.video.device_path = "/dev/video2";
 }

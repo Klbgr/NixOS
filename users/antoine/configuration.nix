@@ -41,6 +41,7 @@
         enable = true;
         shellAliases = {
           rebuild = "sudo nixos-rebuild switch --flake /etc/nixos/";
+          rebuild-safe = "systemd-run --scope --user sudo nixos-rebuild switch --flake /etc/nixos/";
           dry-build = "sudo nixos-rebuild dry-build --flake /etc/nixos/";
           configure = "code /etc/nixos";
           clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d";

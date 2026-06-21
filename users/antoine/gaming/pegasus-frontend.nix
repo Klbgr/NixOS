@@ -237,6 +237,17 @@ let
 
         # Generate asset metadata list file specifically targets metadata.pegasus.txt
         ${pkgs.skyscraper}/bin/Skyscraper -p ${cfg.shortname} -f pegasus -i $SYSTEM_DIR/Games -g $SYSTEM_DIR --region eu --lang fr --flags unattend
+
+        # Default metadata header if scraper completely failed
+        if [ ! -s "$SYSTEM_DIR/metadata.pegasus.txt" ]; then
+          cat << 'EOF' > $SYSTEM_DIR/metadata.pegasus.txt
+        collection: ${cfg.collection}
+        shortname: ${cfg.shortname}
+        launch: ${cfg.launch}
+        extensions: ${cfg.extensions}
+        ignore-regex: .*[/\\]DLC[/\\].*
+        EOF
+        fi
       '') systems
     )}
 

@@ -16,7 +16,7 @@
 
         $PATCHER json "$HEROIC_DIR/config.json" '{
           "defaultSettings": {
-            "defaultInstallPath": "/games/Heroic",
+            "defaultInstallPath": "/games/Heroic/Games",
             "defaultWinePrefix": "/games/Heroic/Prefixes/default",
             "defaultWinePrefixDir": "/games/Heroic/Prefixes/default",
             "checkForUpdatesOnStartup": false,

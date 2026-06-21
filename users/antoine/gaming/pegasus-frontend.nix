@@ -192,7 +192,6 @@ let
   '';
 
   scraperScript = pkgs.writeShellScript "pegasus-scraper" ''
-    set -e
     echo "Starting automated Pegasus setup and scraping run..."
 
     echo -e "\n--- Processing Steam ---"

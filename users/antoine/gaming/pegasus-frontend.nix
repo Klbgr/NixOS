@@ -245,18 +245,35 @@ let
 in
 {
   home-manager.users.antoine =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
+    let
+      gameOS-theme = pkgs.stdenv.mkDerivation rec {
+        pname = "gameOS-theme";
+        version = "master";
+        src = pkgs.fetchFromGitHub {
+          owner = "PlayingKarrde";
+          repo = "gameOS";
+          rev = version;
+          sha256 = "sha256-EBpIe0aw1FO7DzB6F3oAWD5FRLF2iZGtOHllMxuamdc=";
+        };
+        installPhase = ''
+          mkdir -p $out/share/pegasus-frontend/themes/gameOS
 
+          cp -r ./* $out/share/pegasus-frontend/themes/gameOS/
+        '';
+      };
+    in
     {
       home.packages = with pkgs; [
         pegasus-frontend
         skyscraper
         run-steam-game
+        gameOS-theme
       ];
 
       xdg.configFile = {
         "pegasus-frontend/settings.txt".text = ''
-          general.theme: :/themes/pegasus-theme-grid
+          general.theme: ${config.home.homeDirectory}/.nix-profile/share/pegasus-frontend/themes/gameOS/
           general.verify-files: false
           general.input-mouse-support: true
           general.fullscreen: true
@@ -295,9 +312,7 @@ in
     serviceConfig = {
       Type = "simple";
       ExecStart = scraperScript;
-      Restart = "on-failure";
-      RestartSec = 30;
-      StartLimitBurst = 5;
+      Restart = "no";
     };
   };
 }

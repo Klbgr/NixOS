@@ -81,7 +81,7 @@
           ShowFrameCount = False
           ShowLag = False
 
-          ISOPath0 = /games/Wii
+          ISOPath0 = /games/Wii/Games
           ISOPaths = 1
           RecursiveISOPaths = True
           [Interface]

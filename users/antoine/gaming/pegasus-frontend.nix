@@ -55,7 +55,7 @@ let
             metadata.append(f"game: {title}")
             metadata.append(f"file: {app_name}\n")
 
-        output_path = args.output_dir / "metadata.txt"
+        output_path = args.output_dir / "metadata.pegasus.txt"
         output_path.unlink(missing_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:
             f.write("\n".join(metadata))
@@ -94,41 +94,59 @@ let
     };
   };
 
-  metadataFiles = lib.mapAttrs (
-    name: cfg:
-    pkgs.writeText "metadata.txt" ''
-      collection: ${cfg.collection}
-      shortname: ${cfg.shortname}
-      launch: ${cfg.launch}
-      extensions: ${cfg.extensions}
-      ignore-regex: .*[/\\]DLC[/\\].*
-    ''
-  ) systems;
+  scraperScript = pkgs.writeShellScript "pegasus-scraper" ''
+    set -e
+    echo "Starting automated Pegasus setup and scraping run..."
+
+    ${lib.concatStringsSep "\n" (
+      lib.mapAttrsToList (name: cfg: ''
+        echo -e "\n--- Processing ${name} (${cfg.shortname}) ---"
+
+        SYSTEM_DIR=/games/${name}
+
+        # Ensure game directory exists safely
+        mkdir -p $SYSTEM_DIR/Games
+
+        # Retain explicit permissions: owner=root, group=users, mode=0775
+        chown root:users $SYSTEM_DIR
+        chmod 0775 $SYSTEM_DIR
+        chown root:users $SYSTEM_DIR/Games
+        chmod 0775 $SYSTEM_DIR/Games
+
+        # Write core structural metadata header if the file doesn't exist or is empty
+        if [ ! -s "$SYSTEM_DIR/metadata.pegasus.txt" ]; then
+          cat << 'EOF' > $SYSTEM_DIR/metadata.pegasus.txt
+        collection: ${cfg.collection}
+        shortname: ${cfg.shortname}
+        launch: ${cfg.launch}
+        extensions: ${cfg.extensions}
+        ignore-regex: .*[/\\]DLC[/\\].*
+        EOF
+        fi
+
+        # Set permissions for the metadata file to match your original tmpfiles layout (0664)
+        chown root:users $SYSTEM_DIR/metadata.pegasus.txt
+        chmod 0664 $SYSTEM_DIR/metadata.pegasus.txt
+
+        # Gather metadata into Skyscraper local cache
+        ${pkgs.skyscraper}/bin/Skyscraper -p ${cfg.shortname} -s screenscraper -i $SYSTEM_DIR/Games --region eu --lang fr
+
+        # Generate asset metadata list file specifically targets metadata.pegasus.txt
+        ${pkgs.skyscraper}/bin/Skyscraper -p ${cfg.shortname} -f pegasus -i $SYSTEM_DIR/Games -g $SYSTEM_DIR --region eu --lang fr --flags unattend
+      '') systems
+    )}
+
+    echo "Scraping configuration cycle completed successfully."
+  '';
 in
 {
   home-manager.users.antoine =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
 
     {
       home.packages = with pkgs; [
-        heroic-to-pegasus
-        (symlinkJoin {
-          name = "pegasus-with-heroic-to-pegasus";
-          paths = [
-            (writeShellScriptBin "pegasus-fe" ''
-              ${heroic-to-pegasus}/bin/heroic-to-pegasus ${config.home.homeDirectory}/.config/heroic/sideload_apps/library.json /games/Heroic
-              exec ${pegasus-frontend}/bin/pegasus-fe "$@"
-            '')
-            pegasus-frontend
-          ];
-          postBuild = ''
-            rm $out/share/applications/org.pegasus_frontend.Pegasus.desktop
-            cp ${pegasus-frontend}/share/applications/org.pegasus_frontend.Pegasus.desktop $out/share/applications/org.pegasus_frontend.Pegasus.desktop
-            chmod +w $out/share/applications/org.pegasus_frontend.Pegasus.desktop
-            substituteInPlace $out/share/applications/org.pegasus_frontend.Pegasus.desktop \
-              --replace-fail "${pegasus-frontend}/bin/pegasus-fe" "$out/bin/pegasus-fe"
-          '';
-        })
+        pegasus-frontend
+        skyscraper
       ];
 
       xdg.configFile."pegasus-frontend/game_dirs.txt".text = lib.strings.concatStringsSep "\n" (
@@ -136,10 +154,17 @@ in
       );
     };
 
-  systemd.tmpfiles.rules = lib.flatten (
-    lib.mapAttrsToList (name: file: [
-      "d /games/${name} 0775 root users -"
-      "L+ /games/${name}/metadata.txt 0664 root users - ${file}"
-    ]) metadataFiles
-  );
+  systemd.services.pegasus-scraper = {
+    description = "Pegasus scraper loop for local emulation platforms";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = scraperScript;
+      Restart = "on-failure";
+      RestartSec = 30;
+      StartLimitBurst = 5;
+    };
+  };
 }

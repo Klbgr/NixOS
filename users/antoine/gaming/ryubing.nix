@@ -35,7 +35,7 @@
           "hide_cursor": 1,
           "base_style": "Dark",
           "game_dirs": [
-            "/games/Switch"
+            "/games/Switch/Games"
           ],
           "autoload_dirs": [
             "/games/Switch/DLC"

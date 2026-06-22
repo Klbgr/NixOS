@@ -195,12 +195,22 @@ let
     echo "Starting automated Pegasus setup and scraping run..."
 
     echo -e "\n--- Processing Steam ---"
-
+    mkdir -p /games/SteamLibrary
+    chown root:users /games/SteamLibrary
+    chmod 0775 /games/SteamLibrary
     ${steam-to-pegasus}/bin/steam-to-pegasus /games/SteamLibrary/steamapps /games/SteamLibrary
+    chown root:users /games/SteamLibrary/metadata.pegasus.txt
+    chmod 0664 /games/SteamLibrary/metadata.pegasus.txt
 
     echo -e "\n--- Processing Heroic ---"
-
+    mkdir -p /games/Heroic/Games
+    chown root:users /games/Heroic
+    chmod 0775 /games/Heroic
+    chown root:users /games/Heroic/Games
+    chmod 0775 /games/Heroic/Games
     ${heroic-to-pegasus}/bin/heroic-to-pegasus /home/antoine/.config/heroic/sideload_apps/library.json /games/Heroic
+    chown root:users /games/Heroic/metadata.pegasus.txt
+    chmod 0664 /games/Heroic/metadata.pegasus.txt
 
     ${lib.concatStringsSep "\n" (
       lib.mapAttrsToList (name: cfg: ''

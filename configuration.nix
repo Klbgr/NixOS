@@ -169,6 +169,11 @@
     ];
   };
 
+  fileSystems."/games" = {
+    device = "/dev/disk/by-label/games";
+    fsType = "ext4";
+  };
+
   systemd.tmpfiles.rules = [
     "d /games 0775 root users -"
   ];

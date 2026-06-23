@@ -25,11 +25,6 @@
     }
   ];
 
-  fileSystems."/games" = {
-    device = "/dev/disk/by-label/games";
-    fsType = "ext4";
-  };
-
   environment.etc."lact/config.yaml".text = ''
     version: 5
     daemon:

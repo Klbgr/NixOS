@@ -31,6 +31,8 @@ let
     import argparse
     import json
     from pathlib import Path
+    import os
+    import shutil
 
 
     def main():
@@ -56,18 +58,21 @@ let
         with open(args.library_json, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        LAUNCH_CMD = (
-            "heroic --no-gui --no-sandbox "
-            "heroic://launch?appName={file.name}&runner=sideload"
-        )
-
-        metadata = []
-        metadata.append("collection: Steam")
-        metadata.append(f"launch: {LAUNCH_CMD}\n")
+        metadata = [
+            "collection: PC",
+            "shortname: windows",
+            "launch: bash {file.path}\n"
+        ]
 
         print(f"Parsing {len(data.get('games', []))} sideloaded entries...")
 
         BLACKLIST = ["Ubisoft Connect"]
+
+        dummy_dir = args.output_dir / "Dummy"
+        shutil.rmtree(dummy_dir, ignore_errors=True)
+        dummy_dir.mkdir()
+        os.chown(dummy_dir, 0, 100)
+        os.chmod(dummy_dir, 0o775)
 
         for game in data.get("games", []):
             if not game.get("is_installed", False):
@@ -80,12 +85,22 @@ let
             app_name = game.get("app_name")
 
             metadata.append(f"game: {title}")
-            metadata.append(f"file: {app_name}\n")
+            dummy_path = dummy_dir / f"{title}.sh"
+            metadata.append(f"file: {dummy_path}")
+            with open(dummy_path, "w", encoding="utf-8") as f:
+                f.write(
+                    "heroic --no-gui --no-sandbox "
+                    f"\"heroic://launch?appName={app_name}&runner=sideload\""
+                )
+            os.chown(dummy_path, 0, 100)
+            os.chmod(dummy_path, 0o755)
 
         output_path = args.output_dir / "metadata.pegasus.txt"
         output_path.unlink(missing_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:
             f.write("\n".join(metadata))
+        os.chown(output_path, 0, 100)
+        os.chmod(output_path, 0o664)
 
         print(f"Pegasus metadata successfully written to {output_path}")
 
@@ -108,6 +123,8 @@ let
     from pathlib import Path
     import re
     import sys
+    import os
+    import shutil
 
 
     def parse_acf(acf_path):
@@ -151,10 +168,10 @@ let
 
         args.output_dir.mkdir(parents=True, exist_ok=True)
 
-        LAUNCH_CMD = "run-steam-game {file.name}"
         metadata = [
-            "collection: Steam",
-            f"launch: {LAUNCH_CMD}\n"
+            "collection: PC",
+            "shortname: windows",
+            "launch: bash {file.path}\n"
         ]
 
         acf_files = list(args.acf_dir.glob("appmanifest_*.acf"))
@@ -167,6 +184,12 @@ let
             "Steamworks Shared"
         ]
 
+        dummy_dir = args.output_dir / "Dummy"
+        shutil.rmtree(dummy_dir, ignore_errors=True)
+        dummy_dir.mkdir()
+        os.chown(dummy_dir, 0, 100)
+        os.chmod(dummy_dir, 0o775)
+
         for acf_path in acf_files:
             appid, name = parse_acf(acf_path)
 
@@ -177,12 +200,21 @@ let
                 continue
 
             metadata.append(f"game: {name}")
-            metadata.append(f"file: {appid}\n")
+            dummy_path = dummy_dir / f"{name}.sh"
+            metadata.append(f"file: {dummy_path}")
+            with open(dummy_path, "w", encoding="utf-8") as f:
+                f.write(
+                    f"run-steam-game {appid}"
+                )
+            os.chown(dummy_path, 0, 100)
+            os.chmod(dummy_path, 0o755)
 
         output_path = args.output_dir / "metadata.pegasus.txt"
         output_path.unlink(missing_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:
             f.write("\n".join(metadata))
+        os.chown(output_path, 0, 100)
+        os.chmod(output_path, 0o664)
 
         print(f"Pegasus metadata successfully written to {output_path}")
 
@@ -199,8 +231,9 @@ let
     chown root:users /games/SteamLibrary
     chmod 0775 /games/SteamLibrary
     ${steam-to-pegasus}/bin/steam-to-pegasus /games/SteamLibrary/steamapps /games/SteamLibrary
-    chown root:users /games/SteamLibrary/metadata.pegasus.txt
-    chmod 0664 /games/SteamLibrary/metadata.pegasus.txt
+    ${pkgs.skyscraper}/bin/Skyscraper -p pc -s thegamesdb -i /games/SteamLibrary/Dummy --region eu --lang fr
+    ${pkgs.skyscraper}/bin/Skyscraper -p pc -f pegasus -i /games/SteamLibrary/Dummy -g /games/SteamLibrary --region eu --lang fr --flags unattend
+    ${pkgs.coreutils}/bin/sed -i 's/shortname: pc/shortname: windows/g' /games/SteamLibrary/metadata.pegasus.txt
 
     echo -e "\n--- Processing Heroic ---"
     mkdir -p /games/Heroic/Games
@@ -209,8 +242,9 @@ let
     chown root:users /games/Heroic/Games
     chmod 0775 /games/Heroic/Games
     ${heroic-to-pegasus}/bin/heroic-to-pegasus /home/antoine/.config/heroic/sideload_apps/library.json /games/Heroic
-    chown root:users /games/Heroic/metadata.pegasus.txt
-    chmod 0664 /games/Heroic/metadata.pegasus.txt
+    ${pkgs.skyscraper}/bin/Skyscraper -p pc -s thegamesdb -i /games/Heroic/Dummy --region eu --lang fr
+    ${pkgs.skyscraper}/bin/Skyscraper -p pc -f pegasus -i /games/Heroic/Dummy -g /games/Heroic --region eu --lang fr --flags unattend    
+    ${pkgs.coreutils}/bin/sed -i 's/shortname: pc/shortname: windows/g' /games/Heroic/metadata.pegasus.txt
 
     ${lib.concatStringsSep "\n" (
       lib.mapAttrsToList (name: cfg: ''

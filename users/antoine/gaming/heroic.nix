@@ -31,7 +31,7 @@
             "framelessWindow": false,
             "addDesktopShortcuts": false,
             "addStartMenuShortcuts": false,
-            "addSteamShortcuts": true,
+            "addSteamShortcuts": false,
             "discordRPC": true,
             "downloadProtonToSteam": false,
             "analyticsOptIn": false,

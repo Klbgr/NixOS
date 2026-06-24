@@ -72,6 +72,26 @@ in
           /games/PS3/Pegasus
           /games/DS/Pegasus
         '';
+        "pegasus-frontend/theme_settings/gameOS.json".text = ''
+          {
+            "Allow video thumbnails": "No",
+            "Allow video thumbnailsIndex": 1,
+            "Animate highlight": "No",
+            "Animate highlightIndex": 0,
+            "Blur Background": "No",
+            "Blur BackgroundIndex": 0,
+            "Default to full details": "Yes",
+            "Default to full detailsIndex": 1,
+            "Enable mouse hover": "Yes",
+            "Enable mouse hoverIndex": 1,
+            "Game Background": "Screenshot",
+            "Game BackgroundIndex": 0,
+            "Show scanlines": "No",
+            "Show scanlinesIndex": 1,
+            "Video preview": "No",
+            "Video previewIndex": 1
+          }
+        '';
       };
     };
 

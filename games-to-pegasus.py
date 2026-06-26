@@ -15,7 +15,7 @@ DS = "DS"
 SYSTEMS = [HEROIC, STEAM, SWITCH, WII, PS3, DS]
 
 BLACKLISTS = {
-    HEROIC: ["Ubisoft Connect"],
+    HEROIC: ["Ubisoft Connect", "Rockstar Games Launcher"],
     STEAM: ["Proton", "Steam Linux Runtime", "SteamVR", "Steamworks Shared"],
     SWITCH: [],
     WII: [],

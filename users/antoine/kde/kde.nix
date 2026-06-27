@@ -60,6 +60,7 @@
         burn-my-windows-kwin
         geometry-change-kwin
         plasma-panel-colorizer
+        kde-rounded-corners
       ];
 
       qt = {
@@ -90,12 +91,21 @@
               UseTimeLimit = true;
             };
             plasmaparc.General.AudioFeedback = false;
-            kwinrc.Plugins = {
-              overviewEnabled = false;
-              sheetEnabled = true;
-              dynamic_workspacesEnabled = true;
-              kwin6_effect_aura_glowEnabled = false;
-              kwin4_effect_geometry_changeEnabled = true;
+            kwinrc = {
+              Plugins = {
+                overviewEnabled = false;
+                sheetEnabled = true;
+                dynamic_workspacesEnabled = true;
+                kwin6_effect_aura_glowEnabled = false;
+                kwin4_effect_geometry_changeEnabled = true;
+                kwin4_effect_shapecornersEnabled = true;
+              };
+              Round-Corners = {
+                InactiveOutlineThickness = 0;
+                InactiveSecondOutlineThickness = 0;
+                OutlineThickness = 0;
+                SecondOutlineThickness = 0;
+              };
             };
             kded5rc.Module-browserintegrationreminder.autoload = false;
             kwalletrc.Wallet.Enabled = false;

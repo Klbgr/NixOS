@@ -7,7 +7,7 @@ let
       owner = "Korthos-Software";
       repo = "low_latency_layer";
       rev = version;
-      hash = "sha256-mnGAH0m19wOkWEowpcPRHXQSc6HGYW+CFYxjPF2onk4=";
+      hash = "sha256-bhrgpTiyxil3mlzgWWf0r7LUasHzXIUctoaEQvCKWXE=";
     };
 
     nativeBuildInputs = [

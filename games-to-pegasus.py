@@ -176,15 +176,19 @@ def main(directory, systems):
         set_permissions(metadata_path)
 
         scraper = "thegamesdb" if pc else "screenscraper"
+        second_scraper = "screenscraper" if pc else "thegamesdb"
         commands = [
             f"Skyscraper -p {platform} -s {scraper} -i {pegasus_path} "
             f"--addext sh --region eu --lang fr",
+            f"Skyscraper -p {platform} -s {second_scraper} -i {pegasus_path} "
+            f"--addext sh --region eu --lang fr --flags onlymissing",
             f"Skyscraper -p {platform} -f pegasus -i {pegasus_path} "
             f"-g {pegasus_path} --addext sh --region eu --lang fr "
             f"--flags unattend --flags theinfront",
         ]
         for command in commands:
-            subprocess.run(command.split(" "))
+            print(command, flush=True)
+            subprocess.run(command.split())
 
         is_empty = (
             not os.path.exists(metadata_path)

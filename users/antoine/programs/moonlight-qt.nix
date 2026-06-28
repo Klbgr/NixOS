@@ -24,12 +24,12 @@
           hostaudio = false
           muteonfocusloss = false
           gameopts = true
-          quitAppAfter = false
+          quitAppAfter = true
           language = 0
           uidisplaymode = 0
           connwarnings = true
           keepawake = true
-          mouseacceleration = false
+          mouseacceleration = true
           capturesyskeys = 1
           abstouchmode = true
           swapmousebuttons = false

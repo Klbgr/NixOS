@@ -111,7 +111,7 @@
 
           [Screen]
           UseGL = true
-          VSync = true
+          VSync = false
           VSyncInterval = 1
 
           [3D.Soft]
@@ -162,6 +162,21 @@
           Message = ""
           OverrideSettings = false
           MAC = ""
+
+          [Instance0.Keyboard]
+          HK_FullscreenToggle = 150994948
+          R = 69
+          L = 65
+          Y = 16777234
+          B = 16777237
+          Down = 83
+          X = 16777235
+          Left = 81
+          Up = 90
+          A = 16777236
+          Select = 87
+          Right = 68
+          Start = 88
 
           [Mouse]
           HideSeconds = 5

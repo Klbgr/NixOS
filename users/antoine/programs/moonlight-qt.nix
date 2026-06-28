@@ -29,7 +29,7 @@
           uidisplaymode = 0
           connwarnings = true
           keepawake = true
-          mouseacceleration = true
+          mouseacceleration = false
           capturesyskeys = 1
           abstouchmode = true
           swapmousebuttons = false

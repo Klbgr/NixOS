@@ -103,14 +103,14 @@ def parse_heroic(library_path):
     return games
 
 
-def set_permissions(target, directory=False):
+def set_permissions(target, executable=False):
     os.chown(target, uid=0, gid=100)
-    os.chmod(target, mode=0o775 if directory else 0o664)
+    os.chmod(target, mode=0o775 if executable else 0o664)
 
 
 def main(directory, systems):
     os.makedirs(directory, exist_ok=True)
-    set_permissions(directory, directory=True)
+    set_permissions(directory, executable=True)
     for system in systems:
         blacklist = BLACKLISTS[system]
         launch_template = LAUNCHES[system]
@@ -118,22 +118,22 @@ def main(directory, systems):
         if system == STEAM:
             steam_library_path = os.path.join(directory, "SteamLibrary")
             os.makedirs(steam_library_path, exist_ok=True)
-            set_permissions(steam_library_path, directory=True)
+            set_permissions(steam_library_path, executable=True)
             steamapps_path = os.path.join(steam_library_path, "steamapps")
             os.makedirs(steamapps_path, exist_ok=True)
-            set_permissions(steamapps_path, directory=True)
+            set_permissions(steamapps_path, executable=True)
             games = parse_steam(steamapps_path)
             pegasus_path = os.path.join(steam_library_path, "Pegasus")
             shutil.rmtree(pegasus_path, ignore_errors=True)
             os.makedirs(pegasus_path, exist_ok=True)
-            set_permissions(pegasus_path, directory=True)
+            set_permissions(pegasus_path, executable=True)
         else:
             system_path = os.path.join(directory, system)
             os.makedirs(system_path, exist_ok=True)
-            set_permissions(system_path, directory=True)
+            set_permissions(system_path, executable=True)
             system_games_path = os.path.join(system_path, "Games")
             os.makedirs(system_games_path, exist_ok=True)
-            set_permissions(system_games_path, directory=True)
+            set_permissions(system_games_path, executable=True)
             if system == HEROIC:
                 games = parse_heroic(
                     "/home/antoine/.config/heroic/sideload_apps/library.json"
@@ -144,7 +144,7 @@ def main(directory, systems):
             pegasus_path = os.path.join(directory, system, "Pegasus")
             shutil.rmtree(pegasus_path, ignore_errors=True)
             os.makedirs(pegasus_path, exist_ok=True)
-            set_permissions(pegasus_path, directory=True)
+            set_permissions(pegasus_path, executable=True)
 
         for game_name, game_path in games:
             if game_name in blacklist:
@@ -159,7 +159,7 @@ def main(directory, systems):
             pegasus_game_path = os.path.join(pegasus_path, f"{game_name}.sh")
             with open(pegasus_game_path, "w", encoding="utf-8") as f:
                 f.write(launch_template.format(path=game_path))
-            set_permissions(pegasus_game_path)
+            set_permissions(pegasus_game_path, executable=True)
 
         pc = system in [HEROIC, STEAM]
         metadata_path = os.path.join(pegasus_path, "metadata.pegasus.txt")

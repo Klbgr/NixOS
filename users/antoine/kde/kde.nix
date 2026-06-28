@@ -103,6 +103,7 @@
               Round-Corners = {
                 InactiveOutlineThickness = 0;
                 InactiveSecondOutlineThickness = 0;
+                Inclusions = "plasmashell";
                 OutlineThickness = 0;
                 SecondOutlineThickness = 0;
               };

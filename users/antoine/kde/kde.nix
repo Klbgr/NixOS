@@ -232,7 +232,7 @@
               alignment = "center";
               floating = true;
               height = 44;
-              hiding = "none";
+              hiding = "autohide";
               lengthMode = "fill";
               location = "bottom";
               opacity = "translucent";

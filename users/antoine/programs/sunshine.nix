@@ -12,7 +12,7 @@ let
       owner = "OscarTienda";
       repo = "SunSync";
       rev = version;
-      hash = "sha256-HpV+AmsF3T5WVMjesP9/twvHSN34eYwLULZhxTVNCmk=";
+      hash = "sha256-Gt0SY/SHGftsbYMPEIl234RPsWFphk/dU4vHf07V36E=";
     };
 
     nativeBuildInputs = [ pkgs.makeWrapper ];
@@ -25,11 +25,6 @@ let
 
     dontBuild = true;
     dontWrapQtApps = true;
-
-    postPatch = ''
-      substituteInPlace scripts/sunshine-start-vmon.sh \
-        --replace-fail 'FPS="''${SUNSHINE_CLIENT_FPS%.*}"; FPS="''${FPS:-60}"' 'FPS="''${SUNSHINE_CLIENT_FPS:-60}"; FPS="''${FPS%.*}"'
-    '';
 
     installPhase = ''
       runHook preInstall

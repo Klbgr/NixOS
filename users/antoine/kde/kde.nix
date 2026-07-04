@@ -131,6 +131,18 @@
                 scrollSpeed = null;
                 vendorId = "046d";
               }
+              {
+                enable = true;
+                acceleration = null;
+                accelerationProfile = "none";
+                leftHanded = false;
+                middleButtonEmulation = false;
+                name = "Mouse passthrough";
+                naturalScroll = null;
+                productId = "dead";
+                scrollSpeed = null;
+                vendorId = "beef";
+              }
             ];
             touchpads = [
               {

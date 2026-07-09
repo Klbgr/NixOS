@@ -75,12 +75,14 @@
           profiles = {
             custom = {
               name = "Custom";
+              font.name = "Hack";
             };
           };
         };
 
         plasma = {
           enable = true;
+          searchPlugins.webSearchKeywords.default = "google";
 
           configFile = {
             ktrashrc."\\/home\\/antoine\\/.local\\/share\\/Trash" = {
@@ -111,7 +113,6 @@
             kded5rc.Module-browserintegrationreminder.autoload = false;
             kwalletrc.Wallet.Enabled = false;
             krunnerrc.Plugins.krunner_appstreamEnabled = false;
-            kuriikwsfilterrc.General.DefaultWebShortcut = "google";
           };
 
           immutableByDefault = false;

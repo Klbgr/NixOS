@@ -21,10 +21,10 @@
     ./utils
   ];
 
-  specialisation.noctalia.configuration = {
-    services.desktopManager.plasma6.enable = lib.mkForce false;
-    imports = [ ./software/noctalia.nix ];
-  };
+  # specialisation.noctalia.configuration = {
+  #   services.desktopManager.plasma6.enable = lib.mkForce false;
+  #   imports = [ ./software/noctalia.nix ];
+  # };
 
   # Bootloader.
   boot = {

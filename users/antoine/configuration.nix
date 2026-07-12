@@ -10,10 +10,10 @@
     ./samba.nix
   ];
 
-  specialisation.noctalia.configuration = {
-    disabledModules = [ ./kde ];
-    imports = [ ./noctalia ];
-  };
+  # specialisation.noctalia.configuration = {
+  #   disabledModules = [ ./kde ];
+  #   imports = [ ./noctalia ];
+  # };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.antoine = {

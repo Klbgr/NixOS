@@ -6,16 +6,16 @@
     let
       vr-cyberdeck = pkgs.appimageTools.wrapType2 rec {
         pname = "vr-cyberdeck";
-        version = "1.3.2";
+        version = "1.5.0";
         src = pkgs.fetchurl {
-          url = "https://github.com/KaladinDMP/VR-CyberDeck/releases/download/v${version}/vr-cyberdeck-${version}-x86_64.AppImage";
-          hash = "sha256-lHl7NPj3twEzl8Ox6dnQTfXk9T4acBkhXY68l49YoIs=";
+          url = "https://github.com/DeliciousMeatPop/VRCD/releases/download/v${version}/vr-cyberdeck-${version}-x86_64.AppImage";
+          hash = "sha256-btJ7FcEUuTocYUbYUSOdQpl7vaQ1qpBJTVWrkDtuRa4=";
         };
 
         extraInstallCommands = ''
           install -m 444 -D ${
             pkgs.fetchurl {
-              url = "https://raw.githubusercontent.com/KaladinDMP/VR-CyberDeck/refs/heads/main/resources/icon.svg";
+              url = "https://raw.githubusercontent.com/DeliciousMeatPop/VRCD/refs/heads/main/resources/icon.svg";
               hash = "sha256-nC201nrGylrjeXqTVmGGsJHuIwiMb7Wsio7ZhXOWTjU=";
             }
           } $out/share/icons/hicolor/512x512/apps/vr-cyberdeck.svg

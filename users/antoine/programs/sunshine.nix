@@ -12,7 +12,7 @@ let
       owner = "OscarTienda";
       repo = "SunSync";
       rev = version;
-      hash = "sha256-Gt0SY/SHGftsbYMPEIl234RPsWFphk/dU4vHf07V36E=";
+      hash = "sha256-nOUlWXrmQsiGaLngzfviW8vj9QpxybPNT2uhdbtr7uo=";
     };
 
     nativeBuildInputs = [ pkgs.makeWrapper ];

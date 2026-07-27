@@ -29,7 +29,6 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rpcs3-nixpkgs.url = "github:NixOS/nixpkgs/1b06bb58c32597211752f4775e14b243485a374d";
   };
 
   outputs =

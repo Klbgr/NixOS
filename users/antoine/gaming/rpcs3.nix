@@ -1,9 +1,5 @@
-{ inputs, pkgs, ... }:
-let
-  rpcs3-nixpkgs = import inputs.rpcs3-nixpkgs {
-    inherit (pkgs) system;
-  };
-in
+{ ... }:
+
 {
   home-manager.users.antoine =
     { pkgs, lib, ... }:
@@ -14,9 +10,9 @@ in
           name = "rpcs3-with-gamemoderun-mangohud";
           paths = [
             (writeShellScriptBin "rpcs3" ''
-              exec ${gamemode}/bin/gamemoderun ${mangohud}/bin/mangohud ${rpcs3-nixpkgs.rpcs3}/bin/rpcs3 "$@"
+              exec ${gamemode}/bin/gamemoderun ${mangohud}/bin/mangohud ${rpcs3}/bin/rpcs3 "$@"
             '')
-            rpcs3-nixpkgs.rpcs3
+            rpcs3
           ];
         })
       ];

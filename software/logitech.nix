@@ -22,7 +22,7 @@
     devices: (
       {
         name: "MX Master 3S";
-        dpi: 2000;
+        dpi: 1600;
         buttons: (
           {
             cid: 0xc3; # Gesture button
@@ -92,6 +92,10 @@
           divert: false;
           invert: true;
         }
+      },
+      {
+        name: "Wireless Mobile Mouse MX Anywhere 2";
+        dpi: 1600;
       },
       {
         name: "MX Keys Wireless Keyboard";

@@ -119,53 +119,67 @@
 
           input = {
             keyboard.numlockOnStartup = "on";
-            mice = [
-              {
-                enable = true;
-                acceleration = null;
-                accelerationProfile = "none";
-                leftHanded = false;
-                middleButtonEmulation = false;
-                name = "Logitech USB Receiver Mouse";
-                naturalScroll = null;
-                productId = "c548";
-                scrollSpeed = null;
-                vendorId = "046d";
-              }
-              {
-                enable = true;
-                acceleration = null;
-                accelerationProfile = "none";
-                leftHanded = false;
-                middleButtonEmulation = false;
-                name = "Mouse passthrough";
-                naturalScroll = null;
-                productId = "dead";
-                scrollSpeed = null;
-                vendorId = "beef";
-              }
-            ];
-            touchpads = [
-              {
-                enable = true;
-                accelerationProfile = "default";
-                disableWhileTyping = false;
-                leftHanded = false;
-                middleButtonEmulation = false;
-                name = "GDX1515:00 27C6:01F4 Touchpad";
-                naturalScroll = true;
-                pointerSpeed = 0.0;
-                productId = "01f4";
-                rightClickMethod = "twoFingers";
-                scrollMethod = "twoFingers";
-                scrollSpeed = 0.3;
-                tapAndDrag = true;
-                tapDragLock = true;
-                tapToClick = true;
-                twoFingerTap = "rightClick";
-                vendorId = "27c6";
-              }
-            ];
+            mice =
+              map
+                (
+                  mouse:
+                  {
+                    enable = true;
+                    acceleration = 0.25;
+                    accelerationProfile = "none";
+                    leftHanded = false;
+                    middleButtonEmulation = false;
+                    naturalScroll = false;
+                    scrollSpeed = 1.0;
+                  }
+                  // mouse
+                )
+                [
+                  {
+                    name = "Logitech USB Receiver Mouse";
+                    productId = "c548";
+                    vendorId = "046d";
+                  }
+                  {
+                    name = "MX Anywhere 2 Mouse";
+                    productId = "b01f";
+                    vendorId = "046d";
+                  }
+                  {
+                    name = "Mouse passthrough";
+                    productId = "dead";
+                    vendorId = "beef";
+                  }
+                ];
+            touchpads =
+              map
+                (
+                  touchpad:
+                  {
+                    enable = true;
+                    accelerationProfile = "default";
+                    disableWhileTyping = false;
+                    leftHanded = false;
+                    middleButtonEmulation = false;
+                    naturalScroll = true;
+                    pointerSpeed = 0.0;
+                    rightClickMethod = "twoFingers";
+                    scrollMethod = "twoFingers";
+                    scrollSpeed = 0.3;
+                    tapAndDrag = true;
+                    tapDragLock = true;
+                    tapToClick = true;
+                    twoFingerTap = "rightClick";
+                  }
+                  // touchpad
+                )
+                [
+                  {
+                    name = "GDX1515:00 27C6:01F4 Touchpad";
+                    productId = "01f4";
+                    vendorId = "27c6";
+                  }
+                ];
           };
 
           krunner = {

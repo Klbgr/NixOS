@@ -10,7 +10,7 @@ let
   '';
 
   games-to-pegasus = pkgs.writers.writePython3Bin "games-to-pegasus" { } (
-    builtins.readFile ../../../games-to-pegasus.py
+    builtins.readFile ../../../utils/games-to-pegasus.py
   );
 in
 {

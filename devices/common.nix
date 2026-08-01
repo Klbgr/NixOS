@@ -1,49 +1,10 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
-  inputs,
   pkgs,
-  lib,
   ...
 }:
 
 {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-    ./software/kde.nix
-    ./software/logitech.nix
-    ./software/cachyos-kernel.nix
-    ./software/lanzaboote.nix
-    ./software/low-latency-layer.nix
-    ./users/antoine/configuration.nix
-    ./utils
-  ];
-
-  # specialisation.noctalia.configuration = {
-  #   services.desktopManager.plasma6.enable = lib.mkForce false;
-  #   imports = [ ./software/noctalia.nix ];
-  # };
-
-  # Bootloader.
-  boot = {
-    consoleLogLevel = 0;
-    initrd.verbose = false;
-    kernelModules = [ "ntsync" ];
-    kernelParams = [
-      "quiet"
-      "udev.log_level=3"
-    ];
-    loader = {
-      systemd-boot = {
-        enable = true;
-        consoleMode = "max";
-      };
-      efi.canTouchEfiVariables = true;
-    };
-    plymouth.enable = true;
-  };
+  imports = [ ../utils ];
 
   # Enable OpenGL
   hardware.graphics = {
@@ -52,7 +13,10 @@
   };
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    firewall.enable = true;
+  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "fr_FR.UTF-8";
@@ -83,12 +47,6 @@
   # Configure console keymap
   console.useXkbConfig = true;
 
-  # Enable CUPS to print documents.
-  services.printing = {
-    enable = true;
-    cups-pdf.enable = true;
-  };
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
@@ -112,26 +70,10 @@
 
   hardware.bluetooth.enable = true;
 
-  home-manager = {
-    useGlobalPkgs = true;
-    backupFileExtension = "backup";
-    extraSpecialArgs = { inherit inputs; };
-  };
-
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
   services.dbus = {
     enable = true;
     implementation = "broker";
   };
-
-  security.polkit.enable = true;
 
   services.avahi = {
     enable = true;
@@ -153,33 +95,20 @@
 
   services.fwupd.enable = true;
 
-  services.power-profiles-daemon.enable = true;
-
-  services.upower.enable = true;
-
-  systemd.oomd.enable = lib.mkForce false;
-  services.nohang = {
-    enable = true;
-    configPath = "desktop";
-  };
-
   nix.settings = {
     substituters = [
       "https://nix-community.cachix.org"
+      "https://attic.xuyh0120.win/lantian"
     ];
     trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+    ];
+    trusted-users = [
+      "root"
+      "@wheel"
     ];
   };
-
-  fileSystems."/games" = {
-    device = "/dev/disk/by-label/games";
-    fsType = "ext4";
-  };
-
-  systemd.tmpfiles.rules = [
-    "d /games 0775 root users -"
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

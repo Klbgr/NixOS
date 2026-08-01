@@ -3,10 +3,11 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../modules/intel-cpu.nix
-    ../modules/nvidia-gpu.nix
-    ../modules/fan.nix
-    ../modules/led.nix
+    ../pc.nix
+    ../../modules/hardware/intel-cpu.nix
+    ../../modules/hardware/nvidia-gpu.nix
+    ../../modules/hardware/fan.nix
+    ../../modules/hardware/led.nix
   ];
 
   networking.hostName = "MSI-PRO-Z690-A";

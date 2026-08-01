@@ -3,11 +3,12 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../modules/intel-cpu.nix
-    ../modules/nvidia-gpu.nix
-    ../modules/face-recognition.nix
-    ../modules/asus.nix
-    ../modules/touchpad.nix
+    ../pc.nix
+    ../../modules/hardware/intel-cpu.nix
+    ../../modules/hardware/nvidia-gpu.nix
+    ../../modules/hardware/face-recognition.nix
+    ../../modules/hardware/asus.nix
+    ../../modules/hardware/touchpad.nix
   ];
 
   networking.hostName = "ASUS-UX434FL";

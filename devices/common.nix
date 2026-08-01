@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   ...
 }:
@@ -6,11 +7,13 @@
 {
   imports = [ ../utils ];
 
+  boot.binfmt.emulatedSystems = lib.filter (sys: sys != pkgs.stdenv.hostPlatform.system) [
+    "x86_64-linux"
+    "aarch64-linux"
+  ];
+
   # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+  hardware.graphics.enable = true;
 
   # Enable networking
   networking = {
@@ -33,19 +36,7 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    excludePackages = with pkgs; [ xterm ];
-    xkb = {
-      layout = "fr,us";
-      variant = "";
-      options = "caps:shiftlock,grp:win_space_toggle";
-    };
-  };
-
-  # Configure console keymap
-  console.useXkbConfig = true;
+  console.keyMap = "fr";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -98,15 +89,18 @@
   nix.settings = {
     substituters = [
       "https://nix-community.cachix.org"
+      "https://nixos-raspberrypi.cachix.org"
       "https://attic.xuyh0120.win/lantian"
     ];
     trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
     ];
     trusted-users = [
       "root"
       "@wheel"
+      "antoine"
     ];
   };
 

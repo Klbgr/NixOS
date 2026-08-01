@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  pkgs,
   ...
 }:
 
@@ -13,13 +14,27 @@
     ../modules/software/cachyos-kernel.nix
     ../modules/software/lanzaboote.nix
     ../modules/software/low-latency-layer.nix
-    ../users/antoine/configuration.nix
+    ../users/antoine
   ];
 
   # specialisation.noctalia.configuration = {
   #   services.desktopManager.plasma6.enable = lib.mkForce false;
   #   imports = [ ./software/noctalia.nix ];
   # };
+
+  # Configure keymap in X11
+  services.xserver = {
+    enable = true;
+    excludePackages = with pkgs; [ xterm ];
+    xkb = {
+      layout = "fr,us";
+      variant = "";
+      options = "caps:shiftlock,grp:win_space_toggle";
+    };
+  };
+
+  # Enable OpenGL 32-bit
+  hardware.graphics.enable32Bit = true;
 
   # Bootloader.
   boot = {
@@ -38,7 +53,6 @@
       efi.canTouchEfiVariables = true;
     };
     plymouth.enable = true;
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 
   # Enable CUPS to print documents.

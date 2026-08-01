@@ -6,7 +6,7 @@
     ./programs
     ./developing
     ./gaming
-    ./virtualisation
+    ./virtualization
     ./samba.nix
   ];
 
@@ -20,6 +20,7 @@
     uid = 1000;
     isNormalUser = true;
     description = "Antoine";
+    initialPassword = "antoine";
     extraGroups = [
       "networkmanager"
       "wheel"

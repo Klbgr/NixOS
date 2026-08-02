@@ -42,11 +42,10 @@
         enable = true;
         shellAliases = {
           rebuild = "sudo nixos-rebuild switch --flake /etc/nixos/";
-          rebuild-safe = "systemd-run --scope --user sudo nixos-rebuild switch --flake /etc/nixos/";
           dry-build = "sudo nixos-rebuild dry-build --flake /etc/nixos/";
           configure = "code /etc/nixos";
-          clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
-          optimise = "nix-store --optimise";
+          clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d && nix-store --optimise";
+          rebuild-yxorp = "nixos-rebuild switch --flake .#YXORP --target-host yxorp@yxorp.local --sudo --ask-sudo-password";
           apply-theme = "${config.home.homeDirectory}/.local/share/plasma-manager/run_all.sh";
         };
       };

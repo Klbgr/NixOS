@@ -16,6 +16,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "acme"
     ];
   };
 }

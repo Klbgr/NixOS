@@ -2,9 +2,7 @@
 
 {
   imports = [
-    ./developing
     ./programs
-    ./virtualization
   ];
 
   users.users.yxorp = {
@@ -15,8 +13,6 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "docker"
-      "acme"
     ];
   };
 }

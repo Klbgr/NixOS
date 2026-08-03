@@ -4,28 +4,29 @@ let
   ha = "192.168.0.5";
   url = "klbgr.com";
 
+  localRanges = ''
+    allow 127.0.0.1/32;
+    allow 192.168.0.0/16;
+    allow ::1/128;
+    allow fc00::/7;
+    allow fe80::/10;
+    allow 2a01:e0a:a48:61d0::/64; 
+    deny all;
+    error_page 403 = 444;
+  '';
+
   makeHost =
     {
       backendUrl,
-      default ? false,
       localOnly ? false,
     }:
     {
       useACMEHost = url;
       forceSSL = true;
-      default = default;
       locations."/" = {
         proxyPass = backendUrl;
         proxyWebsockets = true;
-        extraConfig =
-          if localOnly then
-            ''
-              if ($is_local = 0) {
-                return 444;
-              }
-            ''
-          else
-            "";
+        extraConfig = if localOnly then localRanges else "";
       };
     };
 in
@@ -38,7 +39,7 @@ in
       extraDomainNames = [ url ];
       dnsProvider = "cloudflare";
       dnsPropagationCheck = true;
-      credentialsFile = "/var/lib/acme/cloudflare-credentials";
+      credentialsFile = "/var/lib/secrets/cloudflare-credentials";
       group = "nginx";
     };
   };
@@ -50,14 +51,6 @@ in
     recommendedOptimisation = true;
     recommendedTlsSettings = true;
     clientMaxBodySize = "0";
-
-    commonHttpConfig = ''
-      geo $is_local {
-        default 0;
-        127.0.0.1/32 1;
-        192.168.0.0/16 1;
-      }
-    '';
 
     upstreams =
       builtins.mapAttrs
@@ -77,7 +70,7 @@ in
           ender3 = "192.168.0.3:80";
           proxmox = "192.168.0.6:8006";
           openmediavault = "${omv}:9999";
-          adguardhome = "${omv}:3003";
+          adguardhome = "127.0.0.1:3000";
           frigate = "${omv}:8971";
           qbittorrent = "${omv}:8080";
           prowlarr = "${omv}:9696";
@@ -87,6 +80,18 @@ in
         };
 
     virtualHosts = {
+      "_" = {
+        default = true;
+        useACMEHost = url;
+        forceSSL = true;
+        locations."/" = {
+          extraConfig = "return 444;";
+        };
+      };
+
+      ${url} = makeHost {
+        backendUrl = "http://homarr";
+      };
       "affine.${url}" = makeHost {
         backendUrl = "http://affine";
       };
@@ -95,7 +100,6 @@ in
       };
       "homarr.${url}" = makeHost {
         backendUrl = "http://homarr";
-        default = true;
       };
       "homeassistant.${url}" = makeHost {
         backendUrl = "http://homeassistant";

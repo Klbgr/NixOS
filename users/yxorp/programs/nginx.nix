@@ -161,8 +161,28 @@ in
     };
   };
 
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-  ];
+  networking.nat = {
+    enable = true;
+    forwardPorts = [
+      {
+        sourcePort = 5093;
+        destination = "${omv}:5093";
+        proto = "tcp";
+      }
+      {
+        sourcePort = 5093;
+        destination = "${omv}:5093";
+        proto = "udp";
+      }
+    ];
+  };
+
+  networking.firewall = {
+    allowedTCPPorts = [
+      80
+      443
+      5093
+    ];
+    allowedUDPPorts = [ 5093 ];
+  };
 }

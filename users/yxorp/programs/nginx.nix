@@ -163,6 +163,8 @@ in
 
   networking.nat = {
     enable = true;
+    externalInterface = "end0";
+    internalInterfaces = [ "end0" ];
     forwardPorts = [
       {
         sourcePort = 5093;

@@ -32,7 +32,36 @@
       "gamemode"
       "dialout"
     ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDDk16ODbH/X2/rqe8hfD0BaPtxf/v3FWsaZRStotp06 qiuantoine@gmail.com" # MSI-PRO-Z690-A
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMt2Ol4CQtB3Sg2dwgRv/XG2ybSzQDUzswsWUY6nBEwF qiuantoine@gmail.com" # ASUS-UX434FL
+    ];
   };
+
+  nix = {
+    buildMachines = [
+      {
+        hostName = "msi-pro-z690-a.local";
+        sshUser = "antoine";
+        sshKey = "/home/antoine/.ssh/id_ed25519";
+        publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUFDa2JvdU9zOXUzQzEzWUFQNnd1bHEvVjZpam1uOHJ5U2VBK3ZUQTNqOEwgcm9vdEBNU0ktUFJPLVo2OTAtQQo=";
+        systems = [
+          "x86_64-linux"
+          "aarch64-linux"
+        ];
+        maxJobs = 24;
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          "kvm"
+        ];
+        mandatoryFeatures = [ ];
+      }
+    ];
+  };
+
+  nix.distributedBuilds = true;
 
   home-manager.users.antoine =
     { config, ... }:

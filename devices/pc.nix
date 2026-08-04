@@ -22,6 +22,15 @@
   #   imports = [ ./software/noctalia.nix ];
   # };
 
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "prohibit-password";
+    };
+  };
+
   # Configure keymap in X11
   services.xserver = {
     enable = true;

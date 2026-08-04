@@ -39,5 +39,5 @@
     }
   ];
 
-  services.howdy.settings.video.device_path = "/dev/video2";
+  services.gaze.settings.cameras.ir = "/dev/video2";
 }

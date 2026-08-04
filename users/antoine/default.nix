@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, ... }:
 
 {
   imports = [
@@ -41,7 +41,14 @@
   nix = {
     buildMachines =
       builtins.filter
-        (machine: machine.hostName != "msi-pro-z690-a.local" && machine.hostName != "localhost")
+        (
+          machine:
+          let
+            targetHost = lib.toLower (lib.head (lib.splitString "." machine.hostName));
+            currentHost = lib.toLower config.networking.hostName;
+          in
+          targetHost != currentHost && machine.hostName != "localhost"
+        )
         [
           {
             hostName = "msi-pro-z690-a.local";

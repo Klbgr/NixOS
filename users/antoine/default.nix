@@ -39,27 +39,30 @@
   };
 
   nix = {
-    buildMachines = [
-      {
-        hostName = "msi-pro-z690-a.local";
-        sshUser = "antoine";
-        sshKey = "/home/antoine/.ssh/id_ed25519";
-        publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUFDa2JvdU9zOXUzQzEzWUFQNnd1bHEvVjZpam1uOHJ5U2VBK3ZUQTNqOEwgcm9vdEBNU0ktUFJPLVo2OTAtQQo=";
-        systems = [
-          "x86_64-linux"
-          "aarch64-linux"
+    buildMachines =
+      builtins.filter
+        (machine: machine.hostName != "msi-pro-z690-a.local" && machine.hostName != "localhost")
+        [
+          {
+            hostName = "msi-pro-z690-a.local";
+            sshUser = "antoine";
+            sshKey = "/home/antoine/.ssh/id_ed25519";
+            publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUFDa2JvdU9zOXUzQzEzWUFQNnd1bHEvVjZpam1uOHJ5U2VBK3ZUQTNqOEwgcm9vdEBNU0ktUFJPLVo2OTAtQQo=";
+            systems = [
+              "x86_64-linux"
+              "aarch64-linux"
+            ];
+            maxJobs = 24;
+            speedFactor = 2;
+            supportedFeatures = [
+              "nixos-test"
+              "benchmark"
+              "big-parallel"
+              "kvm"
+            ];
+            mandatoryFeatures = [ ];
+          }
         ];
-        maxJobs = 24;
-        speedFactor = 2;
-        supportedFeatures = [
-          "nixos-test"
-          "benchmark"
-          "big-parallel"
-          "kvm"
-        ];
-        mandatoryFeatures = [ ];
-      }
-    ];
   };
 
   nix.distributedBuilds = true;

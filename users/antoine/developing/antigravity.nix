@@ -46,6 +46,6 @@
         };
       };
 
-      programs.bash.shellAliases.code = "antigravity";
+      programs.bash.shellAliases.code = "antigravity-ide";
     };
 }

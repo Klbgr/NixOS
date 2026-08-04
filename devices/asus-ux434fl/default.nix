@@ -1,5 +1,21 @@
-{ lib, config, ... }:
-
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  gazeOpenVINO = inputs.gaze.packages.${pkgs.stdenv.hostPlatform.system}.gaze.overrideAttrs (old: {
+    buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.openvino ];
+    buildPhase = ''
+      runHook preBuild
+      cargo build --release --offline --features openvino -p gaze
+      cargo build --release --offline --features openvino -p gaze-cli -p pam-gaze -p pam-gaze-grosshack
+      runHook postBuild
+    '';
+  });
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -39,5 +55,14 @@
     }
   ];
 
-  services.gaze.settings.cameras.ir = "/dev/video2";
+  services.gaze = {
+    package = gazeOpenVINO;
+    settings = {
+      inference = {
+        execution_provider = "openvino";
+        device = "cpu";
+      };
+      cameras.ir = "/dev/video2";
+    };
+  };
 }

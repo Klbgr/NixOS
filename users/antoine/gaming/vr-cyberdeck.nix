@@ -6,10 +6,10 @@
     let
       vr-cyberdeck = pkgs.appimageTools.wrapType2 rec {
         pname = "vr-cyberdeck";
-        version = "1.5.0";
+        version = "1.6.7";
         src = pkgs.fetchurl {
           url = "https://github.com/DeliciousMeatPop/VRCD/releases/download/v${version}/vr-cyberdeck-${version}-x86_64.AppImage";
-          hash = "sha256-btJ7FcEUuTocYUbYUSOdQpl7vaQ1qpBJTVWrkDtuRa4=";
+          hash = "sha256-AMwAaxbb6RO6wrzhkbaLc90B0tFxjAeBCt4uXo37m4s=";
         };
 
         extraInstallCommands = ''

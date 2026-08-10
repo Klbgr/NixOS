@@ -85,7 +85,7 @@
           dry-build = "sudo nixos-rebuild dry-build --flake /etc/nixos/";
           configure = "code /etc/nixos";
           clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d && nix-store --optimise";
-          rebuild-yxorp = "nixos-rebuild switch --flake /etc/nixos/#YXORP --target-host yxorp@yxorp.local --build-host yxorp@yxorp.local --sudo --ask-sudo-password";
+          rebuild-yxorp = "nixos-rebuild switch --flake /etc/nixos/#YXORP --target-host yxorp@yxorp.local --sudo --ask-sudo-password";
           apply-theme = "${config.home.homeDirectory}/.local/share/plasma-manager/run_all.sh";
         };
       };

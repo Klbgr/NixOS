@@ -66,6 +66,7 @@ in
           jellyfin = "${omv}:8096";
           jellyseerr = "${omv}:5055";
 
+          gatus = "127.0.0.1:8080";
           freebox = "mafreebox.freebox.fr:443";
           ender3 = "192.168.0.3:80";
           proxmox = "192.168.0.6:8006";
@@ -114,6 +115,10 @@ in
         backendUrl = "http://jellyseerr";
       };
 
+      "gatus.${domain}" = makeHost {
+        backendUrl = "http://gatus";
+        localOnly = true;
+      };
       "freebox.${domain}" = makeHost {
         backendUrl = "https://freebox";
         localOnly = true;

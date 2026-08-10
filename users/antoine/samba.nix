@@ -7,7 +7,7 @@
         "x-systemd.automount"
         "noauto"
         "x-systemd.idle-timeout=60"
-        "credentials=/etc/nixos/users/antoine/samba-secrets.txt"
+        "credentials=/var/lib/secrets/samba"
         "uid=1000"
         "gid=100"
         "dir_mode=0700"

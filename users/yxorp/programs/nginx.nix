@@ -2,7 +2,7 @@
 let
   omv = "192.168.0.4";
   ha = "192.168.0.5";
-  url = "klbgr.com";
+  domain = "klbgr.com";
 
   localRanges = ''
     allow 127.0.0.1/32;
@@ -21,7 +21,7 @@ let
       localOnly ? false,
     }:
     {
-      useACMEHost = url;
+      useACMEHost = domain;
       forceSSL = true;
       locations."/" = {
         proxyPass = backendUrl;
@@ -34,9 +34,9 @@ in
   security.acme = {
     acceptTerms = true;
     defaults.email = "qiuantoine@gmail.com";
-    certs.${url} = {
-      domain = "*.${url}";
-      extraDomainNames = [ url ];
+    certs.${domain} = {
+      domain = "*.${domain}";
+      extraDomainNames = [ domain ];
       dnsProvider = "cloudflare";
       dnsPropagationCheck = true;
       environmentFile = "/var/lib/secrets/cloudflare-credentials";
@@ -82,79 +82,79 @@ in
     virtualHosts = {
       "_" = {
         default = true;
-        useACMEHost = url;
+        useACMEHost = domain;
         forceSSL = true;
         locations."/" = {
           extraConfig = "return 444;";
         };
       };
 
-      ${url} = makeHost {
+      ${domain} = makeHost {
         backendUrl = "http://homarr";
       };
-      "affine.${url}" = makeHost {
+      "affine.${domain}" = makeHost {
         backendUrl = "http://affine";
       };
-      "filebrowser.${url}" = makeHost {
+      "filebrowser.${domain}" = makeHost {
         backendUrl = "http://filebrowser";
       };
-      "homarr.${url}" = makeHost {
+      "homarr.${domain}" = makeHost {
         backendUrl = "http://homarr";
       };
-      "homeassistant.${url}" = makeHost {
+      "homeassistant.${domain}" = makeHost {
         backendUrl = "http://homeassistant";
       };
-      "immich.${url}" = makeHost {
+      "immich.${domain}" = makeHost {
         backendUrl = "http://immich";
       };
-      "jellyfin.${url}" = makeHost {
+      "jellyfin.${domain}" = makeHost {
         backendUrl = "http://jellyfin";
       };
-      "jellyseerr.${url}" = makeHost {
+      "jellyseerr.${domain}" = makeHost {
         backendUrl = "http://jellyseerr";
       };
 
-      "freebox.${url}" = makeHost {
+      "freebox.${domain}" = makeHost {
         backendUrl = "https://freebox";
         localOnly = true;
       };
-      "ender3.${url}" = makeHost {
+      "ender3.${domain}" = makeHost {
         backendUrl = "http://ender3";
         localOnly = true;
       };
-      "proxmox.${url}" = makeHost {
+      "proxmox.${domain}" = makeHost {
         backendUrl = "https://proxmox";
         localOnly = true;
       };
-      "openmediavault.${url}" = makeHost {
+      "openmediavault.${domain}" = makeHost {
         backendUrl = "http://openmediavault";
         localOnly = true;
       };
-      "adguardhome.${url}" = makeHost {
+      "adguardhome.${domain}" = makeHost {
         backendUrl = "http://adguardhome";
         localOnly = true;
       };
-      "frigate.${url}" = makeHost {
+      "frigate.${domain}" = makeHost {
         backendUrl = "http://frigate";
         localOnly = true;
       };
-      "qbittorrent.${url}" = makeHost {
+      "qbittorrent.${domain}" = makeHost {
         backendUrl = "http://qbittorrent";
         localOnly = true;
       };
-      "prowlarr.${url}" = makeHost {
+      "prowlarr.${domain}" = makeHost {
         backendUrl = "http://prowlarr";
         localOnly = true;
       };
-      "radarr.${url}" = makeHost {
+      "radarr.${domain}" = makeHost {
         backendUrl = "http://radarr";
         localOnly = true;
       };
-      "sonarr.${url}" = makeHost {
+      "sonarr.${domain}" = makeHost {
         backendUrl = "http://sonarr";
         localOnly = true;
       };
-      "traccar.${url}" = makeHost {
+      "traccar.${domain}" = makeHost {
         backendUrl = "http://traccar";
         localOnly = true;
       };

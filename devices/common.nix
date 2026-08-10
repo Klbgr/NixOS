@@ -1,16 +1,7 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
+{ ... }:
 
 {
   imports = [ ../utils ];
-
-  boot.binfmt.emulatedSystems = lib.filter (sys: sys != pkgs.stdenv.hostPlatform.system) [
-    "x86_64-linux"
-    "aarch64-linux"
-  ];
 
   # Enable OpenGL
   hardware.graphics.enable = true;

@@ -62,6 +62,10 @@
       efi.canTouchEfiVariables = true;
     };
     plymouth.enable = true;
+    binfmt.emulatedSystems = lib.filter (sys: sys != pkgs.stdenv.hostPlatform.system) [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
   };
 
   # Enable CUPS to print documents.

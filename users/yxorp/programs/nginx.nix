@@ -39,7 +39,7 @@ in
       extraDomainNames = [ url ];
       dnsProvider = "cloudflare";
       dnsPropagationCheck = true;
-      credentialsFile = "/var/lib/secrets/cloudflare-credentials";
+      environmentFile = "/var/lib/secrets/cloudflare-credentials";
       group = "nginx";
     };
   };

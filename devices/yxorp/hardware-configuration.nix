@@ -27,6 +27,15 @@
     fsType = "ext4";
   };
 
+  fileSystems."/boot/firmware" = {
+    device = "/dev/disk/by-uuid/2175-794E";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
+  };
+
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";

@@ -1,33 +1,44 @@
-{ ... }:
+{ pkgs, lib, ... }:
 let
   domain = "klbgr.com";
 
   makeEndpoint =
-    {
-      name,
-      url,
-    }:
-    {
-      name = name;
-      url = url;
-      interval = "30s";
-      conditions = [
-        "[STATUS] == 200"
-        "[RESPONSE_TIME] < 1000"
-      ];
-    };
+    { name, url }:
+    ''
+      - name: "${name}"
+        url: "${url}"
+        interval: "30s"
+        conditions:
+          - "[STATUS] == 200"
+          - "[RESPONSE_TIME] < 1000"
+        alerts:
+          - type: "email"
+            enabled: true
+            success-threshold: 1
+            failure-threshold: 3
+            send-on-resolved: true'';
 in
 {
   services.gatus = {
     enable = true;
+    environmentFile = "/var/lib/secrets/smtp";
     openFirewall = true;
-    settings = {
-      web.port = 8080;
-      storage = {
-        type = "sqlite";
-        path = "/var/lib/gatus/db.sqlite";
-      };
-      endpoints = [
+    configFile = pkgs.writeText "gatus.yaml" ''
+      web:
+        port: 8080
+      alerting:
+        email:
+          from: "''${SMTP_EMAIL}"
+          username: "''${SMTP_USERNAME}"
+          password: "''${SMTP_PASSWORD}"
+          host: "''${SMTP_HOST}"
+          port: 587
+          to: "qiuantoine@gmail.com"
+      storage:
+        type: "sqlite"
+        path: "/var/lib/gatus/db.sqlite"
+      endpoints:
+      ${lib.concatStringsSep "\n" [
         (makeEndpoint {
           name = "AFFiNE";
           url = "https://affine.${domain}";
@@ -93,7 +104,7 @@ in
           name = "Traccar";
           url = "http://traccar.${domain}";
         })
-      ];
-    };
+      ]}
+    '';
   };
 }

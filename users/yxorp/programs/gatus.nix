@@ -23,6 +23,10 @@ in
     openFirewall = true;
     settings = {
       web.port = 8080;
+      storage = {
+        type = "sqlite";
+        path = "/var/lib/gatus/db.sqlite";
+      };
       endpoints = [
         (makeEndpoint {
           name = "AFFiNE";

@@ -40,20 +40,13 @@ in
       endpoints:
       ${lib.concatStringsSep "\n" [
         (makeEndpoint {
-          name = "AFFiNE";
-          url = "https://affine.${domain}";
+          name = "Dashy";
+          url = "https://dashy.${domain}";
         })
+
         (makeEndpoint {
-          name = "File Browser";
-          url = "https://filebrowser.${domain}";
-        })
-        (makeEndpoint {
-          name = "Homarr";
-          url = "https://homarr.${domain}";
-        })
-        (makeEndpoint {
-          name = "Immich";
-          url = "https://immich.${domain}";
+          name = "Home Assistant";
+          url = "https://homeassistant.${domain}";
         })
         (makeEndpoint {
           name = "Jellyfin";
@@ -62,6 +55,18 @@ in
         (makeEndpoint {
           name = "Seerr";
           url = "https://jellyseerr.${domain}";
+        })
+        (makeEndpoint {
+          name = "Immich";
+          url = "https://immich.${domain}";
+        })
+        (makeEndpoint {
+          name = "File Browser";
+          url = "https://filebrowser.${domain}";
+        })
+        (makeEndpoint {
+          name = "AFFiNE";
+          url = "https://affine.${domain}";
         })
 
         (makeEndpoint {

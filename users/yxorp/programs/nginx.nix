@@ -4,13 +4,17 @@ let
   ha = "192.168.0.5";
   domain = "klbgr.com";
 
+  localIps = [
+    "127.0.0.1/32"
+    "192.168.0.0/16"
+    "::1/128"
+    "fc00::/7"
+    "fe80::/10"
+    "2a01:e0a:a48:61d0::/64"
+  ];
+
   localRanges = ''
-    allow 127.0.0.1/32;
-    allow 192.168.0.0/16;
-    allow ::1/128;
-    allow fc00::/7;
-    allow fe80::/10;
-    allow 2a01:e0a:a48:61d0::/64; 
+    ${builtins.concatStringsSep "\n" (map (ip: "allow ${ip};") localIps)}
     deny all;
     error_page 403 = 444;
   '';
@@ -46,6 +50,12 @@ in
 
   services.nginx = {
     enable = true;
+    appendHttpConfig = ''
+      geo $dashy_backend {
+        default        dashy-public;
+        ${builtins.concatStringsSep "\n" (map (ip: "${ip}   dashy-local;") localIps)}
+      }
+    '';
 
     recommendedProxySettings = true;
     recommendedOptimisation = true;
@@ -58,13 +68,15 @@ in
           extraConfig = "server ${serverAddr}; keepalive 32;";
         })
         {
-          affine = "${omv}:3010";
-          filebrowser = "${omv}:8000";
-          homarr = "${omv}:7575";
+          dashy-public = "127.0.0.1:8888";
+          dashy-local = "127.0.0.1:8889";
+
           homeassistant = "${ha}:8123";
-          immich = "${omv}:2283";
           jellyfin = "${omv}:8096";
           jellyseerr = "${omv}:5055";
+          immich = "${omv}:2283";
+          filebrowser = "${omv}:8000";
+          affine = "${omv}:3010";
 
           gatus = "127.0.0.1:8080";
           freebox = "mafreebox.freebox.fr:443";
@@ -91,28 +103,29 @@ in
       };
 
       ${domain} = makeHost {
-        backendUrl = "http://homarr";
+        backendUrl = "http://$dashy_backend";
       };
-      "affine.${domain}" = makeHost {
-        backendUrl = "http://affine";
+      "dashy.${domain}" = makeHost {
+        backendUrl = "http://$dashy_backend";
       };
-      "filebrowser.${domain}" = makeHost {
-        backendUrl = "http://filebrowser";
-      };
-      "homarr.${domain}" = makeHost {
-        backendUrl = "http://homarr";
-      };
+
       "homeassistant.${domain}" = makeHost {
         backendUrl = "http://homeassistant";
-      };
-      "immich.${domain}" = makeHost {
-        backendUrl = "http://immich";
       };
       "jellyfin.${domain}" = makeHost {
         backendUrl = "http://jellyfin";
       };
       "jellyseerr.${domain}" = makeHost {
         backendUrl = "http://jellyseerr";
+      };
+      "immich.${domain}" = makeHost {
+        backendUrl = "http://immich";
+      };
+      "filebrowser.${domain}" = makeHost {
+        backendUrl = "http://filebrowser";
+      };
+      "affine.${domain}" = makeHost {
+        backendUrl = "http://affine";
       };
 
       "gatus.${domain}" = makeHost {

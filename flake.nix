@@ -34,43 +34,51 @@
       url = "github:GunduLabs/gaze";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
-
-  nixConfig = {
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-      "https://nixos-raspberrypi.cachix.org"
-      "https://attic.xuyh0120.win/lantian"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
-      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-    ];
+    nixkit = {
+      url = "github:frostplexx/nixkit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { nixpkgs, ... }@inputs:
-
+    let
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://nixos-raspberrypi.cachix.org"
+        "https://attic.xuyh0120.win/lantian"
+        "https://nixkit.cachix.org"
+      ];
+      public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+        "nixkit.cachix.org-1:d3yhZjbGSL6QTgzZsxE3lRLIQ8jGmH7/XxiD/5hGmfA="
+      ];
+    in
     {
+      nixConfig = {
+        extra-substituters = substituters;
+        extra-trusted-public-keys = public-keys;
+      };
       nixosConfigurations = {
         ASUS-UX434FL = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs substituters public-keys; };
           modules = [
             ./devices/asus-ux434fl
           ];
         };
         MSI-PRO-Z690-A = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs substituters public-keys; };
           modules = [
             ./devices/msi-pro-z690-a
           ];
         };
         YXORP = inputs.nixos-raspberrypi.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs substituters public-keys; };
           modules = [
             ./devices/yxorp
           ];

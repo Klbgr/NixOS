@@ -1,7 +1,15 @@
-{ substituters, public-keys, ... }:
+{
+  inputs,
+  substituters,
+  public-keys,
+  ...
+}:
 
 {
-  imports = [ ../utils ];
+  imports = [
+    ../utils
+    inputs.chaotic.nixosModules.default
+  ];
 
   # Enable OpenGL
   hardware.graphics.enable = true;

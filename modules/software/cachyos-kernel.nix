@@ -1,8 +1,8 @@
 { inputs, pkgs, ... }:
 
 {
-  nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.default ];
+  imports = [ inputs.chaotic.nixosModules.default ];
 
-  boot.kernelPackages =
-    inputs.nix-cachyos-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxPackages-cachyos-latest-lto-x86_64-v3;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
+  hardware.nvidia.package = pkgs.nvidia_cachyos;
 }

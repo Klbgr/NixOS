@@ -37,18 +37,5 @@
     WEBKIT_DISABLE_COMPOSITING_MODE = 1;
   };
 
-  environment.systemPackages = with pkgs; [
-    lact
-  ];
-
-  systemd.services.lact = {
-    description = "GPU Control Daemon";
-    after = [ "graphical.target" ];
-    wantedBy = [ "graphical.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.lact}/bin/lact daemon";
-      Restart = "always";
-    };
-    enable = true;
-  };
+  services.lact.enable = true;
 }

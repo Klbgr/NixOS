@@ -26,32 +26,41 @@
     }
   ];
 
-  environment.etc."lact/config.yaml".text = ''
-    version: 6
-    daemon:
-      log_level: info
-      admin_group: wheel
-      disable_clocks_cleanup: false
-    apply_settings_timer: 5
-    gpus:
-      10DE:2488-1458:404C-0000:01:00.0:
-        fan_control_enabled: false
-        power_cap: 270.0
-    profiles:
-      Undervolt:
-        gpus:
-          10DE:2488-1458:404C-0000:01:00.0:
-            fan_control_enabled: false
-            power_cap: 270.0
-            min_core_clock: 210
-            max_core_clock: 1900
-            gpu_clock_offsets:
-              0: 200
-            mem_clock_offsets:
-              0: 2800
-    current_profile: Undervolt
-    auto_switch_profiles: false
-  '';
+  services.lact.settings = {
+    version = 6;
+    daemon = {
+      log_level = "info";
+      admin_group = "wheel";
+      disable_clocks_cleanup = false;
+    };
+    apply_settings_timer = 5;
+    gpus = {
+      "10DE:2488-1458:404C-0000:01:00.0" = {
+        fan_control_enabled = false;
+        power_cap = 270.0;
+      };
+    };
+    profiles = {
+      "Undervolt" = {
+        gpus = {
+          "10DE:2488-1458:404C-0000:01:00.0" = {
+            fan_control_enabled = false;
+            power_cap = 270.0;
+            min_core_clock = 210;
+            max_core_clock = 1900;
+            gpu_clock_offsets = {
+              "0" = 200;
+            };
+            mem_clock_offsets = {
+              "0" = 2800;
+            };
+          };
+        };
+      };
+    };
+    current_profile = "Undervolt";
+    auto_switch_profiles = false;
+  };
 
   environment.etc."coolercontrol/config.toml" = {
     text = ''

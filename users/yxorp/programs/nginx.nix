@@ -77,6 +77,7 @@ in
           immich = "${omv}:2283";
           filebrowser = "${omv}:8000";
           affine = "${omv}:3010";
+          sparkyfitness = "${omv}:3004";
 
           gatus = "127.0.0.1:8080";
           freebox = "mafreebox.freebox.fr:443";
@@ -126,6 +127,9 @@ in
       };
       "affine.${domain}" = makeHost {
         backendUrl = "http://affine";
+      };
+      "sparkyfitness.${domain}" = makeHost {
+        backendUrl = "http://sparkyfitness";
       };
 
       "gatus.${domain}" = makeHost {

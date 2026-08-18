@@ -68,6 +68,10 @@ in
           name = "AFFiNE";
           url = "https://affine.${domain}";
         })
+        (makeEndpoint {
+          name = "SparkyFitness";
+          url = "https://sparkyfitness.${domain}";
+        })
 
         (makeEndpoint {
           name = "Freebox";

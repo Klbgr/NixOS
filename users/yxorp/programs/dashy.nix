@@ -9,7 +9,7 @@ let
     }:
     {
       pageInfo = {
-        title = "Tableau de bord";
+        title = "Dashy";
         description = "Services personnels";
         color = "#0d0d0d";
       };
@@ -111,6 +111,12 @@ let
               description = "Notes";
               icon = "hl-affine";
               url = prefix + "affine" + suffix;
+            }
+            {
+              title = "SparkyFitness";
+              description = "Fitness";
+              icon = "hl-sparky-fitness";
+              url = prefix + "sparkyfitness" + suffix;
             }
           ];
         }

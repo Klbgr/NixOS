@@ -16,6 +16,7 @@ let
             enabled: true
             success-threshold: 1
             failure-threshold: 3
+            minimum-reminder-interval: 30m
             send-on-resolved: true'';
 in
 {

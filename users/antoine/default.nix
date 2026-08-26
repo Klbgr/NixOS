@@ -27,6 +27,7 @@
       "docker"
       "input"
       "video"
+      "audio"
       "render"
       "ydotool"
       "gamemode"

@@ -261,6 +261,26 @@
         "type": "github"
       }
     },
+    "nix-vscode-extensions": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787985973,
+        "narHash": "sha256-6YafqgJETEUfhFaKx3zvinjq1WDz8fy/PnEVtw7YmaU=",
+        "owner": "nix-community",
+        "repo": "nix-vscode-extensions",
+        "rev": "fdeb8646a1f9e5f0db80dd05e9db54ab7687378e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-vscode-extensions",
+        "type": "github"
+      }
+    },
     "nixkit": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -491,6 +511,7 @@
         "gaze": "gaze",
         "home-manager": "home-manager_2",
         "lanzaboote": "lanzaboote",
+        "nix-vscode-extensions": "nix-vscode-extensions",
         "nixkit": "nixkit",
         "nixos-raspberrypi": "nixos-raspberrypi",
         "nixpkgs": "nixpkgs_3",

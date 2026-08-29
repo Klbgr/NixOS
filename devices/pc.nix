@@ -100,6 +100,8 @@
     configPath = "desktop";
   };
 
+  programs.nix-ld.enable = true;
+
   fileSystems."/games" = {
     device = "/dev/disk/by-label/games";
     fsType = "ext4";

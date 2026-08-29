@@ -109,7 +109,6 @@
               };
             };
             kded5rc.Module-browserintegrationreminder.autoload = false;
-            kwalletrc.Wallet.Enabled = false;
             krunnerrc.Plugins.krunner_appstreamEnabled = false;
           };
 

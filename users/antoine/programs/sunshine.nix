@@ -17,9 +17,6 @@ in
 {
   services.sunshine = {
     enable = true;
-    package = pkgs.sunshine.override {
-      cudaSupport = true;
-    };
     settings = {
       locale = "fr";
       system_tray = "disabled";

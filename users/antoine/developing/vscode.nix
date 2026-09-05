@@ -73,6 +73,7 @@
           "telemetry.editStats.enabled": false,
 
           "python.useEnvironmentsExtension": true,
+          "python.analysis.typeCheckingMode": "standard",
           "[python]": {
             "editor.defaultFormatter": "ms-python.black-formatter"
           },

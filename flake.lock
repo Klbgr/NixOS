@@ -504,6 +504,26 @@
         "type": "github"
       }
     },
+    "rogreat-nur-packages": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788068356,
+        "narHash": "sha256-F4r0oFvRIV+VKGdjIsAG/KjdugkMcnQNdfpUpSVru1E=",
+        "owner": "RoGreat",
+        "repo": "nur-packages",
+        "rev": "cf7bc2209cfa318662269aac5191e95418efeb3e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RoGreat",
+        "repo": "nur-packages",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "ayuz": "ayuz",
@@ -517,6 +537,7 @@
         "nixpkgs": "nixpkgs_3",
         "noctalia": "noctalia",
         "plasma-manager": "plasma-manager",
+        "rogreat-nur-packages": "rogreat-nur-packages",
         "spicetify-nix": "spicetify-nix"
       }
     },

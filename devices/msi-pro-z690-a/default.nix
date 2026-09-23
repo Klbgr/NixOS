@@ -21,7 +21,7 @@
   swapDevices = lib.mkForce [
     {
       device = "/var/lib/swapfile";
-      size = 96 * 1024;
+      size = 64 * 1024;
       priority = 0;
     }
   ];

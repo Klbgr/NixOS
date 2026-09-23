@@ -12,7 +12,7 @@
         let
           rawIcon = pkgs.fetchurl {
             url = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Google_Gemini_icon_2025.svg/1280px-Google_Gemini_icon_2025.svg.png";
-            sha256 = "sha256-ntHMZdVhvnx5I496JeTnPoU47vtPh1Wahr1tV/Hl00Y=";
+            sha256 = "sha256-PuKzG+TjTGwYCdpFPWcTIP45hi+Qd9bB/QB64oMz9RI=";
           };
         in
         pkgs.runCommand "gemini.png"

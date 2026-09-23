@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "amethyst-mod-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789830932,
+        "narHash": "sha256-jZNfClEM475spCSDXFnVW+GXfD+dmOlBDDa24V6uybM=",
+        "owner": "ChrisDKN",
+        "repo": "Amethyst-Mod-Manager",
+        "rev": "7c04b7ca4cf1957d9314d9c5b9b60af12fbffc47",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ChrisDKN",
+        "repo": "Amethyst-Mod-Manager",
+        "type": "github"
+      }
+    },
     "argononed": {
       "flake": false,
       "locked": {
@@ -501,28 +521,9 @@
         "type": "github"
       }
     },
-    "rogreat-nur-packages": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1788068356,
-        "narHash": "sha256-F4r0oFvRIV+VKGdjIsAG/KjdugkMcnQNdfpUpSVru1E=",
-        "owner": "RoGreat",
-        "repo": "nur-packages",
-        "rev": "cf7bc2209cfa318662269aac5191e95418efeb3e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "RoGreat",
-        "repo": "nur-packages",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
+        "amethyst-mod-manager": "amethyst-mod-manager",
         "ayuz": "ayuz",
         "chaotic": "chaotic",
         "gaze": "gaze",
@@ -534,7 +535,6 @@
         "nixpkgs": "nixpkgs_3",
         "noctalia": "noctalia",
         "plasma-manager": "plasma-manager",
-        "rogreat-nur-packages": "rogreat-nur-packages",
         "spicetify-nix": "spicetify-nix"
       }
     },

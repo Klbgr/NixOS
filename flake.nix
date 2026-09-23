@@ -42,8 +42,8 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rogreat-nur-packages = {
-      url = "github:RoGreat/nur-packages";
+    amethyst-mod-manager = {
+      url = "github:ChrisDKN/Amethyst-Mod-Manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

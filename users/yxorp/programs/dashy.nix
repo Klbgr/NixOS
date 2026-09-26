@@ -101,9 +101,9 @@ let
               url = prefix + "immich" + suffix;
             }
             {
-              title = "File Browser";
+              title = "FileBrowser Quantum";
               description = "Gestionnaire de fichiers";
-              icon = "hl-filebrowser";
+              icon = "hl-filebrowser-quantum";
               url = prefix + "filebrowser" + suffix;
             }
             {

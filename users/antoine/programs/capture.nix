@@ -9,7 +9,7 @@
         (pkgs.writeShellScriptBin "capture" ''
           NAME="Elgato HD60 X"
           RESOLUTION="2560x1440"
-          FPS="30"
+          FPS="60"
 
           while [[ $# -gt 0 ]]; do
               case "$1" in

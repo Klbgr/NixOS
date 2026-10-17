@@ -28,6 +28,7 @@
             ms-ceintl.vscode-language-pack-fr
 
             google.google-antigravity
+            danlambiase.lmstudio-copilot-provider
 
             ms-python.python
             ms-python.debugpy

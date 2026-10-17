@@ -17,11 +17,6 @@
     ../users/antoine
   ];
 
-  # specialisation.noctalia.configuration = {
-  #   services.desktopManager.plasma6.enable = lib.mkForce false;
-  #   imports = [ ./software/noctalia.nix ];
-  # };
-
   services.openssh = {
     enable = true;
     settings = {

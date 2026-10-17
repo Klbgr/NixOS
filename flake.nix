@@ -46,6 +46,7 @@
       url = "github:ChrisDKN/Amethyst-Mod-Manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    punktfunk.url = "git+https://git.unom.io/unom/punktfunk?ref=nix-stable";
   };
 
   outputs =
@@ -55,12 +56,14 @@
         "https://nix-community.cachix.org"
         "https://nixos-raspberrypi.cachix.org"
         "https://nixkit.cachix.org"
+        "https://nix.unom.io"
         "https://cache.nixos-cuda.org"
       ];
       public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
         "nixkit.cachix.org-1:d3yhZjbGSL6QTgzZsxE3lRLIQ8jGmH7/XxiD/5hGmfA="
+        "punktfunk-cache-1:yhOJmHxzg6tzXpxSFzlYn6Pc6r0jHprsWqt8MZC654o="
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
       ];
     in

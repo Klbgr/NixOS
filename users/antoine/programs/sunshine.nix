@@ -16,7 +16,7 @@ let
 in
 {
   services.sunshine = {
-    enable = true;
+    enable = false;
     settings = {
       locale = "fr";
       system_tray = "disabled";
@@ -59,6 +59,7 @@ in
   };
 
   systemd.services.sunshineVD = {
+    enable = false;
     description = "Sunshine Virtual Display Daemon";
     after = [
       "display-manager.service"

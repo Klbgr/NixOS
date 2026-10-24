@@ -595,4 +595,6 @@
     elisa
     discover
   ];
+
+  programs.kde-pim.enable = false;
 }

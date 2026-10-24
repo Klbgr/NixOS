@@ -321,6 +321,26 @@
         "type": "github"
       }
     },
+    "nix-craftapps": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792819661,
+        "narHash": "sha256-UVng2KQKCfAWmc01rq5jDJqJpmlxchdWzvWYYGMw8Wg=",
+        "owner": "olafkfreund",
+        "repo": "nix-craftapps",
+        "rev": "569a0557d66ba480bfe8959650825b41edfa0983",
+        "type": "github"
+      },
+      "original": {
+        "owner": "olafkfreund",
+        "repo": "nix-craftapps",
+        "type": "github"
+      }
+    },
     "nix-vscode-extensions": {
       "inputs": {
         "nixpkgs": [
@@ -561,6 +581,7 @@
         "gaze": "gaze",
         "home-manager": "home-manager_2",
         "lanzaboote": "lanzaboote",
+        "nix-craftapps": "nix-craftapps",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixkit": "nixkit",
         "nixos-raspberrypi": "nixos-raspberrypi",

@@ -110,6 +110,9 @@
             };
             kded5rc.Module-browserintegrationreminder.autoload = false;
             krunnerrc.Plugins.krunner_appstreamEnabled = false;
+            mimeapps.list = {
+              "application/pdf" = "ai.storyteller.pdfcraft.desktop";
+            };
           };
 
           immutableByDefault = false;
@@ -594,6 +597,7 @@
     khelpcenter
     elisa
     discover
+    okular
   ];
 
   programs.kde-pim.enable = false;

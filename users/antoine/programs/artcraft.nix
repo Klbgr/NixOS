@@ -1,6 +1,15 @@
-{ ... }:
+{ inputs, ... }:
 
 {
+  imports = [
+    inputs.nix-craftapps.nixosModules.default
+  ];
+
+  programs.craftapps = {
+    enable = true;
+    linkFonts = true;
+  };
+
   home-manager.users.antoine =
     { inputs, ... }:
 

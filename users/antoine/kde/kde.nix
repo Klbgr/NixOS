@@ -98,7 +98,8 @@
                 dynamic_workspacesEnabled = true;
                 kwin6_effect_aura_glowEnabled = false;
                 kwin4_effect_geometry_changeEnabled = true;
-                kwin4_effect_shapecornersEnabled = true;
+                # TODO: Enable this when 0.11.0 is available in nixpkgs
+                kwin4_effect_shapecornersEnabled = false;
               };
               Round-Corners = {
                 InactiveOutlineThickness = 0;

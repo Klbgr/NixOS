@@ -43,7 +43,6 @@
   # Bootloader.
   boot = {
     consoleLogLevel = 0;
-    initrd.verbose = false;
     kernelModules = [ "ntsync" ];
     kernelParams = [
       "quiet"

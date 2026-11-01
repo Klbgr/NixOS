@@ -2,7 +2,7 @@
 
 {
   home-manager.users.antoine =
-    { lib, pkgs, ... }:
+    { lib, pkgs, config,... }:
 
     {
       home.packages = with pkgs; [
@@ -37,6 +37,11 @@
             "analyticsOptIn": false,
             "libraryTopSection": "disabled",
             "maxWorkers": 0,
+            "wineVersion": {
+              "bin": "${config.home.homeDirectory}/.config/heroic/tools/proton/Proton-CachyOS-latest/proton",
+              "name": "Proton-CachyOS-latest",
+              "type": "proton"
+            },
             "winePrefix": "/games/Heroic/Prefixes/default",
             "autoInstallDxvkNvapi": true,
             "enableEsync": true,

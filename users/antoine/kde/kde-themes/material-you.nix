@@ -6,7 +6,7 @@
 
     {
       home.packages = with pkgs; [
-        python312Packages.kde-material-you-colors
+        kde-material-you-colors
         papirus-icon-theme
         bibata-cursors
       ];
